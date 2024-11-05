@@ -16,16 +16,16 @@ return new class extends Migration
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Subsections::class)->constrained()->cascadeOnDelete();
-            $table->string('edu_code', 50);
+            $table->string('edu_code');
             $table->string('edu_name');
             $table->string('edu_level');
-            $table->string('edu_prof', 50);
-            $table->string('edu_course', 50);
-            $table->string('edu_form', 50);
-            $table->integer('number_bf_vacant');
-            $table->integer('number_br_vacant');
-            $table->integer('number_bm_vacant');
-            $table->integer('number_p_vacant');
+            $table->string('edu_prof');
+            $table->string('edu_course');
+            $table->string('edu_form');
+            $table->integer('number_bf_vacant')->default(0);
+            $table->integer('number_br_vacant')->default(0);
+            $table->integer('number_bm_vacant')->default(0);
+            $table->integer('number_p_vacant')->default(0);
             $table->timestamps();
         });
     }

@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Subsections::class)->constrained()->cascadeOnDelete();
+            $table->string('name', 255);
             $table->string('name_file', 255);
             $table->string('path_to_file', 2048);
             $table->string('extension', 255);

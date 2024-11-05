@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreignIdFor(Subsections::class)->constrained()->cascadeOnDelete();
             $table->string('obj_name');
             $table->string('obj_address', 1000);
-            $table->string('obj_sq');
-            $table->integer('obj_cnt');
-            $table->string('obj_ovz');
+            $table->integer('obj_sq')->default(0);
+            $table->integer('obj_cnt')->default(0);
+            $table->string('obj_ovz', 5000);
             $table->timestamps();
         });
     }

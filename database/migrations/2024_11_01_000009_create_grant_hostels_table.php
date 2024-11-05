@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Subsections::class)->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->string('hostel_info', 50);
-            $table->string('inter_info');
+            $table->integer('hostel_info')->default(0);
+            $table->integer('inter_info')->default(0);
             $table->timestamps();
         });
     }

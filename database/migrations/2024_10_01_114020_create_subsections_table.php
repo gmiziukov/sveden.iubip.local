@@ -15,8 +15,7 @@ return new class extends Migration
         Schema::create('subsections', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Sections::class)->constrained()->cascadeOnDelete();
-            $table->string('name');
-            $table->string('sub_part');
+            $table->string('name', 2000);
             $table->integer('sort')->default(999);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('part');
             $table->integer('sort')->default(999);
             $table->boolean('is_active');
             $table->timestamps();

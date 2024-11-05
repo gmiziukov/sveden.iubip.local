@@ -15,9 +15,10 @@ return new class extends Migration
         Schema::create('grant_files', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Subsections::class)->constrained()->cascadeOnDelete();
-            $table->string('name_file', 255);
-            $table->string('path_to_file', 2048);
-            $table->string('extension', 255);
+            $table->string('name_file', 255)->nullable() ;
+            $table->string('path_to_file', 2048)->nullable();
+            $table->string('extension', 255)->nullable();
+            $table->string('nots', 500)->nullable();
             $table->timestamps();
         });
     }
