@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Subsections extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'sections_id',
+        'name',
+        'sort',
+        'is_active'
+    ];
 }

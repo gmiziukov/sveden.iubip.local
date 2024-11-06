@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Catering;
+use App\Models\InternationalDogovor;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/catering', [Catering::class, 'index'])->name('catering');
+Route::get('/inter', [InternationalDogovor::class, 'index'])->name('inter');

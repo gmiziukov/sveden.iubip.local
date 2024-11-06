@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subsections;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,9 +10,18 @@ class Catering extends Controller
 {
     public function index(Request $request)
     {
-        $data = DB::table("catering_means")->get();
-        $datatwo = DB::table("catering_healths")->get();
+        $subsections = Subsections::where('sections_id', '=', 14)
+            ->select('id','name')
+            ->orderBy('sort')
+            ->get();
 
-        return view('pages.catering', ['data' => $data, 'datatwo' => $datatwo]);
+        $cateringMeans = DB::table("catering_means")->get();
+        $cateringHealths = DB::table("catering_healths")->get();
+
+        return view('pages.catering', [
+            'subsections' => $subsections,
+            'cateringMeans' => $cateringMeans,
+            'cateringHealths' => $cateringHealths
+        ]);
     }
 }
