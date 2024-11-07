@@ -15,10 +15,10 @@ return new class extends Migration
         Schema::create('budget_valumes', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Subsections::class)->constrained()->cascadeOnDelete();
-            $table->decimal('fin_bf_volume');
-            $table->decimal('fin_br_volume');
-            $table->decimal('fin_bm_volume');
-            $table->decimal('fin_p_volume');
+            $table->decimal('fin_bf_volume', 10,2)->default(0);
+            $table->decimal('fin_br_volume', 10,2)->default(0);
+            $table->decimal('fin_bm_volume', 10,2)->default(0);
+            $table->decimal('fin_p_volume', 10,2)->default(0);
             $table->timestamps();
         });
     }

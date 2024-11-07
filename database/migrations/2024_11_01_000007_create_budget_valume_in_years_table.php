@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Subsections::class)->constrained()->cascadeOnDelete();
             $table->integer('fin_year');
-            $table->decimal('fin_post');
-            $table->decimal('fin_ras');
+            $table->decimal('fin_post', 10,2)->default(0);
+            $table->decimal('fin_ras', 10,2)->default(0);
             $table->timestamps();
         });
     }

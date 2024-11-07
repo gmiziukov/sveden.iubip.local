@@ -54,7 +54,6 @@
                     </tr>
                 </thead>
                 <tbody class="text-slate-600">
-                    @foreach ($cateringMeans as $means)
                     <tr>
                         <td class="border border-slate-300 text-center text-sm">
                             1
@@ -72,6 +71,7 @@
                             5
                         </td>
                     </tr>
+                    @foreach ($cateringMeans as $means)
                     <tr class="h-[3rem] text-justify">
                         <td class="border border-slate-300 px-2 place-items-center">
                             {{ $means->obj_name }}

@@ -6,20 +6,20 @@ use App\Models\Subsections;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class InternationalDogovorController extends Controller
+class VacantController extends Controller
 {
     public function index(Request $request)
     {
-        $subsections = Subsections::where('sections_id', '=', 13)
+        $subsections = Subsections::where('sections_id', '=', 12)
             ->select('id','name')
             ->orderBy('sort')
             ->get();
         
-        $inter = DB::table("international_dogovors")->get();
+        $vacancies = DB::table("vacancies")->get();
 
-        return view('pages.international-dogovors',[
+        return view('pages.vacant',[
             'subsections' => $subsections,
-            'inter' => $inter
+            'vacancies' => $vacancies
         ]);
     }
 }

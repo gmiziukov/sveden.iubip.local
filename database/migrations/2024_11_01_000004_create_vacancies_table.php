@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('edu_code');
             $table->string('edu_name');
             $table->string('edu_level');
-            $table->string('edu_prof');
-            $table->string('edu_course');
+            $table->string('edu_prof')->default(NULL);
+            $table->integer('edu_course');
             $table->string('edu_form');
             $table->integer('number_bf_vacant')->default(0);
             $table->integer('number_br_vacant')->default(0);

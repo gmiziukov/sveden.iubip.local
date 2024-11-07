@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\Catering;
-use App\Models\InternationalDogovor;
+use App\Http\Controllers\InternationalDogovorController;
+use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\StructureController;
+use App\Http\Controllers\VacantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +28,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/catering', [Catering::class, 'index'])->name('catering');
-Route::get('/inter', [InternationalDogovor::class, 'index'])->name('inter');
+Route::get('sveden/catering', [Catering::class, 'index'])->name('catering');
+Route::get('sveden/inter', [InternationalDogovorController::class, 'index'])->name('inter');
+Route::get('sveden/budget', [BudgetController::class, 'index'])->name('budget');
+Route::get('sveden/struct', [StructureController::class, 'index'])->name('struct');
+Route::get('sveden/vacant', [VacantController::class, 'index'])->name('vacant');
+Route::get('sveden/manager', [ManagerController::class, 'index'])->name('manager');
