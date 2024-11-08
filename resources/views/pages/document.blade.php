@@ -41,44 +41,16 @@
         @foreach($subsections as $subsection)
         <div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
         <div class="px-6 flex flex-col">
-            @if($subsection->id == 56)
+            @if($subsection->id == 15)
             <table class="text-sm mb-4 text-left">
-                <thead class="text-center">
-                    <tr class="h-[3rem] bg-blue-100 border border-blue-200">
-                        <th class="w-[5rem] font-medium border-blue-200">№ п/п</th>
-                        <th class="border w-[25rem] font-medium border-blue-200">Государство</th>
-                        <th class="border w-[35rem] font-medium border-blue-200">Наименование организации</th>
-                        <th class="border w-auto font-medium border-blue-200">Реквизиты договора (наименование, дата, номер, срок действия)</th>
-                    </tr>
-                </thead>
                 <tbody class="text-slate-600">
-                    <tr>
-                        <td class="border border-slate-300 text-center text-sm">
-                            1
+                    @foreach ($document as $doc)
+                    <tr class="h-[3rem] text-justify">
+                        <td class="border border-slate-300 w-[40rem] px-2 place-items-center">
+                            {{ $doc->name }}
                         </td>
-                        <td class="border border-slate-300 text-center text-sm">
-                            2
-                        </td>
-                        <td class="border border-slate-300 text-center text-sm">
-                            3
-                        </td>
-                        <td class="border border-slate-300 text-center text-sm">
-                            4
-                        </td>
-                    </tr>
-                    @foreach ($inter as $international)
-                    <tr itemprop="internationalDog" class="h-[3rem] text-justify">
-                        <td class="border border-slate-300 px-2 text-center place-items-center">
-                            {{ $loop->iteration }}
-                        </td>
-                        <td itemprop="stateName" class="border border-slate-300 px-2">
-                            {{ $international->state_name }}
-                        </td>
-                        <td itemprop="orgName" class="border border-slate-300 px-2">
-                            {{ $international->org_name }}
-                        </td>
-                        <td itemprop="dogReg"class="border border-slate-300 px-2">
-                            {{ $international->dog_reg }}
+                        <td class="border border-slate-300 px-2">
+                            <a style="color: -webkit-link;" target="_blank" href="{{ asset('storage/'.$doc->path_to_file) }}">{{ $doc->name_file }}</a>
                         </td>
                     </tr>
                     @endforeach

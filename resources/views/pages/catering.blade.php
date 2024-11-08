@@ -71,22 +71,22 @@
                             5
                         </td>
                     </tr>
-                    @foreach ($cateringMeans as $means)
-                    <tr class="h-[3rem] text-justify">
-                        <td class="border border-slate-300 px-2 place-items-center">
-                            {{ $means->obj_name }}
+                    @foreach ($cateringMeans as $meals)
+                    <tr itemprop="meals" class="h-[3rem] text-justify">
+                        <td itemprop="objName" class="border border-slate-300 px-2 place-items-center">
+                            {{ $meals->obj_name }}
                         </td>
-                        <td class="border border-slate-300 px-2">
-                            {{ $means->obj_address }}
+                        <td itemprop="objAddress" class="border border-slate-300 px-2">
+                            {{ $meals->obj_address }}
                         </td>
-                        <td class="border border-slate-300 px-2 text-center">
-                            {{ $means->obj_sq }}
+                        <td itemprop="objSq" class="border border-slate-300 px-2 text-center">
+                            {{ $meals->obj_sq }}
                         </td>
-                        <td class="border border-slate-300 px-2 text-center">
-                            {{ $means->obj_cnt }}
+                        <td itemprop="objCnt" class="border border-slate-300 px-2 text-center">
+                            {{ $meals->obj_cnt }}
                         </td>
-                        <td class="border border-slate-300 px-2">
-                            {{ $means->obj_ovz }}
+                        <td itemprop="objOvz" class="border border-slate-300 px-2">
+                            {{ $meals->obj_ovz }}
                         </td>
                     </tr>
                     @endforeach
@@ -123,20 +123,20 @@
                             5
                         </td>
                     </tr>
-                    <tr class="h-[3rem] text-justify">
-                        <td class="border px-2 place-items-center border-slate-300">
+                    <tr itemprop="health" class="h-[3rem] text-justify">
+                        <td itemprop="objName" class="border px-2 place-items-center border-slate-300">
                             {{ $health->obj_name }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="objAddress" class="border px-2 border-slate-300">
                             {{ $health->obj_address }}
                         </td>
-                        <td class="border px-2 text-center border-slate-300">
+                        <td itemprop="objSq" class="border px-2 text-center border-slate-300">
                             {{ $health->obj_sq }}
                         </td>
-                        <td class="border px-2 text-center border-slate-300">
+                        <td itemprop="objCnt" class="border px-2 text-center border-slate-300">
                             {{ $health->obj_cnt }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="objOvz" class="border px-2 border-slate-300">
                             {{ $health->obj_ovz }}
                         </td>
                     </tr>

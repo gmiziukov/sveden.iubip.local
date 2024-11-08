@@ -18,12 +18,14 @@ class ManagerController extends Controller
         $managerBase = DB::table("manager_base_organizations")->get();
         $managerBranches = DB::table("manager_branches")->get();
         $managerOffices = DB::table("manager_representative_offices")->get();
+        $managerFiles = DB::table("manager_files")->get();
 
         return view('pages.manager',[
             'subsections' => $subsections,
             'managerBase' => $managerBase,
             'managerBranches' => $managerBranches,
-            'managerOffices' => $managerOffices
+            'managerOffices' => $managerOffices,
+            'managerFiles' => $managerFiles
         ]);
     }
 }

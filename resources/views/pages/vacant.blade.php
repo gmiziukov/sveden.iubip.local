@@ -96,35 +96,35 @@
                         </td>
                     </tr>
                     @foreach ($vacancies as $vacanct)
-                    <tr class="h-[3rem] text-justify">
-                        <td class="border border-slate-300 px-2 place-items-center">
+                    <tr itemprop="vacant" class="h-[3rem] text-justify">
+                        <td itemprop="eduCode" class="border border-slate-300 px-2 place-items-center">
                             {{ $vacanct->edu_code }}
                         </td>
-                        <td class="border border-slate-300 px-2">
+                        <td itemprop="eduName" class="border border-slate-300 px-2">
                             {{ $vacanct->edu_name }}
                         </td>
-                        <td class="border border-slate-300 px-2">
+                        <td itemprop="eduLevel" class="border border-slate-300 px-2">
                             {{ $vacanct->edu_level }}
                         </td>
-                        <td class="border border-slate-300 text-center">
+                        <td itemprop="eduProf" class="border border-slate-300 text-center">
                             {{ $vacanct->edu_prof }}
                         </td>
-                        <td class="border border-slate-300 text-center">
+                        <td itemprop="eduCourse" class="border border-slate-300 text-center">
                             {{ $vacanct->edu_course }}
                         </td>
-                        <td class="border border-slate-300 text-center">
+                        <td itemprop="eduForm" class="border border-slate-300 text-center">
                             {{ $vacanct->edu_form }}
                         </td>
-                        <td class="border border-slate-300 text-center">
+                        <td itemprop="numberBFVacant" class="border border-slate-300 text-center">
                             {{ $vacanct->number_bf_vacant }}
                         </td>
-                        <td class="border border-slate-300 text-center">
+                        <td itemprop="numberBRVacant" class="border border-slate-300 text-center">
                             {{ $vacanct->number_br_vacant }}
                         </td>
-                        <td class="border border-slate-300 text-center">
+                        <td itemprop="numberBMVacant" class="border border-slate-300 text-center">
                             {{ $vacanct->number_bm_vacant }}
                         </td>
-                        <td class="border border-slate-300 text-center">
+                        <td itemprop="numberPVacant" class="border border-slate-300 text-center">
                             {{ $vacanct->number_p_vacant }}
                         </td>
                     </tr>

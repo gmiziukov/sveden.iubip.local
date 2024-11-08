@@ -80,28 +80,28 @@
                         </td>
                     </tr>
                     @foreach ($structureBase as $base)
-                    <tr class="h-[3rem] text-justify">
-                        <td class="border border-slate-300 px-2 place-items-center">
+                    <tr itemprop="structOrgUprav" class="h-[3rem] text-justify">
+                        <td itemprop="name" class="border border-slate-300 px-2 place-items-center">
                             {{ $base->name }}
                         </td>
-                        <td class="border border-slate-300 px-2">
+                        <td itemprop="fio" class="border border-slate-300 px-2">
                             {{ $base->fio }}
                         </td>
-                        <td class="border border-slate-300 px-2">
+                        <td itemprop="post" class="border border-slate-300 px-2">
                             {{ $base->post }}
                         </td>
-                        <td class="border border-slate-300 px-2">
+                        <td itemprop="address_str" class="border border-slate-300 px-2">
                             {{ $base->address_str }}
                         </td>
-                        <td class="border border-slate-300 px-2">
+                        <td itemprop="site" class="border border-slate-300 px-2">
                             {{ $base->site }}
                         </td>
-                        <td class="border border-slate-300 px-2">
+                        <td itemprop="email" class="border border-slate-300 px-2">
                             {{ $base->email }}
                         </td>
-                        <td class="border border-slate-300 px-2">
+                        <td itemprop="divisionClauseDocLink" class="border border-slate-300 px-2">
                             @foreach($structureBase as $file)
-                            <a style="color: -webkit-link;" target="_blank" href="storage/{{$file->path_to_file}}">{{ $file->name_file }}</a>
+                            <a style="color: -webkit-link;" target="_blank" href="{{ asset('storage/'.$file->path_to_file) }}">{{ $file->name_file }}</a>
                             @endforeach
                         </td>
                     </tr>
@@ -147,26 +147,26 @@
                             7
                         </td>
                     </tr>
-                    <tr class="h-[2rem] text-justify">
-                        <td class="border px-2 place-items-center border-slate-300">
+                    <tr itemprop="filInfo" class="h-[2rem] text-justify">
+                        <td itemprop="nameFil" class="border px-2 place-items-center border-slate-300">
                             {{ $branches->name_fill }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="fio" class="border px-2 border-slate-300">
                             {{ $branches->fio }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="post" class="border px-2 border-slate-300">
                             {{ $branches->post }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="addressFil" class="border px-2 border-slate-300">
                             {{ $branches->address_fill }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="emailFil" class="border px-2 border-slate-300">
                             {{ $branches->email_fill }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="websiteFil" class="border px-2 border-slate-300"> 
                             {{ $branches->website_fill }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="divisionClauseDocLink" class="border px-2 border-slate-300">
                             @foreach($structureBranches as $file)
                             <a style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
                             @endforeach
@@ -214,26 +214,26 @@
                             7
                         </td>
                     </tr>
-                    <tr class="h-[2rem] text-justify">
-                        <td class="border px-2 place-items-center border-slate-300">
+                    <tr itemprop="repInfo" class="h-[2rem] text-justify">
+                        <td itemprop="nameRep" class="border px-2 place-items-center border-slate-300">
                             {{ $offices->name_rep }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="fio" class="border px-2 border-slate-300">
                             {{ $offices->fio }}
                         </td>
-                        <td class="border px-2 text-center border-slate-300">
+                        <td itemprop="post" class="border px-2 text-center border-slate-300">
                             {{ $offices->post }}
                         </td>
-                        <td class="border px-2 text-center border-slate-300">
+                        <td itemprop="addressRep" class="border px-2 text-center border-slate-300">
                             {{ $offices->address_rep }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="emailRep" class="border px-2 border-slate-300">
                             {{ $offices->email_rep }}
                         </td>
-                        <td class="border px-2 text-center border-slate-300">
+                        <td itemprop="websiteRep" class="border px-2 text-center border-slate-300">
                             {{ $offices->website_rep }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="divisionClauseDocLink" class="border px-2 border-slate-300">
                             @foreach($structureOffices as $file)
                             <a style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
                             @endforeach

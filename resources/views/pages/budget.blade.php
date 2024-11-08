@@ -71,16 +71,16 @@
                     </tr>
                     @foreach ($budgetValue as $Value)
                     <tr class="h-[2rem] text-justify">
-                        <td class="border border-slate-300 px-2 text-center place-items-center">
+                        <td itemprop="finBFVolume" class="border border-slate-300 px-2 text-center place-items-center">
                             {{ $Value->fin_bf_volume }}
                         </td>
-                        <td class="border border-slate-300 text-center px-2">
+                        <td itemprop="finBRVolume" class="border border-slate-300 text-center px-2">
                             {{ $Value->fin_br_volume }}
                         </td>
-                        <td class="border border-slate-300 text-center px-2">
+                        <td itemprop="finBMVolume" class="border border-slate-300 text-center px-2">
                             {{ $Value->fin_bm_volume }}
                         </td>
-                        <td class="border border-slate-300 text-center px-2">
+                        <td itemprop="finPVolume" class="border border-slate-300 text-center px-2">
                             {{ $Value->fin_p_volume }}
                         </td>
                     </tr>
@@ -110,14 +110,14 @@
                         </td>
                     </tr>
                     @foreach ($budgetValueYear as $ValueYear)
-                    <tr class="h-[2rem] text-justify">
-                        <td class="border px-2 text-center place-items-center border-slate-300">
+                    <tr itemprop="volume" class="h-[2rem] text-justify">
+                        <td itemprop="finYear" class="border px-2 text-center place-items-center border-slate-300">
                             {{ $ValueYear->fin_year }}
                         </td>
-                        <td class="border px-2 text-center border-slate-300">
+                        <td itemprop="finPost" class="border px-2 text-center border-slate-300">
                             {{ $ValueYear->fin_post }}
                         </td>
-                        <td class="border px-2 text-center border-slate-300">
+                        <td itemprop="finRas" class="border px-2 text-center border-slate-300">
                             {{ $ValueYear->fin_ras }}
                         </td>
                     </tr>
@@ -132,7 +132,7 @@
     <div class = "px-6">
         @foreach($budgetPlan as $file)
         <li>
-            <a style="color: -webkit-link;" target="_blank" href="storage/{{$file->path_to_file}}">{{ $file->name_file }}</a>
+            <a itemprop="finPlanDocLink"  style="color: -webkit-link;" target="_blank" href="{{ asset('storage/'.$file->path_to_file) }}">{{ $file->name_file }}</a>
         </li>
         @endforeach
     </div>

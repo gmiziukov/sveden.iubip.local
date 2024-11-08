@@ -29,14 +29,15 @@
         </div>
 
         <div class="flex bg-blue-200 h-[3rem] p-2 w-full justify-between items-center py-4">
-            <div class="text-center text-sm lg:text-2xl font-medium">Структура и органы управления образовательной организацией</div>
+            <div class="text-center text-sm lg:text-2xl font-medium">Руководство</div>
             <div class=" font-semibold"> </i> Версия для слабовидящих</div>
         </div>
         <div class="px-2 py-2">
             <div class="flex flex-row text-md items-center h-[2.5rem] bg-slate-200">
-                <p class="px-2">Главная</p>/<p class="px-2">Сведения об образовательной организации</p>/<p class="px-2">Структура и органы управления образовательной организацией</p>
+                <p class="px-2">Главная</p>/<p class="px-2">Сведения об образовательной организации</p>/<p class="px-2">Руководство</p>
             </div>
         </div>
+
 
 
         @foreach($subsections as $subsection)
@@ -68,17 +69,22 @@
                         </td>
                     </tr>
                     @foreach ($managerBase as $base)
-                    <tr class="h-[2rem] text-justify">
-                        <td class="border border-slate-300 px-2 place-items-center">
+                    <tr itemprop="rucovodstvo" class="h-[2rem] text-justify">
+                        <td itemprop="fio" class="border py-2 border-slate-300 px-2 place-items-center">
+                            @foreach($managerFiles as $file)
+                            @if($file->id == $base->id)
+                            <img style="width:150px;border-radius:5%" src="{{ Storage::url($file->path_to_file)}}" alt="{{$file->name_file}}"></img>
+                            @endif
+                            @endforeach
                             {{ $base->fio }}
                         </td>
-                        <td class="border border-slate-300 px-2">
+                        <td itemprop="post" class="border border-slate-300 px-2">
                             {{ $base->post }}
                         </td>
-                        <td class="border border-slate-300 text-center px-2">
+                        <td itemprop="telephone" class="border border-slate-300 text-center px-2">
                             {{ $base->telephone }}
                         </td>
-                        <td class="border border-slate-300 text-center px-2">
+                        <td itemprop="email" class="border border-slate-300 text-center px-2">
                             {{ $base->email }}
                         </td>
                     </tr>
@@ -116,20 +122,20 @@
                             5
                         </td>
                     </tr>
-                    <tr class="h-[2rem] text-justify">
-                        <td class="border px-2 place-items-center border-slate-300">
+                    <tr itemprop="rucovodstvoFil" class="h-[2rem] text-justify">
+                        <td itemprop="nameFil" class="border px-2 place-items-center border-slate-300">
                             {{ $branches->name_fill }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="fio" class="border px-2 border-slate-300">
                             {{ $branches->fio }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="post" class="border px-2 border-slate-300">
                             {{ $branches->post }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="telephone" class="border px-2 border-slate-300">
                             {{ $branches->telephone }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="email" class="border px-2 border-slate-300">
                             {{ $branches->email }}
                         </td>
                     </tr>
@@ -138,7 +144,7 @@
             </table>
             @endif
             @if($subsection->id == 33)
-            <table class="table text-sm text-left">
+            <table class="table text-sm mb-4 text-left">
                 <thead class="text-center">
                     <tr class="h-[2rem] bg-blue-100 border border-blue-200">
                         <th class="w-[25rem] font-medium border-blue-200">Наименование представительства</th>
@@ -167,20 +173,20 @@
                             5
                         </td>
                     </tr>
-                    <tr class="h-[2rem] text-justify">
-                        <td class="border px-2 place-items-center border-slate-300">
+                    <tr itemprop="rucovodstvoZam" class="h-[2rem] text-justify">
+                        <td itemprop="name" class="border px-2 place-items-center border-slate-300">
                             {{ $offices->name_organization }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="fio" class="border px-2 border-slate-300">
                             {{ $offices->fio }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="post" class="border px-2 border-slate-300">
                             {{ $offices->post }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="telephone" class="border px-2 border-slate-300">
                             {{ $offices->telephone }}
                         </td>
-                        <td class="border px-2 border-slate-300">
+                        <td itemprop="email" class="border px-2 border-slate-300">
                             {{ $offices->email }}
                         </td>
                     </tr>
@@ -189,7 +195,9 @@
             </table>
             @endif
         </div>
+
         @endforeach
+
 </body>
 
 </html>

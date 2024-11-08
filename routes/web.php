@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\Catering;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\InternationalDogovorController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\StructureController;
@@ -34,3 +35,4 @@ Route::get('sveden/budget', [BudgetController::class, 'index'])->name('budget');
 Route::get('sveden/struct', [StructureController::class, 'index'])->name('struct');
 Route::get('sveden/vacant', [VacantController::class, 'index'])->name('vacant');
 Route::get('sveden/manager', [ManagerController::class, 'index'])->name('manager');
+Route::get('sveden/document', [DocumentController::class, 'index'])->name('document');
