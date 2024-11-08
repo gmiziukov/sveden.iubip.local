@@ -43,7 +43,6 @@
         <div class="px-6 flex flex-col justify-center items-center">
             @if($subsection->id == 55)
             <table class="text-sm mb-4 text-left">
-
                 <thead class="text-center">
                     <tr class="h-[1rem] bg-blue-100 border border-blue-200">
                         <th rowspan="2" class="w-[15rem] font-medium border-blue-200">Код, шифр группы научных специальностей</th>
@@ -60,7 +59,6 @@
                         <th class="border w-[10rem] font-medium border-blue-200">бюджетных ассигнований местных бюджетов</th>
                         <th class="border w-[10rem] font-medium border-blue-200">средств физических и (или) юридических лиц</th>
                     </tr>
-
                 </thead>
                 <tbody class="text-slate-600">
                     <tr>
@@ -95,37 +93,37 @@
                             10
                         </td>
                     </tr>
-                    @foreach ($vacancies as $vacanct)
+                    @foreach ($vacancies as $vacant)
                     <tr itemprop="vacant" class="h-[3rem] text-justify">
                         <td itemprop="eduCode" class="border border-slate-300 px-2 place-items-center">
-                            {{ $vacanct->edu_code }}
+                            {{ $vacant->edu_code }}
                         </td>
                         <td itemprop="eduName" class="border border-slate-300 px-2">
-                            {{ $vacanct->edu_name }}
+                            {{ $vacant->edu_name }}
                         </td>
                         <td itemprop="eduLevel" class="border border-slate-300 px-2">
-                            {{ $vacanct->edu_level }}
+                            {{ $vacant->edu_level }}
                         </td>
                         <td itemprop="eduProf" class="border border-slate-300 text-center">
-                            {{ $vacanct->edu_prof }}
+                            {{ $vacant->edu_prof }}
                         </td>
                         <td itemprop="eduCourse" class="border border-slate-300 text-center">
-                            {{ $vacanct->edu_course }}
+                            {{ $vacant->edu_course }}
                         </td>
                         <td itemprop="eduForm" class="border border-slate-300 text-center">
-                            {{ $vacanct->edu_form }}
+                            {{ $vacant->edu_form }}
                         </td>
                         <td itemprop="numberBFVacant" class="border border-slate-300 text-center">
-                            {{ $vacanct->number_bf_vacant }}
+                            {{ $vacant->number_bf_vacant }}
                         </td>
                         <td itemprop="numberBRVacant" class="border border-slate-300 text-center">
-                            {{ $vacanct->number_br_vacant }}
+                            {{ $vacant->number_br_vacant }}
                         </td>
                         <td itemprop="numberBMVacant" class="border border-slate-300 text-center">
-                            {{ $vacanct->number_bm_vacant }}
+                            {{ $vacant->number_bm_vacant }}
                         </td>
                         <td itemprop="numberPVacant" class="border border-slate-300 text-center">
-                            {{ $vacanct->number_p_vacant }}
+                            {{ $vacant->number_p_vacant }}
                         </td>
                     </tr>
                     @endforeach

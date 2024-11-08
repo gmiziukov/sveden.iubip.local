@@ -44,14 +44,16 @@
             @if($subsection->id == 52)
             <table class="text-sm mb-4 text-left">
                 <thead class="text-center">
-                    <tr class="h-[2rem] bg-blue-100 border font-medium border-blue-200">
-                        <th colspan="4">Объем образовательной деятельности, финансовое обеспечение которой осуществляется</th>
-                    </tr>
-                    <tr class="h-[3rem] bg-blue-100 border border-blue-200">
-                        <th class="w-[30rem] font-medium border-blue-200">за счёт бюджетных ассигнований федерального бюджета (тыс. руб.)</th>
-                        <th class="border w-[27rem] font-medium border-blue-200">за счёт бюджетов субъектов Российской Федерации (тыс. руб.)</th>
-                        <th class="border w-[18rem] font-medium border-blue-200">за счёт местных бюджетов (тыс. руб.)</th>
-                        <th class="border w-auto font-medium border-blue-200">по договорам об образовании за счет средств физических и (или) юридических лиц (тыс. руб.)</th>
+                    <tr>
+                        <tr class="h-[2rem] bg-blue-100 border font-medium border-blue-200">
+                            <th colspan="4">Объем образовательной деятельности, финансовое обеспечение которой осуществляется</th>
+                        </tr>
+                        <tr class="h-[3rem] bg-blue-100 border border-blue-200">
+                            <th class="w-[30rem] font-medium border-blue-200">за счёт бюджетных ассигнований федерального бюджета (тыс. руб.)</th>
+                            <th class="border w-[27rem] font-medium border-blue-200">за счёт бюджетов субъектов Российской Федерации (тыс. руб.)</th>
+                            <th class="border w-[18rem] font-medium border-blue-200">за счёт местных бюджетов (тыс. руб.)</th>
+                            <th class="border w-auto font-medium border-blue-200">по договорам об образовании за счет средств физических и (или) юридических лиц (тыс. руб.)</th>
+                        </tr>
                     </tr>
                 </thead>
                 <tbody class="text-slate-600">
@@ -69,19 +71,19 @@
                             4
                         </td>
                     </tr>
-                    @foreach ($budgetValue as $Value)
+                    @foreach ($budgetValue as $value)
                     <tr class="h-[2rem] text-justify">
                         <td itemprop="finBFVolume" class="border border-slate-300 px-2 text-center place-items-center">
-                            {{ $Value->fin_bf_volume }}
+                            {{ $value->fin_bf_volume }}
                         </td>
                         <td itemprop="finBRVolume" class="border border-slate-300 text-center px-2">
-                            {{ $Value->fin_br_volume }}
+                            {{ $value->fin_br_volume }}
                         </td>
                         <td itemprop="finBMVolume" class="border border-slate-300 text-center px-2">
-                            {{ $Value->fin_bm_volume }}
+                            {{ $value->fin_bm_volume }}
                         </td>
                         <td itemprop="finPVolume" class="border border-slate-300 text-center px-2">
-                            {{ $Value->fin_p_volume }}
+                            {{ $value->fin_p_volume }}
                         </td>
                     </tr>
                     @endforeach
@@ -109,32 +111,32 @@
                             3
                         </td>
                     </tr>
-                    @foreach ($budgetValueYear as $ValueYear)
+                    @foreach ($budgetValueYear as $valueyear)
                     <tr itemprop="volume" class="h-[2rem] text-justify">
                         <td itemprop="finYear" class="border px-2 text-center place-items-center border-slate-300">
-                            {{ $ValueYear->fin_year }}
+                            {{ $valueyear->fin_year }}
                         </td>
                         <td itemprop="finPost" class="border px-2 text-center border-slate-300">
-                            {{ $ValueYear->fin_post }}
+                            {{ $valueyear->fin_post }}
                         </td>
                         <td itemprop="finRas" class="border px-2 text-center border-slate-300">
-                            {{ $ValueYear->fin_ras }}
+                            {{ $valueyear->fin_ras }}
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             @endif
-
         </div>
         @endforeach
     </div>
-    <div class = "px-6">
+    <div class="px-6">
         @foreach($budgetPlan as $file)
         <li>
-            <a itemprop="finPlanDocLink"  style="color: -webkit-link;" target="_blank" href="{{ asset('storage/'.$file->path_to_file) }}">{{ $file->name_file }}</a>
+            <a href="{{ asset('storage/'.$file->path_to_file) }}" itemprop="finPlanDocLink" style="color: -webkit-link;" target="_blank" >{{ $file->name_file }}</a>
         </li>
         @endforeach
     </div>
 </body>
+
 </html>

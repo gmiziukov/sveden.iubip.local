@@ -38,7 +38,6 @@
             </div>
         </div>
 
-
         @foreach($subsections as $subsection)
         <div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
         <div class="px-6 flex flex-col justify-center items-center">
@@ -105,7 +104,6 @@
                     </tr>
                 </thead>
                 <tbody class="text-slate-600">
-                    @foreach ($cateringHealths as $health)
                     <tr>
                         <td class="border border-slate-300 text-center text-sm">
                             1
@@ -123,6 +121,7 @@
                             5
                         </td>
                     </tr>
+                    @foreach ($cateringHealths as $health)
                     <tr itemprop="health" class="h-[3rem] text-justify">
                         <td itemprop="objName" class="border px-2 place-items-center border-slate-300">
                             {{ $health->obj_name }}
