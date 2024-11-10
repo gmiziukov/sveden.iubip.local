@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class VacantController extends Controller
+class GrantsController extends Controller
 {
     public function index (Request $request)
     {
-        return view('vacant');
+        return view('grants');
     }
 }

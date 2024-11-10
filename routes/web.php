@@ -1,12 +1,5 @@
 <?php
 
-use App\Http\Controllers\BudgetController;
-use App\Http\Controllers\Catering;
-use App\Http\Controllers\DocumentController;
-use App\Http\Controllers\InternationalDogovorController;
-use App\Http\Controllers\ManagerController;
-use App\Http\Controllers\StructureController;
-use App\Http\Controllers\VacantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,19 +13,52 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix' => 'sveden'], function () {
+    Route::get('/common', function () {
+        return view('common');
+    });
+    Route::get('/struct', function () {
+        return view('struct');
+    });
+    Route::get('/document', function () {
+        return view('document');
+    });
+    Route::get('/education', function () {
+        return view('education');
+    });
+    Route::get('/eduStandarts', function () {
+        return view('edu-standarts');
+    });
+    Route::get('/managers', function () {
+        return view('managers');
+    });
+    Route::get('/employees', function () {
+        return view('employees');
+    });
+    Route::get('/objects', function () {
+        return view('objects');
+    });
+    Route::get('/grants', function () {
+        return view('grants');
+    });
+    Route::get('/paid_edu', function () {
+        return view('paid-edu');
+    });
+    Route::get('/budget', function () {
+        return view('budget');
+    });
+    Route::get('/vacant', function () {
+        return view('vacant');
+    });
+    Route::get('/inter', function () {
+        return view('inter');
+    });
+    Route::get('/catering', function () {
+        return view('catering');
+    });
 });
+
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-Route::get('sveden/catering', [Catering::class, 'index'])->name('catering');
-Route::get('sveden/inter', [InternationalDogovorController::class, 'index'])->name('inter');
-Route::get('sveden/budget', [BudgetController::class, 'index'])->name('budget');
-Route::get('sveden/struct', [StructureController::class, 'index'])->name('struct');
-Route::get('sveden/vacant', [VacantController::class, 'index'])->name('vacant');
-Route::get('sveden/manager', [ManagerController::class, 'index'])->name('manager');
-Route::get('sveden/document', [DocumentController::class, 'index'])->name('document');
