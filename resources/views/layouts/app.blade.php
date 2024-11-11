@@ -15,7 +15,15 @@
 
 <body>
     <div id="app" class="w-full h-screen flex flex-col text-gray-600 font-sans font-light antialiased">
-        <a itemprop="copy" href="#">Версии для слабовидящих</a>
+        <div class="w-full bg-blue-400 flex text-3xl text-white h-[7rem]">
+            <div class="flex items-center w-full">
+                <img class="w-[10rem] px-2" src="{{ asset('storage/logo_iubip.png') }}">
+                <div class="flex items-center justify-center text-center font-semibold flex-grow">Частное образовательное учреждение высшего образования "ЮЖНЫЙ УНИВЕРСИТЕТ (ИУБиП)"</div>
+            </div>
+        </div>
+        <div class="flex bg-blue-200 h-[3rem] p-2 w-full justify-between items-center py-4">
+            <a itemprop="copy" href="#">Версии для слабовидящих</a>
+        </div>
         <div>
             @yield('content')
         </div>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\CateringController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,18 +46,16 @@ Route::group(['prefix' => 'sveden'], function () {
     Route::get('/paid_edu', function () {
         return view('paid-edu');
     });
-    Route::get('/budget', function () {
-        return view('budget');
-    });
+
+    Route::get('/budget', [BudgetController::class, 'index']);
+    
     Route::get('/vacant', function () {
         return view('vacant');
     });
     Route::get('/inter', function () {
         return view('inter');
     });
-    Route::get('/catering', function () {
-        return view('catering');
-    });
+    Route::get('/catering', [CateringController::class, 'index']);
 });
 
 
