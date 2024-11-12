@@ -3,6 +3,7 @@
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CateringController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\GrantsController;
 use App\Http\Controllers\InterController;
 use App\Http\Controllers\ManagersController;
 use App\Http\Controllers\StructController;
@@ -42,9 +43,8 @@ Route::group(['prefix' => 'sveden'], function () {
     Route::get('/objects', function () {
         return view('objects');
     });
-    Route::get('/grants', function () {
-        return view('grants');
-    });
+    Route::get('/grants', [GrantsController::class, 'index']);
+    
     Route::get('/paid_edu', function () {
         return view('paid-edu');
     });

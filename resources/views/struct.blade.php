@@ -7,7 +7,6 @@
     </div>
 </div>
 
-
 @foreach($subsections as $subsection)
 <div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
 <div class="px-6 flex flex-col justify-center items-center">
@@ -91,26 +90,13 @@
                 </td>
             </tr>
             <tr itemprop="filInfo" class="h-[2rem] text-justify">
-                <td itemprop="nameFil" class="border px-2 place-items-center border-slate-300">
-                    {{ $branches->name_fill }}
-                </td>
-                <td itemprop="fio" class="border px-2 border-slate-300">
-                    {{ $branches->fio }}
-                </td>
-                <td itemprop="post" class="border px-2 border-slate-300">
-                    {{ $branches->post }}
-                </td>
-                <td itemprop="addressFil" class="border px-2 border-slate-300">
-                    {{ $branches->address_fill }}
-                </td>
-                <td itemprop="emailFil" class="border px-2 border-slate-300">
-                    {{ $branches->email_fill }}
-                </td>
-                <td itemprop="websiteFil" class="border px-2 border-slate-300">
-                    {{ $branches->website_fill }}
-                </td>
-                <td itemprop="divisionClauseDocLink" class="border px-2 border-slate-300">
-                    @foreach($structureBranches as $file)
+                <td itemprop="nameFil" class="border px-2">{{ $branches->name_fill }}</td>
+                <td itemprop="fio" class="border px-2">{{ $branches->fio }}</td>
+                <td itemprop="post" class="border px-2">{{ $branches->post }}</td>
+                <td itemprop="addressFil" class="border px-2">{{ $branches->address_fill }}</td>
+                <td itemprop="emailFil" class="border px-2">{{ $branches->email_fill }}</td>
+                <td itemprop="websiteFil" class="border px-2">{{ $branches->website_fill }}</td>
+                <td itemprop="divisionClauseDocLink" class="border px-2">@foreach($structureBranches as $file)
                     <a style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
                     @endforeach
                 </td>
@@ -119,6 +105,7 @@
         </tbody>
     </table>
     @endif
+
     @if($subsection->id == 14)
     <table class="table text-sm text-left">
         <thead class="text-center">
