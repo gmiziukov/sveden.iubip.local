@@ -6,6 +6,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\GrantsController;
 use App\Http\Controllers\InterController;
 use App\Http\Controllers\ManagersController;
+use App\Http\Controllers\PaidEduController;
 use App\Http\Controllers\StructController;
 use App\Http\Controllers\VacantController;
 use Illuminate\Support\Facades\Route;
@@ -45,9 +46,7 @@ Route::group(['prefix' => 'sveden'], function () {
     });
     Route::get('/grants', [GrantsController::class, 'index']);
     
-    Route::get('/paid_edu', function () {
-        return view('paid-edu');
-    });
+    Route::get('/paid_edu', [PaidEduController::class, 'index']);
 
     Route::get('/budget', [BudgetController::class, 'index']);
     

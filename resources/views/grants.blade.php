@@ -20,7 +20,7 @@
 
     @if($subsection->id == 47)
     @foreach($grantFile->where('subsections_id', 47) as $file)
-    <li class="list-none" itemprop="localAct">
+    <li class="list-none" itemprop="support">
         <a itemprop="support" style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
     </li>
     @endforeach
@@ -43,11 +43,10 @@
             </tr>
             @foreach($grantHostel as $hostel)
             <tr class="">
-                <td class="border px-2">{{ $hostel->name }}</td>
-                <td itemprop="hostelInfo" class="border text-center px-2">{{ $hostel->hostel_info }}</td>
-                <td itemprop="interInfo" class="border text-center px-2">{{ $hostel->inter_info }}</td>
-                
-                <td itemprop="hostelNum"></td>
+                <td class="border px-2">{{ $hostel->info }}</td>
+                <td itemprop="hostelInfo" class="border text-center px-2">{{ $hostel->num }}</td>
+                <td itemprop="interInfo" class="border text-center px-2">{{ $hostel->numtwo }}</td>
+                <td itemprop="hostelNum"class="border text-center px-2">{{ $hostel->num_ovz }}</td>
                 <td itemprop="interNum"></td>
 
                 <td itemprop="hostelNumOvz"></td>
