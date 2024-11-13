@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\EducationController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/education', [EducationController::class, "index"])->name("education");
 
 Route::group(['prefix' => 'sveden'], function () {
     Route::get('/common', function () {
@@ -23,9 +26,7 @@ Route::group(['prefix' => 'sveden'], function () {
     Route::get('/document', function () {
         return view('document');
     });
-    Route::get('/education', function () {
-        return view('education');
-    });
+
     Route::get('/eduStandarts', function () {
         return view('edu-standarts');
     });
@@ -62,3 +63,4 @@ Route::group(['prefix' => 'sveden'], function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
