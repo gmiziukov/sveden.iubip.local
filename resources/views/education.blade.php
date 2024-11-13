@@ -2,7 +2,8 @@
 
 @section('content')
 <div>
-    {{-- {{dd($data)}} --}}
+
+    {{dd($data)}}
     @foreach ($data as $item)
     @if ($item->type_supplement == 1)
         <div itemprop={{$item->teg}}>{{$item->text}}</div>

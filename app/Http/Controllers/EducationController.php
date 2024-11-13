@@ -10,19 +10,20 @@ class EducationController extends Controller
 {
     public function add_table(){
         $tables = []; 
-        $iteration = DB::table("education_tables")->orderBy('id',"desc")->limit("1")->get();
-
-        for ($i = 1; $i<$iteration[0]->id;$i++){
-            for($j=1; $j!=count(DB::table("education_tables")->get());$j++){
-                $data = DB::table(DB::table("education_tables")->where("id",'=',$j)->get()[$i-1]->name)->get();
+        // dd(count(DB::table("education_tables")->get()));
+        for ($i = 0; $i < count(DB::table("education_tables")->get());$i++){
+            // dd(count(DB::table("education_tables")->get()));
+            // dd( DB::table(DB::table("education_tables")->where("id",'=',$i+2)->get()[$i]->name)->get());
+            for($j=0; $j!=count(DB::table(DB::table("education_tables")->where("id",'=',$i+1)->get()[$i]->name)->get());$j++){
+                $data = DB::table(DB::table("education_tables")->where("id",'=',$i+1)->get()[$i]->name)->get();
                 // dd($data);
                 $tables[$i] = $data;
-                // dd($data);
+                // dd();
 
             }
         }
         // dd($data);
-        dd($tables);
+        // dd($tables);
         return $tables;
     }
     public function index (Request $request)
@@ -47,6 +48,6 @@ class EducationController extends Controller
 
             // $data->get();
         dd($this->add_table());
-        return view('education',['data'=>$data1]);
+        return view('education',['data']);
     }
 }
