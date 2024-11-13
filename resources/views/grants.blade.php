@@ -12,15 +12,15 @@
 
     @if($subsection->id == 46)
     @foreach($grantFile->where('subsections_id', 46) as $file)
-    <li class="list-none" itemprop="localAct">
-        <a itemprop="support" style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
+    <li class="list-none">
+        <a itemprop="grant" style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
     </li>
     @endforeach
     @endif
 
     @if($subsection->id == 47)
     @foreach($grantFile->where('subsections_id', 47) as $file)
-    <li class="list-none" itemprop="support">
+    <li class="list-none">
         <a itemprop="support" style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
     </li>
     @endforeach
@@ -43,37 +43,46 @@
             </tr>
             @foreach($grantHostel as $hostel)
             <tr class="">
-                <td class="border px-2">{{ $hostel->info }}</td>
+                
+            <tr>
+ 
                 <td itemprop="hostelInfo" class="border text-center px-2">{{ $hostel->num }}</td>
                 <td itemprop="interInfo" class="border text-center px-2">{{ $hostel->numtwo }}</td>
-                <td itemprop="hostelNum"class="border text-center px-2">{{ $hostel->num_ovz }}</td>
-                <td itemprop="interNum"></td>
+            </tr>
 
+            <tr>
+                <td itemprop="hostelNum" class="border text-center px-2">{{ $hostel->num_ovz }}</td>
+                <td itemprop="interNum"></td>
+            </tr>
+
+            <tr>
                 <td itemprop="hostelNumOvz"></td>
                 <td itemprop="interNumOvz"></td>
+            </tr>
+
             </tr>
             @endforeach
         </tbody>
     </table>
     @foreach($grantFile->where('subsections_id', 48) as $file)
-    <li class="list-none" itemprop="localAct">
-        <a itemprop="localActObSt" style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
+    <li class="list-none">
+        <a itemprop="hostelNumOvz" style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
     </li>
     @endforeach
     @endif
 
     @if($subsection->id == 49)
     @foreach($grantFile->where('subsections_id', 49) as $file)
-    <li class="list-none" itemprop="localAct">
-        <a onclick="return false;" style = " cursor: text;" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
+    <li class="list-none">
+        <a itemprop="localAct" onclick="return false;" style=" cursor: text;" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
     </li>
     @endforeach
     @endif
 
     @if($subsection->id == 50)
     @foreach($grantFile->where('subsections_id', 50) as $file)
-    <li class="list-none" itemprop="localActObSt">
-        <a style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
+    <li class="list-none">
+        <a itemprop="localActObSt" style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
     </li>
     @endforeach
     @endif
