@@ -1,11 +1,9 @@
 @extends('layouts.app')
-
+@section('subsection-name')
+Стипендии и меры поддержки обучающихся
+@endsection
 @section('content')
-<div class="px-2 py-2">
-    <div class="flex flex-row text-md items-center h-[2.5rem] bg-slate-200">
-        <p class="px-2">Главная</p>/<p class="px-2">Сведения об образовательной организации</p>/<p class="px-2">Стипендии и меры поддержки обучающихся</p>
-    </div>
-</div>
+
 @foreach($subsections as $subsection)
 <div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
 <div class="px-6 flex flex-col">
@@ -29,10 +27,10 @@
     @if($subsection->id == 48)
     <table class="w-full border">
         <thead>
-            <tr class="bg-blue-100 border border-blue-200">
-                <th class="border border-blue-200">Наименование показателя</th>
-                <th class="border border-blue-200">Общежития</th>
-                <th class="border border-blue-200">Интернаты</th>
+            <tr class="bg-slate-200 border border-gray-300">
+                <th class="border border-gray-300">Наименование показателя</th>
+                <th class="border border-gray-300">Общежития</th>
+                <th class="border border-gray-300">Интернаты</th>
             </tr>
         </thead>
         <tbody>

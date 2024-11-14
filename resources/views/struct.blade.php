@@ -1,11 +1,8 @@
 @extends('layouts.app')
-
+@section('subsection-name')
+Структура и органы управления образовательной организацией
+@endsection
 @section('content')
-<div class="px-2 py-2">
-    <div class="flex flex-row text-md items-center h-[2.5rem] bg-slate-200">
-        <p class="px-2">Главная</p>/<p class="px-2">Сведения об образовательной организации</p>/<p class="px-2">Структура и органы управления образовательной организацией</p>
-    </div>
-</div>
 
 @foreach($subsections as $subsection)
 <div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
@@ -13,14 +10,14 @@
     @if($subsection->id == 12)
     <table class="text-sm mb-4 text-left">
         <thead class="text-center">
-            <tr class="h-[1rem] bg-blue-100 border border-blue-200">
-                <th class="w-[15rem] font-medium border-blue-200">Наименование органа управления / структурного подразделения</th>
-                <th class="border w-[15rem] font-medium border-blue-200">ФИО руководителя структурного подразделения</th>
-                <th class="border w-[15rem] font-medium border-blue-200">Должность руководителя структурного подразделения</th>
-                <th class="border w-[20rem] font-medium border-blue-200">Адрес местонахождения органа управления / структурного подразделения</th>
-                <th class="border w-[20rem] font-medium border-blue-200">Адрес официального сайта органа управления / структурного подразделения</th>
-                <th class="border w-[20rem] font-medium border-blue-200">Адреса электронной почты органа управления / структурного подразделения</th>
-                <th class="border w-[15rem] font-medium border-blue-200">Положения об органе управления / о структурном подразделении</th>
+            <tr class="h-[1rem] bg-slate-200 border border-gray-300">
+                <th class="w-[15rem] font-medium border-gray-300">Наименование органа управления / структурного подразделения</th>
+                <th class="border w-[15rem] font-medium border-gray-300">ФИО руководителя структурного подразделения</th>
+                <th class="border w-[15rem] font-medium border-gray-300">Должность руководителя структурного подразделения</th>
+                <th class="border w-[20rem] font-medium border-gray-300">Адрес местонахождения органа управления / структурного подразделения</th>
+                <th class="border w-[20rem] font-medium border-gray-300">Адрес официального сайта органа управления / структурного подразделения</th>
+                <th class="border w-[20rem] font-medium border-gray-300">Адреса электронной почты органа управления / структурного подразделения</th>
+                <th class="border w-[15rem] font-medium border-gray-300">Положения об органе управления / о структурном подразделении</th>
             </tr>
         </thead>
         <tbody class="text-slate-600">
@@ -54,14 +51,14 @@
     @if($subsection->id == 13)
     <table class="table mb-4 text-sm text-left">
         <thead class="text-center">
-            <tr class="h-[1rem] bg-blue-100 border border-blue-200">
-                <th class="w-[15rem] font-medium border-blue-200">Наименование филиала</th>
-                <th class="border w-[15rem] font-medium border-blue-200">ФИО руководителя</th>
-                <th class="border w-[15rem] font-medium border-blue-200">Должность руководителя</th>
-                <th class="border w-[20rem] font-medium border-blue-200">Адрес местонахождения</th>
-                <th class="border w-[10rem] font-medium border-blue-200">Электронная почта</th>
-                <th class="border w-[30rem] font-medium border-blue-200">Адрес официального сайта или страницы филиала в сети «Интернет» (при наличии)</th>
-                <th class="border w-[15rem] font-medium border-blue-200">Положение о филиале</th>
+            <tr class="h-[1rem] bg-slate-200 border border-gray-300">
+                <th class="w-[15rem] font-medium border-gray-300">Наименование филиала</th>
+                <th class="border w-[15rem] font-medium border-gray-300">ФИО руководителя</th>
+                <th class="border w-[15rem] font-medium border-gray-300">Должность руководителя</th>
+                <th class="border w-[20rem] font-medium border-gray-300">Адрес местонахождения</th>
+                <th class="border w-[10rem] font-medium border-gray-300">Электронная почта</th>
+                <th class="border w-[30rem] font-medium border-gray-300">Адрес официального сайта или страницы филиала в сети «Интернет» (при наличии)</th>
+                <th class="border w-[15rem] font-medium border-gray-300">Положение о филиале</th>
             </tr>
         </thead>
         <tbody>
@@ -95,14 +92,14 @@
     @if($subsection->id == 14)
     <table class="table text-sm text-left">
         <thead class="text-center">
-            <tr class="h-[1rem] bg-blue-100 border border-blue-200">
-                <th class="w-[15rem] font-medium border-blue-200">Наименование представительства</th>
-                <th class="border w-[15rem] font-medium border-blue-200">ФИО руководителя</th>
-                <th class="border w-[15rem] font-medium border-blue-200">Должность руководителя</th>
-                <th class="border w-[20rem] font-medium border-blue-200">Адрес местонахождения</th>
-                <th class="border w-[10rem] font-medium border-blue-200">Электронная почта</th>
-                <th class="border w-[30rem] font-medium border-blue-200">Адрес официального сайта или страницы представительства в сети «Интернет» (при наличии)</th>
-                <th class="border w-[15rem] font-medium border-blue-200">Положение о представительстве</th>
+            <tr class="h-[1rem] bg-slate-200 border border-gray-300">
+                <th class="w-[15rem] font-medium border-gray-300">Наименование представительства</th>
+                <th class="border w-[15rem] font-medium border-gray-300">ФИО руководителя</th>
+                <th class="border w-[15rem] font-medium border-gray-300">Должность руководителя</th>
+                <th class="border w-[20rem] font-medium border-gray-300">Адрес местонахождения</th>
+                <th class="border w-[10rem] font-medium border-gray-300">Электронная почта</th>
+                <th class="border w-[30rem] font-medium border-gray-300">Адрес официального сайта или страницы представительства в сети «Интернет» (при наличии)</th>
+                <th class="border w-[15rem] font-medium border-gray-300">Положение о представительстве</th>
             </tr>
         </thead>
         <tbody>

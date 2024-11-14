@@ -1,13 +1,8 @@
 @extends('layouts.app')
-
+@section('subsection-name')
+Руководство
+@endsection
 @section('content')
-<div class="px-2 py-2">
-    <div class="flex flex-row text-md items-center h-[2.5rem] bg-slate-200">
-        <p class="px-2">Главная</p>/<p class="px-2">Сведения об образовательной организации</p>/<p class="px-2">Руководство</p>
-    </div>
-</div>
-
-
 
 @foreach($subsections as $subsection)
 <div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
@@ -15,11 +10,11 @@
     @if($subsection->id == 32)
     <table class="text-sm mb-4 text-left">
         <thead class="text-center">
-            <tr class="h-[2rem] bg-blue-100 border border-blue-200">
-                <th class="w-[26rem] font-medium border-blue-200">Ф.И.О.</th>
-                <th class="border w-[42rem] font-medium border-blue-200">Должность</th>
-                <th class="border w-[26rem] font-medium border-blue-200">Контактные телефоны</th>
-                <th class="border w-[26rem] font-medium border-blue-200">Адрес электронной почты</th>
+            <tr class="h-[2rem] bg-slate-200 border border-gray-300">
+                <th class="w-[26rem] font-medium border-gray-300">Ф.И.О.</th>
+                <th class="border w-[42rem] font-medium border-gray-300">Должность</th>
+                <th class="border w-[26rem] font-medium border-gray-300">Контактные телефоны</th>
+                <th class="border w-[26rem] font-medium border-gray-300">Адрес электронной почты</th>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +26,7 @@
             </tr>
             @foreach ($managerBase as $base)
             <tr itemprop="rucovodstvo" class="h-[2rem] text-justify">
-                <td itemprop="fio" class="border py-2 border-slate-300 px-2 place-items-center">
+                <td itemprop="fio" class="border py-2 border-gray-300 px-2 place-items-center">
                     @foreach($managerFiles as $file)
                     @if($file->id == $base->id)
                     <img style="width:150px;border-radius:5%" src="{{ Storage::url($file->path_to_file)}}" alt="{{$file->name_file}}"></img>
@@ -50,12 +45,12 @@
     @if($subsection->id == 33)
     <table class="table mb-4 text-sm text-left">
         <thead class="text-center">
-            <tr class="h-[2rem] bg-blue-100 border border-blue-200">
-                <th class="w-[25rem] font-medium border-blue-200">Наименование филиала</th>
-                <th class="border w-[25rem] font-medium border-blue-200">Ф.И.О.</th>
-                <th class="border w-[25rem] font-medium border-blue-200">Должность</th>
-                <th class="border w-[25rem] font-medium border-blue-200">Контактные телефоны</th>
-                <th class="border w-[25rem] font-medium border-blue-200">Адрес электронной почты</th>
+            <tr class="h-[2rem] bg-slate-200 border border-gray-300">
+                <th class="w-[25rem] font-medium border-gray-300">Наименование филиала</th>
+                <th class="border w-[25rem] font-medium border-gray-300">Ф.И.О.</th>
+                <th class="border w-[25rem] font-medium border-gray-300">Должность</th>
+                <th class="border w-[25rem] font-medium border-gray-300">Контактные телефоны</th>
+                <th class="border w-[25rem] font-medium border-gray-300">Адрес электронной почты</th>
             </tr>
         </thead>
         <tbody>
@@ -81,12 +76,12 @@
     @if($subsection->id == 33)
     <table class="table text-sm mb-4 text-left">
         <thead class="text-center">
-            <tr class="h-[2rem] bg-blue-100 border border-blue-200">
-                <th class="w-[25rem] font-medium border-blue-200">Наименование представительства</th>
-                <th class="border w-[25rem] font-medium border-blue-200">Ф.И.О.</th>
-                <th class="border w-[25rem] font-medium border-blue-200">Должность</th>
-                <th class="border w-[25rem] font-medium border-blue-200">Контактные телефоны</th>
-                <th class="border w-[25rem] font-medium border-blue-200">Адрес электронной почты</th>
+            <tr class="h-[2rem] bg-slate-200 border border-gray-300">
+                <th class="w-[25rem] font-medium border-gray-300">Наименование представительства</th>
+                <th class="border w-[25rem] font-medium border-gray-300">Ф.И.О.</th>
+                <th class="border w-[25rem] font-medium border-gray-300">Должность</th>
+                <th class="border w-[25rem] font-medium border-gray-300">Контактные телефоны</th>
+                <th class="border w-[25rem] font-medium border-gray-300">Адрес электронной почты</th>
             </tr>
         </thead>
         <tbody class="text-slate-600">

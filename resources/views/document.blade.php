@@ -1,11 +1,8 @@
 @extends('layouts.app')
-
+@section('subsection-name')
+Документы
+@endsection
 @section('content')
-<div class="px-2 py-2">
-    <div class="flex flex-row text-md items-center h-[2.5rem] bg-slate-200">
-        <p class="px-2">Главная</p>/<p class="px-2">Сведения об образовательной организации</p>/<p class="px-2">Документы</p>
-    </div>
-</div>
 
 @foreach($subsections as $subsection)
 <div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
@@ -16,10 +13,10 @@
         <tbody>
             @foreach ($groupedFiles as $name => $docs)
             <tr class="h-[3rem] text-justify">
-                <td class="border w-[50rem] px-2 place-items-center" itemprop="name">{{ $name }}</td>
-                <td class="border px-2">
+                <td class="border border-gray-300 w-[50rem] px-2 place-items-center" itemprop="name">{{ $name }}</td>
+                <td class="border border-gray-300 px-2">
                     @foreach ($docs as $doc)
-                    <li class="list-none" >
+                    <li class="list-none">
                         <a
                             @if ($name=='Устав образовательной организации' )
                             itemprop="ustavDocLink"

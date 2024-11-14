@@ -1,11 +1,9 @@
 @extends('layouts.app')
-
+@section('subsection-name')
+Образовательные стандарты и требования
+@endsection
 @section('content')
-<div class="px-2 py-2">
-    <div class="flex flex-row text-md items-center h-[2.5rem] bg-slate-200">
-        <p class="px-2">Главная</p>/<p class="px-2">Сведения об образовательной организации</p>/<p class="px-2">Стипендии и меры поддержки обучающихся</p>
-    </div>
-</div>
+
 @foreach($subsections as $subsection)
 <div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
 <div class="px-6 flex flex-col">

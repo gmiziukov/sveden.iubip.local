@@ -1,22 +1,19 @@
 @extends('layouts.app')
-
+@section('subsection-name')
+Международное сотрудничество
+@endsection
 @section('content')
-<div class="px-2 py-2">
-    <div class="flex flex-row text-md items-center h-[2.5rem] bg-slate-200">
-        <p class="px-2">Главная</p>/<p class="px-2">Сведения об образовательной организации</p>/<p class="px-2">Международное сотрудничество</p>
-    </div>
-</div>
 @foreach($subsections as $subsection)
 <div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
 <div class="px-6 flex flex-col">
     @if($subsection->id == 56)
     <table class="w-full border">
         <thead>
-            <tr class="bg-blue-100 border border-blue-200">
-                <th class="border border-blue-200">№ п/п</th>
-                <th class="border border-blue-200">Государство</th>
-                <th class="border border-blue-200">Наименование организации</th>
-                <th class="border border-blue-200">Реквизиты договора (наименование, дата, номер, срок действия)</th>
+            <tr class="bg-slate-200 border border-gray-300">
+                <th class="border border-gray-300">№ п/п</th>
+                <th class="border border-gray-300">Государство</th>
+                <th class="border border-gray-300">Наименование организации</th>
+                <th class="border border-gray-300">Реквизиты договора (наименование, дата, номер, срок действия)</th>
             </tr>
         </thead>
         <tbody>
