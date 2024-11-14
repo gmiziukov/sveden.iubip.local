@@ -3,12 +3,14 @@
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CateringController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\EduStandartsController;
 use App\Http\Controllers\GrantsController;
 use App\Http\Controllers\InterController;
 use App\Http\Controllers\ManagersController;
 use App\Http\Controllers\PaidEduController;
 use App\Http\Controllers\StructController;
 use App\Http\Controllers\VacantController;
+use App\Models\EduStandartFile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,9 +35,8 @@ Route::group(['prefix' => 'sveden'], function () {
     Route::get('/education', function () {
         return view('education');
     });
-    Route::get('/eduStandarts', function () {
-        return view('edu-standarts');
-    });
+    Route::get('/eduStandarts',[EduStandartsController::class, 'index']);
+    
     Route::get('/managers', [ManagersController::class, 'index']);
 
     Route::get('/employees', function () {

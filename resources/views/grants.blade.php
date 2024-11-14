@@ -41,27 +41,30 @@
                 <td class="border text-center">2</td>
                 <td class="border text-center">3</td>
             </tr>
-            @foreach($grantHostel as $hostel)
+            @foreach($grantHostel as $value)
             <tr class="">
-                
-            <tr>
- 
-                <td itemprop="hostelInfo" class="border text-center px-2">{{ $hostel->num }}</td>
-                <td itemprop="interInfo" class="border text-center px-2">{{ $hostel->numtwo }}</td>
+                <td class="border">Количество общежитий/интернатов</td>
+                <td itemprop="hostelInfo" class="border text-center px-2">{{ $value->kolvo_hostel }}</td>
+                <td itemprop="interInfo" class="border text-center px-2">{{ $value->kolvo_inter }}</td>
             </tr>
-
-            <tr>
-                <td itemprop="hostelNum" class="border text-center px-2">{{ $hostel->num_ovz }}</td>
-                <td itemprop="interNum"></td>
+            <tr class="">
+                <td class="border">Количество мест</td>
+                <td itemprop="hostelNum" class="border text-center px-2">{{ $value->num_hostel }}</td>
+                <td itemprop="interNum" class="border text-center px-2">{{ $value->num_inter }}</td>
             </tr>
-
-            <tr>
-                <td itemprop="hostelNumOvz"></td>
-                <td itemprop="interNumOvz"></td>
+            <tr class="">
+                <td class="border">Количество жилых помещений</td>
+                <td class="border text-center px-2">{{ $value->numtwo_hostel }}</td>
+                <td class="border text-center px-2">{{ $value->numtwo_inter }}</td>
             </tr>
-
+            <tr class="">
+                <td class="border">Количество жилых помещений приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</td>
+                <td itemprop="hostelNumOvz" class="border text-center px-2">{{ $value->num_ovz_hostel }}</td>
+                <td itemprop="interNumOvz" class="border text-center px-2">{{ $value->num_ovz_inter }}</td>
             </tr>
             @endforeach
+
+
         </tbody>
     </table>
     @foreach($grantFile->where('subsections_id', 48) as $file)
