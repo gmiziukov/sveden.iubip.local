@@ -11,16 +11,12 @@ class EducationController extends Controller
     public function add_table(){
         $tables = []; 
         // dd(count(DB::table("education_tables")->get()));
-        for ($i = 0; $i < count(DB::table("education_tables")->get());$i++){
-            // dd(count(DB::table("education_tables")->get()));
-            // dd( DB::table(DB::table("education_tables")->where("id",'=',$i+2)->get()[$i]->name)->get());
-            for($j=0; $j!=count(DB::table(DB::table("education_tables")->where("id",'=',$i+1)->get()[$i]->name)->get());$j++){
-                $data = DB::table(DB::table("education_tables")->where("id",'=',$i+1)->get()[$i]->name)->get();
+        for ($i = 1; $i < count(DB::table("education_tables")->get())+1;$i++){
+
+                $data = DB::table(DB::table("education_tables")->where("id",'=',$i)->get()[0]->name)->get();
                 // dd($data);
                 $tables[$i] = $data;
-                // dd();
 
-            }
         }
         // dd($data);
         // dd($tables);
@@ -47,7 +43,7 @@ class EducationController extends Controller
             // })
 
             // $data->get();
-        dd($this->add_table());
-        return view('education',['data']);
+        // dd($this->add_table());
+        return view('education',['data'=>$data1,'data_table' => $this->add_table()]);
     }
 }
