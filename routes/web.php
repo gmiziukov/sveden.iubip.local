@@ -11,6 +11,7 @@ use App\Http\Controllers\ManagersController;
 use App\Http\Controllers\PaidEduController;
 use App\Http\Controllers\StructController;
 use App\Http\Controllers\VacantController;
+use App\Http\Controllers\EmployeesController;
 use App\Models\EduStandartFile;
 use Illuminate\Support\Facades\Route;
 
@@ -57,9 +58,8 @@ Route::group(['prefix' => 'sveden'], function () {
     
     Route::get('/managers', [ManagersController::class, 'index']);
 
-    Route::get('/employees', function () {
-        return view('employees');
-    });
+    Route::get('/employees', [EmployeesController::class, 'index']);
+
     Route::get('/objects', function () {
         return view('objects');
     });
