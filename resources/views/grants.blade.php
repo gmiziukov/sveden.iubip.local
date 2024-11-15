@@ -41,22 +41,22 @@
             </tr>
             @foreach($grantHostel as $value)
             <tr class="">
-                <td class="border">Количество общежитий/интернатов</td>
+                <td class="border">{{$value->name_kolvo}}</td>
                 <td itemprop="hostelInfo" class="border text-center px-2">{{ $value->kolvo_hostel }}</td>
                 <td itemprop="interInfo" class="border text-center px-2">{{ $value->kolvo_inter }}</td>
             </tr>
             <tr class="">
-                <td class="border">Количество мест</td>
+                <td class="border">{{$value->name_num}}</td>
                 <td itemprop="hostelNum" class="border text-center px-2">{{ $value->num_hostel }}</td>
                 <td itemprop="interNum" class="border text-center px-2">{{ $value->num_inter }}</td>
             </tr>
             <tr class="">
-                <td class="border">Количество жилых помещений</td>
+                <td class="border">{{$value->name_numtwo}}</td>
                 <td class="border text-center px-2">{{ $value->numtwo_hostel }}</td>
                 <td class="border text-center px-2">{{ $value->numtwo_inter }}</td>
             </tr>
             <tr class="">
-                <td class="border">Количество жилых помещений приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</td>
+                <td class="border">{{$value->name_num_ovz}}</td>
                 <td itemprop="hostelNumOvz" class="border text-center px-2">{{ $value->num_ovz_hostel }}</td>
                 <td itemprop="interNumOvz" class="border text-center px-2">{{ $value->num_ovz_inter }}</td>
             </tr>
