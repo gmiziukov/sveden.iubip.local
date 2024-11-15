@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CateringController;
 use App\Http\Controllers\CommonController;
@@ -14,8 +15,10 @@ use App\Http\Controllers\ObjectsController;
 use App\Http\Controllers\PaidEduController;
 use App\Http\Controllers\StructController;
 use App\Http\Controllers\VacantController;
+use App\Http\Controllers\EmployeesController;
 use App\Models\EduStandartFile;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/education', [EducationController::class, "index"])->name("education");
 
 Route::group(['prefix' => 'sveden'], function () {
 
@@ -63,3 +67,4 @@ Route::group(['prefix' => 'sveden'], function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
