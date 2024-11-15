@@ -4,17 +4,14 @@
 @endsection
 @section('content')
 
-@foreach($subsections as $subsection)
-<div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
-<div class="px-6 flex flex-col">
-
-    @if($subsection->id == 28)
-
+<div class="w-full h-full px-4 flex flex-col">
+    @foreach($subsections as $subsection)
+    <div class="py-2 md:text-xl text-lg px-2 w-full">{{ $subsection->name }}</div>
     @php $groupedFiles = collect($eduStandartFile)->groupBy('name'); @endphp
-
+    
+    @if($subsection->id == 28)
     @foreach($groupedFiles as $name => $files)
-
-    <h3>{{ $name }}</h3>
+    <h3 class="md:text-lg text-base">{{ $name }}</h3>
     <ul class="list-none">
         @foreach($files->whereIn('col', [1, 2, 3, 4, 5]) as $file)
         <li>
@@ -49,6 +46,6 @@
     @endforeach
     @endif
 
+    @endforeach
 </div>
-@endforeach
 @stop

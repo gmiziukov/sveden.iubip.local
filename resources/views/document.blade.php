@@ -4,16 +4,16 @@
 @endsection
 @section('content')
 
-@foreach($subsections as $subsection)
-<div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
-<div class="px-6 flex flex-col">
+<div class="w-full h-full px-4 flex flex-col">
+    @foreach($subsections as $subsection)
+    <div class="py-2 md:text-xl text-lg px-2 w-full">{{ $subsection->name }}</div>
     @if($subsection->id == 15)
     @php $groupedFiles = collect($document)->groupBy('name'); @endphp
     <table class="text-sm mb-4 text-left">
         <tbody>
             @foreach ($groupedFiles as $name => $docs)
-            <tr class="h-[3rem] text-justify">
-                <td class="border border-gray-300 w-[50rem] px-2 place-items-center" itemprop="name">{{ $name }}</td>
+            <tr class="h-[3rem] md:text-base text-sm text-justify">
+                <td class="border border-gray-300 px-2" itemprop="name">{{ $name }}</td>
                 <td class="border border-gray-300 px-2">
                     @foreach ($docs as $doc)
                     <li class="list-none">
@@ -56,6 +56,6 @@
         </tbody>
     </table>
     @endif
+    @endforeach
 </div>
-@endforeach
 @stop

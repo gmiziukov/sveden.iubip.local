@@ -5,6 +5,7 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CateringController;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\EduStandartsController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\GrantsController;
 use App\Http\Controllers\InterController;
