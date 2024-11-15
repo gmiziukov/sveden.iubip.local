@@ -4,7 +4,7 @@
     {{-- {{dd($data_table)}} --}}
     @foreach ($data as $data1)
         @if ($data1->type_supplement == 1)
-            <h1 itemprop={{$data1->teg}}>
+            <h1>
                 {{$data1->text}}
             </h1>
         @endif

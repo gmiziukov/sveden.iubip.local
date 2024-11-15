@@ -5,8 +5,6 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CateringController;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\DocumentController;
-use App\Http\Controllers\EducationController;
-use App\Http\Controllers\EduStandartsController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\GrantsController;
 use App\Http\Controllers\InterController;
@@ -15,7 +13,6 @@ use App\Http\Controllers\ObjectsController;
 use App\Http\Controllers\PaidEduController;
 use App\Http\Controllers\StructController;
 use App\Http\Controllers\VacantController;
-use App\Http\Controllers\EmployeesController;
 use App\Models\EduStandartFile;
 use Illuminate\Support\Facades\Route;
 
