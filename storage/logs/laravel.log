@@ -6867,3 +6867,11 @@ Did you mean one of these?
 #26 C:\\OSPanel\\home\\sveden.iubip.local\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #27 {main}
 "} 
+[2024-11-15 11:52:23] local.ERROR: Cannot use App\Http\Controllers\EducationController as EducationController because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot use App\\Http\\Controllers\\EducationController as EducationController because the name is already in use at C:\\OSPanel\\home\\sveden.iubip.local\\routes\\web.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-15 11:52:23] local.ERROR: Cannot use App\Http\Controllers\EducationController as EducationController because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot use App\\Http\\Controllers\\EducationController as EducationController because the name is already in use at C:\\OSPanel\\home\\sveden.iubip.local\\routes\\web.php:8)
+[stacktrace]
+#0 {main}
+"} 
