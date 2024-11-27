@@ -42,7 +42,7 @@
                     <td itemprop="email" class="border border-gray-300 px-2">{{ $base->email }}</td>
                     <td itemprop="divisionClauseDocLink" class="border border-gray-300 px-2">
                         @foreach($structureBase as $file)
-                        <a style="color: -webkit-link;" target="_blank" href="{{ asset('storage/'.$file->path_to_file) }}">{{ $file->name_file }}</a>
+                        <a style="color: -webkit-link;" target="_blank" href="{{ asset($file->path_to_file) }}">{{ $file->name_file }}</a>
                         @endforeach
                     </td>
                 </tr>

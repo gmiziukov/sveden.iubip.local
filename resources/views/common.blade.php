@@ -51,7 +51,7 @@
     @if($subsection->id == 2)
     @foreach($commonFile->where('subsection_id', 2) as $file)
     <li class="">
-        <a itemprop="licenseDocLink" style="color: -webkit-link;" target="_blank" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
+        <a itemprop="licenseDocLink" style="color: -webkit-link;" target="_blank" href="{{asset($file->path_to_file)}}">{{ $file->name_file }}</a>
     </li>
     @endforeach
     @endif
@@ -59,7 +59,7 @@
     @if($subsection->id == 3)
     @foreach($commonFile->where('subsection_id', 3) as $file)
     <li class="">
-        <a itemprop="accreditationDocLink" style="color: -webkit-link;" target="_blank" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
+        <a itemprop="accreditationDocLink" style="color: -webkit-link;" target="_blank" href="{{asset($file->path_to_file)}}">{{ $file->name_file }}</a>
     </li>
     @endforeach
     @endif
@@ -67,9 +67,9 @@
 
     <div class="w-full overflow-auto md:overflow-hidden">
         @if($subsection->id == 4)
-        <table class="w-full border">
+        <table class="w-full md:text-base text-sm border">
             <thead style="position: sticky; top:0">
-                <tr class="bg-slate-200 md:text-base text-sm border border-gray-300">
+                <tr class="bg-slate-200  border border-gray-300">
                     <th class="border md:font-semibold font-normal border-gray-300">Наименование учредителя</th>
                     <th class="border md:font-semibold font-normal border-gray-300">Фамилия, имя, отчество руководителя учредителя (ей) образовательной организации</th>
                     <th class="border md:font-semibold font-normal border-gray-300">Адрес местонахождения учредителя (ей)</th>
@@ -79,7 +79,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="border md:text-base text-sm">
+                <tr class="border">
                     <td class="border text-center">1</td>
                     <td class="border text-center">2</td>
                     <td class="border text-center">3</td>
@@ -89,7 +89,7 @@
                 </tr>
             <tbody>
                 @foreach($commonInfoUchred as $info)
-                <tr itemprop="uchredLaw" class="md:text-base text-sm">
+                <tr itemprop="uchredLaw">
                     <td itemprop="nameUchred" class="border px-2">{{ $info->name_uchred }}</td>
                     <td itemprop="hostelNum" class="border px-2">{{ $info->fio }}</td>
                     <td itemprop="addressUchred" class="border px-2">{{ $info->address_uchred }}</td>
@@ -123,9 +123,9 @@
     @endif
 
     @if($subsection->id == 6)
-    <table class="w-full border">
+    <table class="w-full md:text-base text-sm border">
         <thead>
-            <tr class="bg-slate-200 border border-gray-300 md:text-base text-sm">
+            <tr class="bg-slate-200 border border-gray-300">
                 <th class="border md:font-semibold font-normal w-[6rem] border-gray-300">№ п/п</th>
                 <th class="border md:font-semibold font-normal border-gray-300">Адрес места осуществления образовательной деятельности</th>
 
@@ -133,7 +133,7 @@
         </thead>
         <tbody>
             @foreach($commonNetwork as $info)
-            <tr class="md:text-base text-sm">
+            <tr>
                 <td class="border text-center">{{ $loop->iteration }}</td>
                 <td itemprop="addressPlaceSet" class="border px-2">{{ $info->address_implementation_activities }}</td>
             </tr>
@@ -143,16 +143,16 @@
     @endif
 
     @if($subsection->id == 7)
-    <table class="w-full border">
+    <table class="w-full md:text-base text-sm border">
         <thead>
-            <tr class="bg-slate-200 border border-gray-300 md:text-base text-sm">
+            <tr class="bg-slate-200 border border-gray-300">
                 <th class="border md:font-semibold font-normal w-[6rem] border-gray-300">№ п/п</th>
                 <th class="border md:font-semibold font-normal border-gray-300">Адрес места осуществления образовательной деятельности</th>
             </tr>
         </thead>
         <tbody>
             @foreach($commonPractic as $info)
-            <tr class="md:text-sm text-xs">
+            <tr>
                 <td class="border text-center">{{ $loop->iteration }}</td>
                 <td itemprop="addressPlacePrac" class="border px-2">{{ $info->address_implementation_activities }}</td>
             </tr>
@@ -162,9 +162,9 @@
     @endif
 
     @if($subsection->id == 8)
-    <table class="w-full border">
+    <table class="w-full md:text-base text-sm border">
         <thead>
-            <tr class="bg-slate-200 md:text-base text-sm border border-gray-300">
+            <tr class="bg-slate-200 border border-gray-300">
                 <th class="border md:font-semibold font-normal w-[6rem] border-gray-300">№ п/п</th>
                 <th class="border md:font-semibold font-normal border-gray-300">Адрес места осуществления образовательной деятельности</th>
 
@@ -172,7 +172,7 @@
         </thead>
         <tbody>
             @foreach($commonPracticStudent as $info)
-            <tr class="md:text-sm text-xs">
+            <tr>
                 <td class="border text-center">{{ $loop->iteration }}</td>
                 <td itemprop="addressPlacePodg" class="border px-2">{{ $info->address_implementation_activities }}</td>
             </tr>
@@ -182,16 +182,16 @@
     @endif
 
     @if($subsection->id == 9)
-    <table class="w-full border">
+    <table class="w-full md:text-base text-sm border">
         <thead>
-            <tr class="bg-slate-200 md:text-base text-sm border border-gray-300">
+            <tr class="bg-slate-200 border border-gray-300">
                 <th class="border md:font-semibold font-normal w-[6rem] border-gray-300">№ п/п</th>
                 <th class="border md:font-semibold font-normal border-gray-300">Адрес места осуществления образовательной деятельности</th>
             </tr>
         </thead>
         <tbody>
             @foreach($commonGia as $info)
-            <tr class="md:text-base text-sm">
+            <tr>
                 <td class="border text-center">{{ $loop->iteration }}</td>
                 <td itemprop="addressPlaceGia" class="border px-2">{{ $info->address_implementation_activities }}</td>
             </tr>
@@ -201,9 +201,9 @@
     @endif
 
     @if($subsection->id == 10)
-    <table class="w-full border">
+    <table class="w-full md:text-base text-sm border">
         <thead>
-            <tr class="bg-slate-200 md:text-base text-sm border border-gray-300">
+            <tr class="bg-slate-200 border border-gray-300">
                 <th class="border md:font-semibold font-normal w-[6rem] border-gray-300">№ п/п</th>
                 <th class="border md:font-semibold font-normal border-gray-300">Адрес места осуществления образовательной деятельности</th>
 
@@ -211,7 +211,7 @@
         </thead>
         <tbody>
             @foreach($commonDpos as $info)
-            <tr class="md:text-base text-sm">
+            <tr>
                 <td class="border text-center">{{ $loop->iteration }}</td>
                 <td itemprop="addressPlaceDop" class="border px-2">{{ $info->address_implementation_activities }}</td>
             </tr>
@@ -221,9 +221,9 @@
     @endif
 
     @if($subsection->id == 11)
-    <table class="w-full mb-4 border">
+    <table class="w-full mb-4 md:text-base text-sm border">
         <thead>
-            <tr class="bg-slate-200 md:text-base text-sm border border-gray-300">
+            <tr class="bg-slate-200 border border-gray-300">
                 <th class="border w-[6rem] md:font-semibold font-normal border-gray-300">№ п/п</th>
                 <th class="border md:font-semibold font-normal border-gray-300">Адрес места осуществления образовательной деятельности</th>
 
@@ -231,7 +231,7 @@
         </thead>
         <tbody>
             @foreach($commonOppo as $info)
-            <tr class="md:text-base text-sm">
+            <tr>
                 <td class="border text-center">{{ $loop->iteration }}</td>
                 <td itemprop="addressPlaceOppo" class="border px-2">{{ $info->address_implementation_activities }}</td>
             </tr>

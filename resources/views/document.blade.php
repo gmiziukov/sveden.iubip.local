@@ -45,7 +45,7 @@
                             @endif
                             style="color: -webkit-link;"
                             target="_blank"
-                            href="{{ asset('storage/'.$doc->path_to_file) }}">
+                            href="{{ asset($doc->path_to_file) }}">
                             <span>{{ $doc->name_file }}</span>
                         </a>
                     </li>
