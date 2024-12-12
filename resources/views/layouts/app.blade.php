@@ -12,9 +12,9 @@
     <script src="/build/assets/jquery.js"></script>
     <script src="/build/assets/uhpv-full.min.js"></script>
 
-
+    @yield('dop')
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js']).
 </head>
 
 <body class="h-full w-full">

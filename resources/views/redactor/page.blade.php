@@ -23,6 +23,10 @@
                         {{$item->text}}
                     @endif
                     @if($item->type_supplement == 2)
+                    <div id = "item">
+                        <input type="hidden" value={{$item->id}} >
+                        <input type="hidden" value={{$item->position}} >
+
                     <table>
                         @foreach ($data_table[$item->supplement] as $table)
                         {{-- {{dd($table)}} --}}
@@ -36,7 +40,9 @@
                                             @if(key($table) == "created_at" or key($table) == "updated_at")
                                             @else
                                                 <td itemprop={{key($table)}}>
-                                                    {{$i}}
+                                                    <input type="text" value={{$i}}>
+
+                                                    {{-- {{$i}} --}}
                                                 </td>
                                             @endif
                                         @endif
@@ -45,6 +51,9 @@
                                 </tr>
                             @endforeach
                         </table>
+                        <button onclick="position_up({{$item->id}});" type="button">выше</button>
+                        <button onclick="position_down({{$item->id}});" type="button">ниже</button>
+                    </div>
                     @endif
                 @endforeach
             </div>
