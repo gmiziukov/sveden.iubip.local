@@ -18616,3 +18616,17 @@ Did you mean one of these?
 #49 C:\\OSPanel\\home\\sveden.iubip.local\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #50 {main}
 "} 
+[2024-12-12 14:10:36] local.ERROR: No arguments expected for "migrate" command, got "refresh". {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): No arguments expected for \"migrate\" command, got \"refresh\". at C:\\OSPanel\\home\\sveden.iubip.local\\vendor\\symfony\\console\\Input\\ArgvInput.php:196)
+[stacktrace]
+#0 C:\\OSPanel\\home\\sveden.iubip.local\\vendor\\symfony\\console\\Input\\ArgvInput.php(89): Symfony\\Component\\Console\\Input\\ArgvInput->parseArgument('refresh')
+#1 C:\\OSPanel\\home\\sveden.iubip.local\\vendor\\symfony\\console\\Input\\ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken('refresh', true)
+#2 C:\\OSPanel\\home\\sveden.iubip.local\\vendor\\symfony\\console\\Input\\Input.php(56): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#3 C:\\OSPanel\\home\\sveden.iubip.local\\vendor\\symfony\\console\\Command\\Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind(Object(Symfony\\Component\\Console\\Input\\InputDefinition))
+#4 C:\\OSPanel\\home\\sveden.iubip.local\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(181): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#5 C:\\OSPanel\\home\\sveden.iubip.local\\vendor\\symfony\\console\\Application.php(1096): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 C:\\OSPanel\\home\\sveden.iubip.local\\vendor\\symfony\\console\\Application.php(324): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Database\\Console\\Migrations\\MigrateCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 C:\\OSPanel\\home\\sveden.iubip.local\\vendor\\symfony\\console\\Application.php(175): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 C:\\OSPanel\\home\\sveden.iubip.local\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 C:\\OSPanel\\home\\sveden.iubip.local\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
