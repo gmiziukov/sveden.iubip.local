@@ -1,31 +1,28 @@
 @extends('layouts.app')
-
+@section('subsection-name')
+Финансово-хозяйственная деятельность
+@endsection
 @section('content')
-<div class="w-full h-full flex px-4 flex-col text-slate-700 ">
 
-    <div class="px-2 py-2">
-        <div class="flex flex-row text-md items-center h-[2.5rem] bg-slate-200">
-            <p class="px-2">Главная</p>/<p class="px-2">Сведения об образовательной организации</p>/<p class="px-2">Финансово-хозяйственная деятельность</p>
-        </div>
-    </div>
+<div class="w-full h-full flex px-4 flex-col">
 
     @foreach($subsections as $subsection)
-    <div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
+    <div class="py-2 md:text-xl text-lg px-2 w-full">{{ $subsection->name }}</div>
     @if($subsection->id == 52)
     <table class="w-full border">
         <thead>
-            <tr class="bg-blue-100 border font-medium border-blue-200">
-                <th class="border border-blue-200" colspan="4">Объем образовательной деятельности, финансовое обеспечение которой осуществляется</th>
+            <tr class="bg-slate-200 border border-gray-300">
+                <th class="border md:text-base text-sm md:font-semibold font-normal border-gray-300" colspan="4">Объем образовательной деятельности, финансовое обеспечение которой осуществляется</th>
             </tr>
-            <tr class="bg-blue-100 border font-medium border-blue-200">
-                <th class="border border-blue-200">за счёт бюджетных ассигнований федерального бюджета (тыс. руб.)</th>
-                <th class="border border-blue-200">за счёт бюджетов субъектов Российской Федерации (тыс. руб.)</th>
-                <th class="border border-blue-200">за счёт местных бюджетов (тыс. руб.)</th>
-                <th class="border border-blue-200">по договорам об оказании платных образовательных услуг (тыс. руб.)</th>
+            <tr class="bg-slate-200 md:text-base text-sm border border-gray-300">
+                <th class="border md:font-semibold font-normal border-gray-300">за счёт бюджетных ассигнований федерального бюджета (тыс. руб.)</th>
+                <th class="border md:font-semibold font-normal border-gray-300">за счёт бюджетов субъектов Российской Федерации (тыс. руб.)</th>
+                <th class="border md:font-semibold font-normal border-gray-300">за счёт местных бюджетов (тыс. руб.)</th>
+                <th class="border md:font-semibold font-normal border-gray-300">по договорам об оказании платных образовательных услуг (тыс. руб.)</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="border">
+            <tr class="border md:text-base text-sm">
                 <td class="border text-center">1</td>
                 <td class="border text-center">2</td>
                 <td class="border text-center">3</td>
@@ -33,10 +30,10 @@
             </tr>
             @foreach ($budgetValue as $value)
             <tr class="border text-justify">
-                <td itemprop="finBFVolume" class="border border-slate-300 px-2 text-center place-items-center"> {{ $value->fin_bf_volume }} </td>
-                <td itemprop="finBRVolume" class="border border-slate-300 px-2 text-center place-items-center"> {{ $value->fin_br_volume }} </td>
-                <td itemprop="finBMVolume" class="border border-slate-300 px-2 text-center place-items-center"> {{ $value->fin_bm_volume }} </td>
-                <td itemprop="finPVolume" class="border border-slate-300 px-2 text-center place-items-center"> {{ $value->fin_p_volume }} </td>
+                <td itemprop="finBFVolume" class="md:text-base text-sm border border-gray-300 px-2 text-center place-items-center"> {{ $value->fin_bf_volume }} </td>
+                <td itemprop="finBRVolume" class="md:text-base text-sm border border-gray-300 px-2 text-center place-items-center"> {{ $value->fin_br_volume }} </td>
+                <td itemprop="finBMVolume" class="md:text-base text-sm border border-gray-300 px-2 text-center place-items-center"> {{ $value->fin_bm_volume }} </td>
+                <td itemprop="finPVolume" class="md:text-base text-sm border border-gray-300 px-2 text-center place-items-center"> {{ $value->fin_p_volume }} </td>
             </tr>
             @endforeach
         </tbody>
@@ -46,23 +43,23 @@
     @if($subsection->id == 53)
     <table class="w-full border">
         <thead>
-            <tr class="border">
-                <th class="bg-blue-100 border border-blue-200">Год</th>
-                <th class="bg-blue-100 border border-blue-200">Поступившие финансовые и материальные средства</th>
-                <th class="bg-blue-100 border border-blue-200">Расходованные финансовые и материальные средств</th>
+            <tr class="bg-slate-200 md:text-base text-sm border border-gray-300">
+                <th class="border md:font-bold font-normal border-gray-300">Год</th>
+                <th class="border md:font-bold font-normal border-gray-300">Поступившие финансовые и материальные средства</th>
+                <th class="border md:font-bold font-normal border-gray-300">Расходованные финансовые и материальные средств</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="border">
+            <tr class="border md:text-base text-sm">
                 <td class="border text-center">1</td>
                 <td class="border text-center">2</td>
                 <td class="border text-center">3</td>
             </tr>
             @foreach ($budgetValueYear as $valueyear)
-            <tr itemprop="volume" class="border text-justify">
-                <td itemprop="finYear" class="border px-2 text-center border-slate-300">{{ $valueyear->fin_year }} </td>
-                <td itemprop="finPost" class="border px-2 text-center border-slate-300"> {{ $valueyear->fin_post }} </td>
-                <td itemprop="finRas" class="border px-2 text-center border-slate-300"> {{ $valueyear->fin_ras }} </td>
+            <tr itemprop="volume" class="border text-justify md:text-base text-sm">
+                <td itemprop="finYear" class="border px-2 text-center border-gray-300">{{ $valueyear->fin_year }} </td>
+                <td itemprop="finPost" class="border px-2 text-center border-gray-300"> {{ $valueyear->fin_post }} </td>
+                <td itemprop="finRas" class="border px-2 text-center border-gray-300"> {{ $valueyear->fin_ras }} </td>
             </tr>
             @endforeach
         </tbody>
@@ -70,7 +67,7 @@
     @endif
     @endforeach
     @foreach($budgetPlan as $file)
-    <li>
+    <li class="md:text-base" >
         <a href="{{ asset('storage/'.$file->path_to_file) }}" itemprop="finPlanDocLink" style="color: -webkit-link;" target="_blank">{{ $file->name_file }}</a>
     </li>
     @endforeach

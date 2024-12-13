@@ -1,33 +1,31 @@
 @extends('layouts.app')
-
+@section('subsection-name')
+Международное сотрудничество
+@endsection
 @section('content')
-<div class="px-2 py-2">
-    <div class="flex flex-row text-md items-center h-[2.5rem] bg-slate-200">
-        <p class="px-2">Главная</p>/<p class="px-2">Сведения об образовательной организации</p>/<p class="px-2">Международное сотрудничество</p>
-    </div>
-</div>
 @foreach($subsections as $subsection)
-<div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
-<div class="px-6 flex flex-col">
+<div class="px-4 w-full h-full flex flex-col">
+
+    <div class="py-2 md:text-xl text-lg px-2 w-full">{{ $subsection->name }}</div>
     @if($subsection->id == 56)
-    <table class="w-full border">
+    <table class="w-full mb-4 border">
         <thead>
-            <tr class="bg-blue-100 border border-blue-200">
-                <th class="border border-blue-200">№ п/п</th>
-                <th class="border border-blue-200">Государство</th>
-                <th class="border border-blue-200">Наименование организации</th>
-                <th class="border border-blue-200">Реквизиты договора (наименование, дата, номер, срок действия)</th>
+            <tr class="bg-slate-200 md:text-base text-sm border border-gray-300">
+                <th class="border w-[5rem] md:font-semibold font-normal border-gray-300">№ п/п</th>
+                <th class="border md:font-semibold font-normal border-gray-300">Государство</th>
+                <th class="border md:font-semibold font-normal border-gray-300">Наименование организации</th>
+                <th class="border md:font-semibold font-normal border-gray-300">Реквизиты договора (наименование, дата, номер, срок действия)</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="border">
+            <tr class="border md:text-base text-sm">
                 <td class="border text-center">1</td>
                 <td class="border text-center">2</td>
                 <td class="border text-center">3</td>
                 <td class="border text-center">4</td>
             </tr>
             @foreach ($inter as $international)
-            <tr itemprop="internationalDog" class="border">
+            <tr itemprop="internationalDog" class="border md:text-base text-sm">
                 <td class="border text-center">{{ $loop->iteration }}</td>
                 <td itemprop="stateName" class="border">{{ $international->state_name }}</td>
                 <td itemprop="orgName" class="border">{{ $international->org_name }}</td>
@@ -37,6 +35,6 @@
         </tbody>
     </table>
     @endif
+    @endforeach
 </div>
-@endforeach
 @stop

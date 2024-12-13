@@ -1,50 +1,48 @@
 <?php
-
+use App\Http\Controllers;
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CateringController;
+use App\Http\Controllers\CommonController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EduStandartsController;
+use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\GrantsController;
 use App\Http\Controllers\InterController;
 use App\Http\Controllers\ManagersController;
+use App\Http\Controllers\ObjectsController;
 use App\Http\Controllers\PaidEduController;
 use App\Http\Controllers\StructController;
+use App\Http\Controllers\SvedenController;
 use App\Http\Controllers\VacantController;
 use App\Models\EduStandartFile;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
+include("dop_route.php");
+
+// Route::get('/education', [EducationController::class, "index"])->name("education");
+Route::get('/sveden', [Controllers\SvedenController::class, "index"])->name("sveden");
+
 
 Route::group(['prefix' => 'sveden'], function () {
-    Route::get('/common', function () {
-        return view('common');
-    });
+
+    Route::get('/common', [CommonController::class, 'index']);
+
     Route::get('/struct', [StructController::class, 'index']);
 
     Route::get('/document', [DocumentController::class, 'index']);
     
-    Route::get('/education', function () {
-        return view('education');
-    });
+    Route::get('/education', [EducationController::class, 'index']);
+
     Route::get('/eduStandarts',[EduStandartsController::class, 'index']);
     
     Route::get('/managers', [ManagersController::class, 'index']);
 
-    Route::get('/employees', function () {
-        return view('employees');
-    });
-    Route::get('/objects', function () {
-        return view('objects');
-    });
+    Route::get('/employees', [EmployeesController::class, 'index']);
+
+    Route::get('/objects', [ObjectsController::class, 'index']);
+
     Route::get('/grants', [GrantsController::class, 'index']);
     
     Route::get('/paid_edu', [PaidEduController::class, 'index']);
@@ -62,3 +60,4 @@ Route::group(['prefix' => 'sveden'], function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

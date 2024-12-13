@@ -1,25 +1,24 @@
 @extends('layouts.app')
-
+@section('subsection-name')
+Платные образовательные услуги
+@endsection
 @section('content')
-<div class="px-2 py-2">
-    <div class="flex flex-row text-md items-center h-[2.5rem] bg-slate-200">
-        <p class="px-2">Главная</p>/<p class="px-2">Сведения об образовательной организации</p>/<p class="px-2">Платные образовательные услуги</p>
-    </div>
-</div>
-@foreach($subsections as $subsection)
-<div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
-<div class="px-6 flex flex-col">
+
+<div class="px-4 w-full h-full flex flex-col">
+    @foreach($subsections as $subsection)
+    <div class="py-2 md:text-xl text-lg px-2 w-full">{{ $subsection->name }}</div>
+
     @if($subsection->id == 51)
     @php $groupedFiles = collect($paidEduFile)->groupBy('name'); @endphp
-    <table class="text-sm mb-4 text-left">
+    <table class="md:text-base text-sm mb-4 text-left">
         <tbody>
             @foreach ($groupedFiles as $name => $files)
             <tr class="h-[3rem] text-justify">
-                <td class="border w-[50rem] px-2 place-items-center" itemprop="name">{{ $name }}</td>
-                <td class="border px-2">
+                <td class="border border-gray-300 md:w-[50rem] w-[10rem] px-2" itemprop="name">{{ $name }}</td>
+                <td class="border border-gray-300 px-2">
                     @foreach ($files as $file)
-                    <li class="list-none" >
-                        <a
+                    <li style="margin-left:-5px;" class="md:list-none">
+                        <a 
                             @if ($name=='Порядок оказания платных образовательных услуг в виде электронного документа, подписанного электронной подписью' )
                             itemprop="paidEdu"
                             @elseif ($name=='Образцы договоров об оказании платных образовательных услуг' )

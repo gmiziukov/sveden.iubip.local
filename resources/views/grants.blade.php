@@ -1,18 +1,16 @@
 @extends('layouts.app')
-
+@section('subsection-name')
+Стипендии и меры поддержки обучающихся
+@endsection
 @section('content')
-<div class="px-2 py-2">
-    <div class="flex flex-row text-md items-center h-[2.5rem] bg-slate-200">
-        <p class="px-2">Главная</p>/<p class="px-2">Сведения об образовательной организации</p>/<p class="px-2">Стипендии и меры поддержки обучающихся</p>
-    </div>
-</div>
-@foreach($subsections as $subsection)
-<div class="py-2 text-xl px-6 w-full">{{ $subsection->name }}</div>
-<div class="px-6 flex flex-col">
+
+<div class="px-4 w-full h-full flex flex-col">
+    @foreach($subsections as $subsection)
+    <div class="py-2 md:text-xl text-lg px-2 w-full">{{ $subsection->name }}</div>
 
     @if($subsection->id == 46)
     @foreach($grantFile->where('subsections_id', 46) as $file)
-    <li class="list-none">
+    <li class="md:list-none">
         <a itemprop="grant" style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
     </li>
     @endforeach
@@ -20,7 +18,7 @@
 
     @if($subsection->id == 47)
     @foreach($grantFile->where('subsections_id', 47) as $file)
-    <li class="list-none">
+    <li class="md:list-none">
         <a itemprop="support" style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
     </li>
     @endforeach
@@ -29,36 +27,36 @@
     @if($subsection->id == 48)
     <table class="w-full border">
         <thead>
-            <tr class="bg-blue-100 border border-blue-200">
-                <th class="border border-blue-200">Наименование показателя</th>
-                <th class="border border-blue-200">Общежития</th>
-                <th class="border border-blue-200">Интернаты</th>
+            <tr class="bg-slate-200 md:text-base text-sm border border-gray-300">
+                <th class="border md:font-semibold font-normal border-gray-300">Наименование показателя</th>
+                <th class="border md:font-semibold font-normal border-gray-300">Общежития</th>
+                <th class="border md:font-semibold font-normal border-gray-300">Интернаты</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="border">
-                <td class="border text-center">1</td>
+            <tr class="border md:text-base text-sm">
+                <td class="border  text-center">1</td>
                 <td class="border text-center">2</td>
                 <td class="border text-center">3</td>
             </tr>
             @foreach($grantHostel as $value)
-            <tr class="">
-                <td class="border">Количество общежитий/интернатов</td>
+            <tr class="md:text-base text-sm">
+                <td class="border">{{$value->name_kolvo}}</td>
                 <td itemprop="hostelInfo" class="border text-center px-2">{{ $value->kolvo_hostel }}</td>
                 <td itemprop="interInfo" class="border text-center px-2">{{ $value->kolvo_inter }}</td>
             </tr>
-            <tr class="">
-                <td class="border">Количество мест</td>
+            <tr class="md:text-base text-sm">
+                <td class="border">{{$value->name_num}}</td>
                 <td itemprop="hostelNum" class="border text-center px-2">{{ $value->num_hostel }}</td>
                 <td itemprop="interNum" class="border text-center px-2">{{ $value->num_inter }}</td>
             </tr>
-            <tr class="">
-                <td class="border">Количество жилых помещений</td>
+            <tr class="md:text-base text-sm">
+                <td class="border">{{$value->name_numtwo}}</td>
                 <td class="border text-center px-2">{{ $value->numtwo_hostel }}</td>
                 <td class="border text-center px-2">{{ $value->numtwo_inter }}</td>
             </tr>
-            <tr class="">
-                <td class="border">Количество жилых помещений приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</td>
+            <tr class="md:text-base text-sm">
+                <td class="border">{{$value->name_num_ovz}}</td>
                 <td itemprop="hostelNumOvz" class="border text-center px-2">{{ $value->num_ovz_hostel }}</td>
                 <td itemprop="interNumOvz" class="border text-center px-2">{{ $value->num_ovz_inter }}</td>
             </tr>
@@ -68,7 +66,7 @@
         </tbody>
     </table>
     @foreach($grantFile->where('subsections_id', 48) as $file)
-    <li class="list-none">
+    <li class="md:list-none">
         <a itemprop="hostelNumOvz" style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
     </li>
     @endforeach
@@ -76,7 +74,7 @@
 
     @if($subsection->id == 49)
     @foreach($grantFile->where('subsections_id', 49) as $file)
-    <li class="list-none">
+    <li class="md:list-none">
         <a itemprop="localAct" onclick="return false;" style=" cursor: text;" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
     </li>
     @endforeach
@@ -84,11 +82,12 @@
 
     @if($subsection->id == 50)
     @foreach($grantFile->where('subsections_id', 50) as $file)
-    <li class="list-none">
+    <li class="md:list-none">
         <a itemprop="localActObSt" style="color: -webkit-link;" target="_self" href="{{$file->path_to_file}}">{{ $file->name_file }}</a>
     </li>
     @endforeach
     @endif
+
+    @endforeach
 </div>
-@endforeach
 @stop
