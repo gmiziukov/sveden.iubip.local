@@ -4,9 +4,11 @@
 @stop --}}
 @section('content')
 {{-- {{dd($data)}} --}}
+
 <div id = "main">
+    <button>add_table</button>
     @if ($data)
-        <form action=""> 
+        <form action="update"> 
             <div id = "main_item" class =" flex flex-col">
                 @foreach($data as $item)
                     {{-- 
@@ -17,13 +19,21 @@
                         ----output data----
                     --}}  
                     @if($item->type_supplement == 0)
+                        <div id = "item">
+                        </div>
                         {{$item->type_supplement}}
                     @endif
                     @if($item->type_supplement == 1)
-                        {{$item->text}}
+                        <div id = "item">
+                            <input type="hidden" value={{$item->id}} >
+                            <input type="hidden" value={{$item->position}} >
+                            {{$item->text}}
+                            <button onclick="position_up({{$item->id}});" type="button">выше</button>
+                            <button onclick="position_down({{$item->id}});" type="button">ниже</button>
+                        </div>
                     @endif
                     @if($item->type_supplement == 2)
-                    <div id = "item">
+                    <div id = "item" class = "border-2">
                         <input type="hidden" value={{$item->id}} >
                         <input type="hidden" value={{$item->position}} >
 
@@ -51,6 +61,7 @@
                                 </tr>
                             @endforeach
                         </table>
+                        <button type="submit">save</button>
                         <button onclick="position_up({{$item->id}});" type="button">выше</button>
                         <button onclick="position_down({{$item->id}});" type="button">ниже</button>
                     </div>

@@ -23,7 +23,8 @@ class RedactorPageController extends Controller
         return $tables;
     }
 
-    public function add_to_data_base(){
+    public function update_to_data_base($d){
+        dd($d);
         return 0;
     }
 
@@ -41,7 +42,7 @@ class RedactorPageController extends Controller
                 $join->on($this->page1.'.supplement', '=', $this->page1.'_texts.id')
                     ->where($this->page1.'.type_supplement', '=', 1);
                     
-        })->select($page1.'.*', $page1.'_texts.text',$page1.'_texts.teg')->union($data)->get();
+        })->select($page1.'.*', $page1.'_texts.text',$page1.'_texts.teg')->union($data)->orderBy("position","asc")->get();
         // dd($this->add_table());
 
         return view("redactor/page",['data'=>$data1,'data_table' => $this->add_table()]);
