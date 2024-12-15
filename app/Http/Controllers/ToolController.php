@@ -8,11 +8,20 @@ class ToolController extends Controller
 {
     static function create_migration($data_for_table){
         $migrate = Artisan::call('make:model '.$data_for_table["table_name"]." -m");
-        if ($migrate()){
-            search_migration($data_for_table);
+        if ($migrate == 0){
+            ToolController::search_migration($data_for_table);
         }
     } 
-    static function redact_migration($data_for_table){
+    static function run_migration(){
+        $migrate = Artisan::call('migrate --force');
+        if ($migrate == 0){
+            dd("ok");
+        }
+    }
+
+
+    // !!!!!!!!!!!!! не использовать с существующими миграциями !!!!!!!!!!!!!
+    static function redact_migration($data_for_table,$file_name){
         $part1 = "
 <?php
 
@@ -57,7 +66,9 @@ public function down(): void
     Schema::dropIfExists('budget_valumes');
     }
 };";
-        dd($part1.$part2.$part3);
+        file_put_contents($file_name, [$part1,$part2,$part3]);
+        ToolController::run_migration();
+        // dd($part1.$part2.$part3);
     }
     static function search_migration($data_for_table){
         chdir('../database/migrations/');
@@ -76,8 +87,8 @@ public function down(): void
                     for($u = 1; $u!=count($instr); $u++){
                         // dd($instr[1]);
                         if($i_str[$j+$u] == $instr[$u]){
-                            ToolController::redact_migration($data_for_table);
                             // dd(scandir(".")[$i]);
+                            ToolController::redact_migration($data_for_table,scandir(".")[$i]);
                         }
                         else{
                             // break;
