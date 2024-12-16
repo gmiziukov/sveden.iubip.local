@@ -23,13 +23,15 @@ class RedactorPageController extends Controller
         return $tables;
     }
 
-    public function update_to_data_base($d){
-        dd($d);
+    public function update_to_data_base(Request $request){
+       
         return 0;
     }
 
     public $page1;
-    public function index($page ,$page1){  
+    public function index(Request $request, $page ,$page1){  
+        dd($request->input()[0]);
+
         $this->page1 = $page1;
         // dd($page1);
         $data = DB::table($page1)

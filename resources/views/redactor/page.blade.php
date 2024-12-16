@@ -13,7 +13,7 @@
                 @foreach($data as $item)
                     {{-- 
                         ----output data----
-                            0 = document
+                            0 = document/href
                             1 = text
                             2 = table 
                         ----output data----
@@ -38,6 +38,7 @@
                         <input type="hidden" value={{$item->position}} >
 
                     <table>
+                        <form action="update">
                         @foreach ($data_table[$item->supplement] as $table)
                         {{-- {{dd($table)}} --}}
                                 <tr itemprop={{$item->teg}} >
@@ -50,18 +51,19 @@
                                             @if(key($table) == "created_at" or key($table) == "updated_at")
                                             @else
                                                 <td itemprop={{key($table)}}>
-                                                    <input type="text" value={{$i}}>
+                                                    <input type="text" name ="{{key($table)}}[]"  value={{$i}}>
 
                                                     {{-- {{$i}} --}}
                                                 </td>
                                             @endif
                                         @endif
                                     @endforeach
-
                                 </tr>
-                            @endforeach
+                                
+                                @endforeach
+                                <button type="submit">save</button>
+                            </form>
                         </table>
-                        <button type="submit">save</button>
                         <button onclick="position_up({{$item->id}});" type="button">выше</button>
                         <button onclick="position_down({{$item->id}});" type="button">ниже</button>
                     </div>

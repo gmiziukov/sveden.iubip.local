@@ -48,3 +48,124 @@ function position_down(pos){
         }
     }
 }
+
+function create_element(){
+    let space = document.getElementById("create_element");
+    let t = document.getElementById("type_create_element");
+    function add_child(){
+        let child = forma.appendChild(document.createElement("input"));
+        child.className = "border-2";
+    }
+    function clear_element(){   
+        let a = space.children.length
+        for(let i =0;i<a;i++){
+            // console.log(space.children[i]);
+            console.log(space.removeChild(space.children[0]));
+        }
+    }
+    function back(){
+        let arr = ['text','DocOrHref','table']
+        clear_element();
+        console.log("back");
+        let select = space.appendChild(document.createElement('select'));
+        select.id = "type_create_element";
+        for(let i=0;i<arr.length;i++){
+            let child = select.appendChild(document.createElement("option"));
+            child.textContent = arr[i];
+            child.value = arr[i];
+            delete child;
+        }
+        delete child;
+        let child = space.appendChild(document.createElement('button'));
+        child.textContent = "select";
+        child.onclick = function(){create_element()};
+        delete child;
+    }
+
+    if(t.value=="text"){
+        clear_element()
+        let bytton_back = space.appendChild(document.createElement('button'));
+        bytton_back.textContent = "back";
+        bytton_back.onclick = function(){back()};
+        let forma = space.appendChild(document.createElement('form'));
+        forma.action = '/ddb';
+        forma.appendChild(document.createTextNode("enter text:"));
+        let input = forma.appendChild(document.createElement('input'));
+        input.name = "name";
+        forma.appendChild(document.createTextNode("enter teg:"));
+        let input1 = forma.appendChild(document.createElement('input'));
+        input1.name = "href";
+        let submit_button = forma.appendChild(document.createElement('button'));
+        submit_button.textContent = "create";
+        submit_button.type = "submit";
+    }
+
+    if(t.value=="DocOrHref"){
+        clear_element();
+        let bytton_back = space.appendChild(document.createElement('button'));
+        bytton_back.textContent = "back";
+        bytton_back.onclick = function(){back()};
+        let forma = space.appendChild(document.createElement('form'));
+        forma.action = "/ddb";
+        forma.appendChild(document.createTextNode("enter text or name:"));
+        let input = forma.appendChild(document.createElement('input'));
+        input.name = "name";
+        forma.appendChild(document.createTextNode("href or fiel:"));
+        let input1 = forma.appendChild(document.createElement('input'));
+        input1.name = "href";
+        let input2 = forma.appendChild(document.createElement('input'));
+        input2.type = "file";
+        input2.name = "href";
+        let submit_button = forma.appendChild(document.createElement('button'));
+        submit_button.textContent = "create";
+        submit_button.type = "submit";
+    }
+
+    if(t.value=="table"){
+        clear_element();
+        let bytton_back = space.appendChild(document.createElement('button'));
+        bytton_back.textContent = "back";
+        bytton_back.onclick = function(){back()};
+
+        let teg_space = space.appendChild(document.createElement("div"))
+        teg_space.id = "teg_space";
+        
+        let table_space = space.appendChild(document.createElement("div"))
+        table_space.id = "table_space";
+
+        let forma_table_space = table_space.appendChild(document.createElement("form"));
+        forma_table_space.action = "/ddb";
+
+        forma_table_space.appendChild(document.createTextNode("input table name :"));
+        
+        let table_name = forma_table_space.appendChild(document.createElement("input"));
+        table_name.name = "table_name";
+        table_name.className = "border-2";
+
+        let create_table_button = space.appendChild(document.createElement('button'));
+        create_table_button.textContent = "add_column";
+        create_table_button.onclick = function(){create_table()}
+
+        let submit_button = forma_table_space.appendChild(document.createElement('button'));
+        submit_button.textContent = "create";
+        submit_button.type = "submit";
+
+        async function create_table() {
+            let teg = teg_space.appendChild(document.createElement("input"))
+            teg.className = "border-2";
+            let column = forma_table_space.appendChild(document.createElement("input"))
+            column.className = "border-2";
+            teg.addEventListener("input",function(){column.name = teg.value});
+        }
+    }
+
+
+
+    // var forma = space.appendChild(document.createElement('form'));
+    // forma.action = "*";
+    // forma.className = "border-2";
+    // for(var i=0; i!=3;i++){
+    //     add_child();
+    // }
+    // console.log(space);
+}

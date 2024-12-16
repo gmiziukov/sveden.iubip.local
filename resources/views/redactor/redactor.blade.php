@@ -5,6 +5,17 @@
 @section('content')
 {{-- {{dd($data)}} --}}
 <div id = "main">
+    <div class = "border-2" id = create_element>
+        <select id="type_create_element">
+            <option value="text">text</option>
+            <option value="DocOrHref">DocOrHref</option>  
+            <option value="table">table</option>
+        </select>
+        <button id = "button_create" onclick="create_element()";>select</button>
+    </div>
+    уточнить как поступить с ссылками и документам в таблице
+    *поиск делать колонку или обозначение по всей таблице с булевым параметром
+    и потом искать то то орпеделённое и менять  
     @if ($data)
         <form action=""> 
             <div id = "main_item" class =" flex flex-col">
