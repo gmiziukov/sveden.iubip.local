@@ -30,7 +30,6 @@ class RedactorPageController extends Controller
 
     public $page1;
     public function index(Request $request, $page ,$page1){  
-        dd($request->input()[0]);
 
         $this->page1 = $page1;
         // dd($page1);

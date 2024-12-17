@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class ToolController extends Controller
 {
+    static function update_db(Request $request){
+        $req = $request->input();
+        dd(($req));
+        DB::table('employees_table1s')->insert([""=>""]);
+        dd($req[]);
+        // dd($request->input());
+        return 0;
+    }
     static function create_migration($data_for_table){
         $migrate = Artisan::call('make:model '.$data_for_table["table_name"]." -m");
         if ($migrate == 0){

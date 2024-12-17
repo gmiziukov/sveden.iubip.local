@@ -37,10 +37,10 @@
                         <input type="hidden" value={{$item->id}} >
                         <input type="hidden" value={{$item->position}} >
 
-                    <table>
-                        <form action="update">
-                        @foreach ($data_table[$item->supplement] as $table)
-                        {{-- {{dd($table)}} --}}
+                    <form action="/update" id = {{$item->id}}>
+                        <table>
+                            @foreach ($data_table[$item->supplement] as $table)
+                            {{-- {{dd($table)}} --}}
                                 <tr itemprop={{$item->teg}} >
                                     @foreach ($table as $i) 
                                         @if ($loop->first)
@@ -60,12 +60,12 @@
                                     @endforeach
                                 </tr>
                                 
-                                @endforeach
-                                <button type="submit">save</button>
-                            </form>
+                            @endforeach
                         </table>
-                        <button onclick="position_up({{$item->id}});" type="button">выше</button>
-                        <button onclick="position_down({{$item->id}});" type="button">ниже</button>
+                        <button type="submit">save_this</button>
+                    </form>
+                    <button onclick="position_up({{$item->id}});" type="button">выше</button>
+                    <button onclick="position_down({{$item->id}});" type="button">ниже</button>
                     </div>
                     @endif
                 @endforeach
