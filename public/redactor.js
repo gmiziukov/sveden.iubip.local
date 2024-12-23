@@ -88,7 +88,6 @@ function create_element(){
         var page=window.location.pathname;
         page = page.split("/");
         page = page[page.length-1];
-        let bytton_back = space.appendChild(document.createElement('button'));
         bytton_back.textContent = "back";
         bytton_back.onclick = function(){back()};
         let forma = space.appendChild(document.createElement('form'));
