@@ -7,15 +7,46 @@ use Illuminate\Http\Request;
 
 class ToolController extends Controller
 {
+
     static function update_db(Request $request){
+        function aa($req){
+            // dd($req);
+            $rearr = [];
+            $rearr1 = [];
+            // dd($req);
+            // dd(count(array_keys($req)));
+            // dd(count($req[array_keys($req)[0]])); 
+            for($j = 0; $j!=count($req[array_keys($req)[0]]);$j++){
+                for($i = 0; $i!= count(array_keys($req));$i++){
+                    $rearr1[key($req)] = $req[key($req)][$j];
+                    // dd($rearr1);
+                    next($req);
+                    // dd(key($req));
+                }
+                array_push($rearr, $rearr1 );
+                // dd($rearr);
+                reset($req); 
+            }
+            // dd($rearr);
+            return $rearr;
+        }
         $req = $request->input();
-        dd(($req));
-        DB::table('employees_table1s')->insert([""=>""]);
-        dd($req[]);
+        // dd($req); 
+
+        $table_name = $req["table_name"];
+        unset($req["table_name"]);
+        $req = aa($req);
+        // dd($req);
+        for ($i = 1; $i<count($req)+1;$i++){
+            // dd(count($req));
+            DB::table($table_name)->where("id",$i)->update($req[$i-1]);
+        }
+        // dd($req);
         // dd($request->input());
-        return 0;
+        return back();
     }
     static function create_migration($data_for_table){
+        dd($data_for_table);
         $migrate = Artisan::call('make:model '.$data_for_table["table_name"]." -m");
         if ($migrate == 0){
             ToolController::search_migration($data_for_table);
@@ -29,6 +60,7 @@ class ToolController extends Controller
         else{
             dd("error");
         }
+        return back();
     }
 
 
@@ -81,6 +113,7 @@ public function down(): void
         file_put_contents($file_name, [$part1,$part2,$part3]);
         ToolController::run_migration($data_for_table,$table_name);
         // dd($part1.$part2.$part3);
+        return back();
     }
     static function search_migration($data_for_table){
         chdir('../database/migrations/');
