@@ -9,6 +9,7 @@
         <form action=""> 
             <div id = "main_item" class =" flex flex-col">
                 @foreach($data as $item)
+                {{-- {{dd($data)}} --}}
                     {{-- 
                         ----output data----
                             0 = document
@@ -16,13 +17,13 @@
                             2 = table 
                         ----output data----
                     --}}  
-                    @if($item->type_supplement == 0)
+                    @if($item->type_supplement == 2)
                         {{$item->type_supplement}}
                     @endif
                     @if($item->type_supplement == 1)
                         {{$item->text}}
                     @endif
-                    @if($item->type_supplement == 2)
+                    @if($item->type_supplement == 3)
                     <table>
                         @foreach ($data_table[$item->supplement] as $table)
                         {{-- {{dd($table)}} --}}

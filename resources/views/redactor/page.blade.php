@@ -24,26 +24,26 @@ ini_set("display_errors",true);
                 {{-- {{dd($item)}} --}}
                     {{-- 
                         ----output data----
-                        0 = text
-                        1 = document/href
-                            2 = table 
+                            1 = text
+                            2 = document/href
+                            3 = table 
                         ----output data----
                     --}}  
-                    @if($item->type_supplement == 0)
-                        <div id = "item">
-                        </div>
-                        {{$item->type_supplement}}
-                    @endif
                     @if($item->type_supplement == 1)
-                        <div id = "item">
-                            <input type="hidden" value={{$item->id}} name="id[]">
-                            <input type="hidden" value={{$item->position}} name="pos[]">
-                            <input type="text" value= {{$item->text}}>
-                            <button onclick="position_up({{$item->id}});" type="button">выше</button>
-                            <button onclick="position_down({{$item->id}});" type="button">ниже</button>
-                        </div>
+                    <div id = "item">
+                        <input type="hidden" value={{$item->id}} name="id[]">
+                        <input type="hidden" value={{$item->position}} name="pos[]">
+                        <input type="text" value= {{$item->text}}>
+                        <button onclick="position_up({{$item->id}});" type="button">выше</button>
+                        <button onclick="position_down({{$item->id}});" type="button">ниже</button>
+                    </div>
                     @endif
                     @if($item->type_supplement == 2)
+                        <div id = "item">
+                            {{$item->type_supplement}}
+                        </div>
+                    @endif
+                    @if($item->type_supplement == 3)
                     <form action="" method="post"></form>
                     <div id = "item" class = "border-2">
                         <input type="hidden" value={{$item->id}} name="id[]">

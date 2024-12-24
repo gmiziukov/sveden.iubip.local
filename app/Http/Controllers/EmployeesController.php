@@ -27,16 +27,23 @@ class EmployeesController extends Controller
         $data = DB::table('employees')
         ->Join('employees_tables', function (JoinClause $join) {
             $join->on('employees.supplement', '=', 'employees_tables.id')
-                ->where('employees.type_supplement', '=', 2);
+                ->where('employees.type_supplement', '=', 3);
         })->select('employees.*', 'employees_tables.name','employees_tables.teg');
         $data1 = DB::table('employees')
+            ->Join('employees', function (JoinClause $join) {
+                $join->on('employees.supplement', '=', 'employees_documents.id')
+                    ->where('employees.type_supplement', '=', 2);
+                    
+        })->select('employees.*', 'employees_documents.name','employees_documents.teg', 'employees_documents.path')->union($data);
+
+        $data2 = DB::table('employees')
             ->Join('employees_texts', function (JoinClause $join) {
                 $join->on('employees.supplement', '=', 'employees_texts.id')
                     ->where('employees.type_supplement', '=', 1);
                     
-        })->select('employees.*', 'employees_texts.text','employees_texts.teg')->union($data)->get();
+        })->select('employees.*', 'employees_texts.text','employees_texts.teg')->union($data)->orderBy("position","asc")->get();
+        // dd($data2);
 
-        // dd($data1);
-        return view('employees',['data'=>$data1,'data_table' => $this->add_table()]);
+        return view('employees',['data'=>$data2,'data_table' => $this->add_table()]);
     }
 }

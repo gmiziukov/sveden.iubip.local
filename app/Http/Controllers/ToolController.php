@@ -31,10 +31,11 @@ class ToolController extends Controller
             return $rearr;
         }
         $req = $request->input();
-        // dd($req); 
+        // dd($req);   
 
-        $table_name = $req["table_name"];
-        unset($req["table_name"]);
+        $table_name = $req["name_table"];
+        $page_name = $req["page_name"];
+        unset($req["name_table"]);
         $req = aa($req);
         // dd($req);
         for ($i = 1; $i<count($req)+1;$i++){
@@ -46,15 +47,62 @@ class ToolController extends Controller
         return back();
     }
     static function create_migration($data_for_table){
-        dd($data_for_table);
-        $migrate = Artisan::call('make:model '.$data_for_table["table_name"]." -m");
-        if ($migrate == 0){
-            ToolController::search_migration($data_for_table);
+        // dd($data_for_table);
+        if($data_for_table["input_type"] == "1"){
+            $time_data = $data_for_table;
+            // dd($time_data["page_name"]);
+            unset($time_data["input_type"]);
+            unset($time_data["page_name"]);
+            $id = DB::table($data_for_table["page_name"]."_texts")->orderBy("id","desc")->get();
+            // dd($id);
+            $id = $id[0]->id + 1;
+            $pos = DB::table($data_for_table["page_name"])->orderBy("id","desc")->get();
+            $pos = $pos[0]->id;
+            DB::table($data_for_table["page_name"])->insert(["type_supplement"=>1, "supplement"=>$id, "position"=>$pos]);
+            DB::table($data_for_table["page_name"]."_texts")->insert($time_data);
+            unset($time_data);
+        }
+        elseif($data_for_table["input_type"] == "2"){
+            $time_data = $data_for_table;
+            // dd($time_data["page_name"]);
+            unset($time_data["input_type"]);
+            unset($time_data["page_name"]);
+            $id = DB::table($data_for_table["page_name"]."_texts")->orderBy("id","desc")->get();
+            dd($id);
+            $id = $id[0]->id + 1;
+            $pos = DB::table($data_for_table["page_name"])->orderBy("id","desc")->get();
+            $pos = $pos[0]->id;
+            DB::table($data_for_table["page_name"])->insert(["type_supplement"=>3, "supplement"=>$id, "position"=>$pos]);
+            DB::table($data_for_table["page_name"]."_documents")->insert($time_data);
+            unset($time_data);
+        }
+        elseif($data_for_table["input_type"] == "3"){
+            // dd($data_for_table);
+            $migrate = Artisan::call('make:model '.$data_for_table["name_table"]." -m");
+            $time_data = $data_for_table;
+            // dd($time_data["page_name"]);
+            if ($migrate == 0){
+                ToolController::search_migration($data_for_table);
+            }
+
         }
     } 
     static function run_migration($data_for_table, $table_name){
         $migrate = Artisan::call('migrate --force');
+        
         if ($migrate == 0){
+            $time_data = $data_for_table;
+            unset($time_data["input_type"]);
+            unset($time_data["page_name"]);
+            // dd($time_data, $data_for_table, $table_name);
+            $id = DB::table($data_for_table["page_name"]."_tables")->orderBy("id","desc")->first();
+            // dd($id);
+            $id = $id->id + 1;
+            $pos = DB::table($data_for_table["page_name"])->orderBy("id","desc")->get();
+            $pos = $pos[0]->id;
+            DB::table($data_for_table["page_name"])->insert(["type_supplement"=>3, "supplement"=>$id, "position"=>$pos]);
+            DB::table($data_for_table["page_name"]."_tables")->insert(["name"=>$table_name."s", "teg"=>$data_for_table["teg_table"] ]);
+            unset($time_data);
             DB::table($table_name."s")->insert([$data_for_table]);
         }
         else{
@@ -66,6 +114,7 @@ class ToolController extends Controller
 
     // !!!!!!!!!!!!! не использовать с существующими миграциями !!!!!!!!!!!!!
     static function redact_migration($data_for_table,$file_name){
+        // dd($data_for_table);
         $part1 = "
 <?php
 
@@ -81,10 +130,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('".$data_for_table["table_name"]."s"."', function (Blueprint \$table) {
+        Schema::create('".$data_for_table["name_table"]."s"."', function (Blueprint \$table) {
         ";
-        $table_name = $data_for_table["table_name"];
-        unset($data_for_table["table_name"]);
+        $table_name = $data_for_table["name_table"];
+        // dd($table_name);
+        unset($data_for_table["name_table"]);
         $part2 = "";
         $part2 = $part2."   \$table->id();\n";
         for($i = 0;$i<count($data_for_table); $i++){
@@ -113,11 +163,10 @@ public function down(): void
         file_put_contents($file_name, [$part1,$part2,$part3]);
         ToolController::run_migration($data_for_table,$table_name);
         // dd($part1.$part2.$part3);
-        return back();
     }
     static function search_migration($data_for_table){
         chdir('../database/migrations/');
-        $instr = $data_for_table["table_name"];
+        $instr = $data_for_table["name_table"];
         $instr = explode("_",$instr);
         $instr[count($instr)-1] = $instr[count($instr)-1]."s";
         // dd($instr);

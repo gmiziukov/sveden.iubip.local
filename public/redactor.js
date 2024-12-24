@@ -88,24 +88,27 @@ function create_element(){
         var page=window.location.pathname;
         page = page.split("/");
         page = page[page.length-1];
+        let bytton_back = space.appendChild(document.createElement('button'));
         bytton_back.textContent = "back";
         bytton_back.onclick = function(){back()};
         let forma = space.appendChild(document.createElement('form'));
         forma.action = '/ddb';
         forma.appendChild(document.createTextNode("enter text:"));
+
         let input_page = forma.appendChild(document.createElement("input"));
         input_page.name = "page_name";
         input_page.type = "hidden";
         input_page.value = page;
-        let input_type = forma_table_space.appendChild(document.createElement("input"));
+
+        let input_type = forma.appendChild(document.createElement("input"));
         input_type.name = "input_type";
         input_type.type = "hidden";
         input_type.value = 1;
         let input = forma.appendChild(document.createElement('input'));
-        input.name = "name";
+        input.name = "text";
         forma.appendChild(document.createTextNode("enter teg:"));
         let input1 = forma.appendChild(document.createElement('input'));
-        input1.name = "href";
+        input1.name = "teg";
         let submit_button = forma.appendChild(document.createElement('button'));
         submit_button.textContent = "create";
         submit_button.type = "submit";
@@ -127,7 +130,7 @@ function create_element(){
         input_page.name = "page_name";
         input_page.type = "hidden";
         input_page.value = page;
-        let input_type = forma_table_space.appendChild(document.createElement("input"));
+        let input_type = forma.appendChild(document.createElement("input"));
         input_type.name = "input_type";
         input_type.type = "hidden";
         input_type.value = 2;
@@ -176,8 +179,12 @@ function create_element(){
         forma_table_space.appendChild(document.createTextNode("input table name :"));
         
         let table_name = forma_table_space.appendChild(document.createElement("input"));
-        table_name.name = "table_name";
+        table_name.name = "name_table";
         table_name.className = "border-2";
+
+        let table_teg = forma_table_space.appendChild(document.createElement("input"));
+        table_teg.name = "teg_table";
+        table_teg.className = "border-2";
 
         let create_table_button = space.appendChild(document.createElement('button'));
         create_table_button.textContent = "add_column";
