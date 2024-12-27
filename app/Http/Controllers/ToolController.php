@@ -33,9 +33,10 @@ class ToolController extends Controller
         $req = $request->input();
         // dd($req);   
 
-        $table_name = $req["name_table"];
-        $page_name = $req["page_name"];
-        unset($req["name_table"]);
+        $table_name = $req["table_name"];
+        // $page_name = $req["page_name"];
+        unset($req["table_name"]);
+        
         $req = aa($req);
         // dd($req);
         for ($i = 1; $i<count($req)+1;$i++){
@@ -94,7 +95,10 @@ class ToolController extends Controller
             $time_data = $data_for_table;
             unset($time_data["input_type"]);
             unset($time_data["page_name"]);
+            unset($time_data["name_table"]);
+            unset($time_data["teg_table"]);
             // dd($time_data, $data_for_table, $table_name);
+            // dd($time_data);
             $id = DB::table($data_for_table["page_name"]."_tables")->orderBy("id","desc")->first();
             // dd($id);
             $id = $id->id + 1;
@@ -102,8 +106,8 @@ class ToolController extends Controller
             $pos = $pos[0]->id;
             DB::table($data_for_table["page_name"])->insert(["type_supplement"=>3, "supplement"=>$id, "position"=>$pos]);
             DB::table($data_for_table["page_name"]."_tables")->insert(["name"=>$table_name."s", "teg"=>$data_for_table["teg_table"] ]);
+            DB::table($table_name."s")->insert([$time_data]);
             unset($time_data);
-            DB::table($table_name."s")->insert([$data_for_table]);
         }
         else{
             dd("error");
@@ -133,14 +137,19 @@ return new class extends Migration
         Schema::create('".$data_for_table["name_table"]."s"."', function (Blueprint \$table) {
         ";
         $table_name = $data_for_table["name_table"];
+        $time_data = $data_for_table;
+        unset($time_data["input_type"]);
+        unset($time_data["page_name"]);
+        unset($time_data["name_table"]);
+        unset($time_data["teg_table"]);
         // dd($table_name);
         unset($data_for_table["name_table"]);
         $part2 = "";
         $part2 = $part2."   \$table->id();\n";
-        for($i = 0;$i<count($data_for_table); $i++){
-            $part2 = $part2."           \$table->string('".key($data_for_table)."');\n";
+        for($i = 0;$i<count($time_data); $i++){
+            $part2 = $part2."           \$table->string('".key($time_data)."');\n";
             // echo ." = ". $data_for_table[key($data_for_table)]."________";
-            next($data_for_table);
+            next($time_data);
         }
         $part2 = $part2."           \$table->timestamps();";
 
