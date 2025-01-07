@@ -4,8 +4,8 @@ use App\Http\Controllers\RedactorController;
 use App\Http\Controllers\RedactorPageController;
 
 
-Route::get('/redactor/', [Controllers\RedactorController::class, "index"])->name("redactor");
-Route::get('/redactor/{data}/{data2}', [Controllers\RedactorPageController::class, "index"] )->name("redactor");
+Route::get('/redactor/', [Controllers\RedactorController::class, "index"])->name("redactor")->middleware('auth');
+Route::get('/redactor/{data}/', [Controllers\RedactorPageController::class, "index"] )->name("redactor");
 Route::get('page/{data}', [Controllers\RedactorPageController::class, "index",['data']])->name("page");
 
 Route::get('/update', [Controllers\ToolController::class, "update_db"])->name("update");

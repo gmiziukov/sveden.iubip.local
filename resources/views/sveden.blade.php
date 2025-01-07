@@ -4,7 +4,7 @@
 @if ($data)
 @foreach ($data as $data1)
     <div>
-        <a href="{{$data1->href}}"> {{$data1->name}}</a>
+        <a href="{{ route('sveden', ['data' => $data1->href]) }}"> {{$data1->name}}</a>
     </div>
 @endforeach
 @else

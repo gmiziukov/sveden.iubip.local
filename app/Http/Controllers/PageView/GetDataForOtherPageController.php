@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\PageView;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Facades\DB;
 
-class RedactorPageController extends Controller
-{   
-
+class GetDataForOtherPageController extends Controller
+{
+    public $page1;
     public function add_table(){
         $tables = []; 
         // dd(count(DB::table("education_tables")->get()));
@@ -22,36 +23,30 @@ class RedactorPageController extends Controller
         // dd($tables);
         return $tables;
     }
-
-    public function update_to_data_base(Request $request){
-       
-        return 0;
-    }
-
-    public $page1;
-    public function index(Request $request, $page1){  
-
+    public function get_data($page1){
         $this->page1 = $page1;
-        // dd($page1);
+
         $data = DB::table($page1)
         ->Join($page1.'_tables', function (JoinClause $join) {
             $join->on($this->page1.'.supplement', '=', $this->page1.'_tables.id')
                 ->where($this->page1.'.type_supplement', '=', 3);
         })->select($page1.'.*', $page1.'_tables.name',$page1.'_tables.teg');
-        $data1 = DB::table('employees')
+
+        $data1 = DB::table($page1)
         ->Join($this->page1, function (JoinClause $join) {
             $join->on($this->page1.'.supplement', '=', $this->page1.'_documents.id')
-                ->where($this->page1.'.type_supplement', '=', 2);
-                
-    })->select($this->page1.'.*', $this->page1.'_documents.name',$this->page1.'_documents.teg', $this->page1.'_documents.path')->union($data);
+                ->where($this->page1.'.type_supplement', '=', 2);        
+        })->select($this->page1.'.*', $this->page1.'_documents.name',$this->page1.'_documents.teg', $this->page1.'_documents.path')->union($data);
+
         $data2 = DB::table($page1)
             ->Join($page1.'_texts', function (JoinClause $join) {
                 $join->on($this->page1.'.supplement', '=', $this->page1.'_texts.id')
                     ->where($this->page1.'.type_supplement', '=', 1);
                     
         })->select($page1.'.*', $page1.'_texts.text',$page1.'_texts.teg')->union($data)->orderBy("position","asc")->get();
-        // dd($data2);
-
-        return view("redactor/page",['data'=>$data2,'data_table'=>$this->add_table()]);
+        $data_table = $this->add_table();
+        $data = ["data"=>$data2, "data_table"=>$data_table];
+        return $data;
+        // return view("page",['data' => $data2,'data_table' => $data_table]);
     }
 }
