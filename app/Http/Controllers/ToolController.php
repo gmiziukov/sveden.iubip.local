@@ -55,10 +55,20 @@ class ToolController extends Controller
             unset($time_data["input_type"]);
             unset($time_data["page_name"]);
             $id = DB::table($data_for_table["page_name"]."_texts")->orderBy("id","desc")->get();
-            // dd($id);
-            $id = $id[0]->id + 1;
+            // dd(count($id) );
+            if(count($id)== 0){
+                $id = 1;
+            }
+            else{
+                $id = $id[0]->id + 1;
+            }
             $pos = DB::table($data_for_table["page_name"])->orderBy("id","desc")->get();
-            $pos = $pos[0]->id;
+            if(count($pos)== 0){
+                $pos = 0;
+            }
+            else{
+                $pos = $pos[0]->id;
+            }
             DB::table($data_for_table["page_name"])->insert(["type_supplement"=>1, "supplement"=>$id, "position"=>$pos]);
             DB::table($data_for_table["page_name"]."_texts")->insert($time_data);
             unset($time_data);
@@ -78,8 +88,9 @@ class ToolController extends Controller
             unset($time_data);
         }
         elseif($data_for_table["input_type"] == "3"){
-            // dd($data_for_table);
+            // dd('make:model '.$data_for_table["name_table"]." -m");
             $migrate = Artisan::call('make:model '.$data_for_table["name_table"]." -m");
+            // $migrate;
             $time_data = $data_for_table;
             // dd($time_data["page_name"]);
             if ($migrate == 0){
@@ -89,6 +100,7 @@ class ToolController extends Controller
         }
     } 
     static function run_migration($data_for_table, $table_name){
+        // dd("dd");
         $migrate = Artisan::call('migrate --force');
         
         if ($migrate == 0){
@@ -101,9 +113,19 @@ class ToolController extends Controller
             // dd($time_data);
             $id = DB::table($data_for_table["page_name"]."_tables")->orderBy("id","desc")->first();
             // dd($id);
-            $id = $id->id + 1;
+            if($id == NULL){
+                $id = 1;
+            }
+            else{
+                $id = $id[0]->id + 1;
+            }
             $pos = DB::table($data_for_table["page_name"])->orderBy("id","desc")->get();
-            $pos = $pos[0]->id;
+            if(count($pos)== 0){
+                $pos = 0;
+            }
+            else{
+                $pos = $pos[0]->id;
+            }
             DB::table($data_for_table["page_name"])->insert(["type_supplement"=>3, "supplement"=>$id, "position"=>$pos]);
             DB::table($data_for_table["page_name"]."_tables")->insert(["name"=>$table_name."s", "teg"=>$data_for_table["teg_table"] ]);
             DB::table($table_name."s")->insert([$time_data]);
@@ -186,7 +208,10 @@ public function down(): void
             // echo scandir(".")[$i];
             $i_str=explode("_", scandir(".")[$i]);
             for($j = 3;$j<count($i_str); $j++){
+                // dd($i_str);
                 if($i_str[$j] == $instr[0]){
+                    // dd($i_str);
+                    
                     for($u = 1; $u!=count($instr); $u++){
                         // dd($instr[1]);
                         if($i_str[$j+$u] == $instr[$u]){
