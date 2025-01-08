@@ -164,7 +164,7 @@ function create_element(){
         table_space.id = "table_space";
 
         let forma_table_space = table_space.appendChild(document.createElement("form"));
-        forma_table_space.action = "/ddb";
+        forma_table_space.action = "/sort";
 
         let input_page = forma_table_space.appendChild(document.createElement("input"));
         input_page.name = "page_name";
