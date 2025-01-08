@@ -22,7 +22,7 @@ class GetDataOtherPageController extends Controller
                 ->where($this->page1.'.type_supplement', '=', 3);
         })->select($page1.'.*', $page1.'_tables.name',$page1.'_tables.teg');
 
-        $data1 = DB::table('employees')
+        $data1 = DB::table($page1)
         ->Join($this->page1, function (JoinClause $join) {
             $join->on($this->page1.'.supplement', '=', $this->page1.'_documents.id')
                 ->where($this->page1.'.type_supplement', '=', 2);        
@@ -33,7 +33,6 @@ class GetDataOtherPageController extends Controller
                 $join->on($this->page1.'.supplement', '=', $this->page1.'_texts.id')
                     ->where($this->page1.'.type_supplement', '=', 1);
         })->select($page1.'.*', $page1.'_texts.text',$page1.'_texts.teg')->union($data)->orderBy("position","asc")->get();
-
-        return view("redactor/page",['data'=>$data2,'data_table'=>$table->get_table($this->page1)]);
+        return view("redactor/page",['data'=>$data2,'data_table'=>$table->get_table($this->page1),'page_name'=>$page1]);
     }
 }

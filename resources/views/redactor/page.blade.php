@@ -33,13 +33,26 @@ ini_set("display_errors",true);
                     <div id = "item">
                         <input type="hidden" value={{$item->id}} name="id[]">
                         <input type="hidden" value={{$item->position}} name="pos[]">
-                        <input type="text" value= {{$item->text}}>
+                        <form action="/sort">
+                            <input type="hidden" value={{$page_name}} name="page_name">
+                            <input type="hidden" value={{$item->id}} name="id">
+                            <input type="hidden" value="1" name="input_type">
+                            <input type="text" value= {{$item->text}} name = "text">
+                            <input type="text" value= {{$item->teg}} name = "teg">
+                            <button type="submit" value="1" name="but">save</button>
+                            <button type="submit" value="2" name="but">delete</button>
+                        </form>
                         <button onclick="position_up({{$item->id}});" type="button">выше</button>
                         <button onclick="position_down({{$item->id}});" type="button">ниже</button>
                     </div>
                     @endif
                     @if($item->type_supplement == 2)
                         <div id = "item">
+                        <input type="hidden" value="1" name="input_type">
+                        <input type="hidden" value={{$page_name}} name="page_name">
+        
+                        {{-- <input type="hidden" value="1" name="input_type"> --}}
+
                             {{$item->type_supplement}}
                         </div>
                     @endif
@@ -49,8 +62,11 @@ ini_set("display_errors",true);
                         <input type="hidden" value={{$item->id}} name="id[]">
                         <input type="hidden" value={{$item->position}} name="pos[]">
 
-                    <form action="/update" id = {{$item->id}}>
+                    <form action="/sort" id = {{$item->id}}>
                         <input type="hidden" name = "table_name" value={{$item->text}}>
+                        <input type="hidden" value="3" name="input_type">
+                        <input type="hidden" value={{$page_name}} name="page_name">
+
                         <table>
                             @foreach ($data_table[$item->supplement] as $table)
                             {{-- {{dd($table)}} --}}

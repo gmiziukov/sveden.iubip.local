@@ -92,7 +92,7 @@ function create_element(){
         bytton_back.textContent = "back";
         bytton_back.onclick = function(){back()};
         let forma = space.appendChild(document.createElement('form'));
-        forma.action = '/ddb';
+        forma.action = '/sort';
         forma.appendChild(document.createTextNode("enter text:"));
 
         let input_page = forma.appendChild(document.createElement("input"));
@@ -112,6 +112,8 @@ function create_element(){
         let submit_button = forma.appendChild(document.createElement('button'));
         submit_button.textContent = "create";
         submit_button.type = "submit";
+        submit_button.name = "but";
+        submit_button.value = 3;
     }
 
     if(t.value=="DocOrHref"){
@@ -124,7 +126,7 @@ function create_element(){
         bytton_back.textContent = "back";
         bytton_back.onclick = function(){back()};
         let forma = space.appendChild(document.createElement('form'));
-        forma.action = "/ddb";
+        forma.action = "/sort";
         forma.appendChild(document.createTextNode("enter text or name:"));
         let input_page = forma.appendChild(document.createElement("input"));
         input_page.name = "page_name";
@@ -145,6 +147,8 @@ function create_element(){
         let submit_button = forma.appendChild(document.createElement('button'));
         submit_button.textContent = "create";
         submit_button.type = "submit";
+        submit_button.name = "but";
+        submit_button.value = 3;
     }
 
     if(t.value=="table"){
@@ -193,6 +197,8 @@ function create_element(){
         let submit_button = forma_table_space.appendChild(document.createElement('button'));
         submit_button.textContent = "create";
         submit_button.type = "submit";
+        submit_button.name = "but";
+        submit_button.value = 3;
 
         async function create_table() {
             let teg = teg_space.appendChild(document.createElement("input"))

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Redactor\Redactor\Text;
+namespace App\Http\Controllers\Redactor\Redactor\MainTable;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DelateTextController extends Controller
+class DeleteTableController extends Controller
 {
     function __constructor(){
         

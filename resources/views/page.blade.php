@@ -10,24 +10,24 @@
     @if ($data)
         {{-- {{dd($data_table)}} --}}
         {{-- <form action="update_pos ">  --}}
-            <div id = "main_item" class =" flex flex-col">
+            <div id = "main_item" class =" flex flex-col ">
                 @foreach($data as $item)
                     @if (isset($item->type_supplement))
                         @if($item->type_supplement == 1)
-                        <div id = "item">
+                        <div id = "item" class = "border-2 flex place-content-center">
                             <div>
                                 {{$item->text}}
                             </div>
                         </div>
                         @endif
                         @if($item->type_supplement == 2)
-                            <div id = "item">
+                            <div id = "item" class = "border-2 flex place-content-center">
                                 {{$item->type_supplement}}
                                 {{-- {{dd($item)}} --}}
                             </div>
                         @endif
                         @if($item->type_supplement == 3)
-                        <div id = "item" class = "border-2">
+                        <div id = "item" class = "border-2 place-content-center">
                             <table>
                                 @foreach ($data_table[$item->supplement] as $table)
                                 {{-- {{dd($table)}} --}}

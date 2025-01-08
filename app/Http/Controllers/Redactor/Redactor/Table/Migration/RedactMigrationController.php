@@ -12,7 +12,6 @@ class RedactMigrationController extends Controller
 
     }
     static public function index($data_for_table,$file_name){
-        // dd($data_for_table);
         $part1 = "
 <?php
 
@@ -36,13 +35,11 @@ return new class extends Migration
         unset($time_data["page_name"]);
         unset($time_data["name_table"]);
         unset($time_data["teg_table"]);
-        // dd($table_name);
         unset($data_for_table["name_table"]);
         $part2 = "";
         $part2 = $part2."   \$table->id();\n";
         for($i = 0;$i<count($time_data); $i++){
             $part2 = $part2."           \$table->string('".key($time_data)."');\n";
-            // echo ." = ". $data_for_table[key($data_for_table)]."________";
             next($time_data);
         }
         $part2 = $part2."           \$table->timestamps();";

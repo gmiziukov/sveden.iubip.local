@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class GetDataMainPageController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
         $data = DB::table("svedens")->orderBy("position","asc")->get();
-
-        return view("redactor/redactor",['data'=>$data]);
+        $name_page = $request->path();
+        return view("redactor/redactor",['data'=>$data,'name_page'=>$name_page]);
     }
 }

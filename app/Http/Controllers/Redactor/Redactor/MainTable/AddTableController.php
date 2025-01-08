@@ -10,4 +10,7 @@ class AddTableController extends Controller
     function __constructor(){
         
     }
+    static public function index(){
+        
+    }
 }
