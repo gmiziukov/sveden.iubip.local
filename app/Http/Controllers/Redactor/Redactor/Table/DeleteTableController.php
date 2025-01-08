@@ -10,4 +10,7 @@ class DeleteTableController extends Controller
     function __constructor($data_for_table){
         
     }
+    static public function index($request){
+        dd($request->input());
+    }
 }

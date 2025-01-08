@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Redactor\Redactor\Table;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Redactor\Redactor\Table\Migration\SearchMigrationController;
 
 class AddTableController extends Controller
 {
@@ -16,7 +17,7 @@ class AddTableController extends Controller
         $time_data = $data_for_table;
 
         if ($migrate == 0){
-            ToolController::search_migration($data_for_table);
+            SearchMigrationController::index($data_for_table);
         }
     }
  

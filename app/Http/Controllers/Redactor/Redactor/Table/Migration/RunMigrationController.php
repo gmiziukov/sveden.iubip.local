@@ -23,10 +23,11 @@ class RunMigrationController extends Controller
             unset($time_data["page_name"]);
             unset($time_data["name_table"]);
             unset($time_data["teg_table"]);
+            unset($time_data["but"]);
             $id = DB::table($data_for_table["page_name"]."_tables")->orderBy("id","desc")->first();
             $pos = DB::table($data_for_table["page_name"])->orderBy("id","desc")->get();
 
-            if($id == NULL){
+            if($id == NULL){ 
                 $id = 1;
             }
             else{
@@ -39,6 +40,7 @@ class RunMigrationController extends Controller
             else{
                 $pos = $pos[0]->id;
             }
+            unset($time_data["but"]);
             // dd($data_for_table);
             DB::table($data_for_table["page_name"])->insert(["type_supplement"=>3, "supplement"=>$id, "position"=>$pos]);
             DB::table($data_for_table["page_name"]."_tables")->insert(["name"=>$table_name."s", "teg"=>$data_for_table["teg_table"] ]);

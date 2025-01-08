@@ -91,7 +91,8 @@ ini_set("display_errors",true);
                                 
                             @endforeach
                         </table>
-                        <button type="submit">save_this</button>
+                        <button type="submit" value="2" name="but">delete</button>
+                        <button type="submit" value="1" name="but">save</button>
                     </form>
                     <button onclick="position_up({{$item->id}});" type="button">выше</button>
                     <button onclick="position_down({{$item->id}});" type="button">ниже</button>

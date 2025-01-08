@@ -24,6 +24,7 @@ use App\Http\Controllers\Redactor\Redactor\Table\DeleteTableController;
 class SortDataController extends Controller
 {
     function sort(Request $request){
+
         if ($request->input()["but"]==1){
             return $this->sort_update($request);
         }
@@ -39,6 +40,7 @@ class SortDataController extends Controller
     }
 
     function sort_add(Request $request){
+        
         $data_for_table = $request->input();
 
         if($data_for_table["input_type"] == "1"){
@@ -87,7 +89,7 @@ class SortDataController extends Controller
 
         }
         elseif($data_for_table["input_type"] == "3"){
-            return DaleteTableController::index($request);
+            return DeleteTableController::index($request);
         }
     }
 }

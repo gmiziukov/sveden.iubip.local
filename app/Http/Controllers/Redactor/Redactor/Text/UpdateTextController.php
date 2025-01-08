@@ -13,9 +13,9 @@ class UpdateTextController extends Controller
     }
     static public function index(Request $request){
         $request =$request->input();
-        // dd($request);
-        $a = DB::table($request["page_name"]."_texts")->where("id",$request["id"])->update(['text'=>$request['text'],'teg'=>$request['teg']]);
-        // dd($a);
+        $id = DB::table($request["page_name"])->where("id",$request["id"])->get();
+        $id = $id[0]->supplement;
+        $a = DB::table($request["page_name"]."_texts")->where("id",$id)->update(['text'=>$request['text'],'teg'=>$request['teg']]);
         return back();
     }
 }

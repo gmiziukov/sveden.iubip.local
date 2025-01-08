@@ -39,6 +39,7 @@ class UpdateTableController extends Controller
         unset($req["table_name"]);
         unset($req["page_name"]);
         unset($req["input_type"]);
+        unset($req["but"]);
         // dd($req);
         $req = aa($req);
 
