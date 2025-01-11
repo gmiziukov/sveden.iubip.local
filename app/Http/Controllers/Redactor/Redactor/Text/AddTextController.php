@@ -12,6 +12,7 @@ class AddTextController extends Controller
 
     }
     static function index($data_for_table){
+        // dd($data_for_table);
         $time_data = $data_for_table;
         unset($time_data["input_type"]);
         unset($time_data["page_name"]);
@@ -36,7 +37,7 @@ class AddTextController extends Controller
         DB::table($data_for_table["page_name"])->insert(["type_supplement"=>1, "supplement"=>$id, "position"=>$pos]);
         DB::table($data_for_table["page_name"]."_texts")->insert($time_data);
         unset($time_data);
-        return back();
+        return redirect()->route("redactor",['data'=>$data_for_table["page_name"]]);
     }
     
 }

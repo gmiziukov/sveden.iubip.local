@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Redactor\Redactor\Table\Migration;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Http\Request;
@@ -50,13 +51,15 @@ class RunMigrationController extends Controller
             
             DB::table($data_for_table["page_name"])->insert(["type_supplement"=>3, "supplement"=>$id, "position"=>$pos]);
             DB::table($data_for_table["page_name"]."_tables")->insert(["name"=>$table_name."s", "teg"=>$data_for_table["teg_table"] ]);
-            DB::table($table_name."s")->insert([$time_data]);
+            DB::table(Str::plural($table_name))->insert([$time_data]);
             unset($time_data);
+            return redirect()->route("redactor",['data'=>$data_for_table["page_name"]]);
+
         }
         else{
             dd("error");
         }
 
-        return back();
+        return redirect()->route("redactor",['data'=>$data_for_table["page_name"]]);
     }
 }
