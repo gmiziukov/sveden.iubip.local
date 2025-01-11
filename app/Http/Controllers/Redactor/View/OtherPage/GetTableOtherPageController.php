@@ -15,9 +15,10 @@ class GetTableOtherPageController extends Controller
         $tables = []; 
 
         for ($i = 1; $i < count(DB::table($this->page1."_tables")->get())+1;$i++){
+            // dd(DB::table($this->page1."_tables")->where("id",'=',$i)->get());
             $data = DB::table(DB::table($this->page1."_tables")->where("id",'=',$i)->get()[0]->name)->get();
+            // dd($data);
             $tables[$i] = $data;
-
         }   
 
         return $tables;

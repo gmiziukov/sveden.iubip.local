@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Redactor\View\OtherPage;
 
+use Illuminate\Support\Str;
+use Illuminate\Support\Doctrine\Inflector;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\JoinClause;
@@ -15,7 +18,7 @@ class GetDataOtherPageController extends Controller
     public function index(Request $request, $page1){  
         $table = new GetTableOtherPageController;
         $this->page1 = $page1;
-
+        // dd(Str::plural('child'));
         $data = DB::table($page1)
         ->Join($page1.'_tables', function (JoinClause $join) {
             $join->on($this->page1.'.supplement', '=', $this->page1.'_tables.id')

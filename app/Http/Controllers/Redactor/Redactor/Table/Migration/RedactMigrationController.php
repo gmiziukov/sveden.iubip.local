@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Redactor\Redactor\Table\Migration\RunMigrationController;
 
+
+// -> SearchMigrationController
+
+
 class RedactMigrationController extends Controller
 {
     function __constructor(){
@@ -27,14 +31,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('".$data_for_table["name_table"]."s"."', function (Blueprint \$table) {
+        Schema::create('".$data_for_table["table_name"]."s"."', function (Blueprint \$table) {
         ";
-        $table_name = $data_for_table["name_table"];
+        $table_name = $data_for_table["table_name"];
         $time_data = $data_for_table;
         unset($time_data["input_type"]);
         unset($time_data["page_name"]);
-        unset($time_data["name_table"]);
+        unset($time_data["table_name"]);
         unset($time_data["teg_table"]);
+        unset($time_data["but"]);
         unset($data_for_table["name_table"]);
         $part2 = "";
         $part2 = $part2."   \$table->id();\n";

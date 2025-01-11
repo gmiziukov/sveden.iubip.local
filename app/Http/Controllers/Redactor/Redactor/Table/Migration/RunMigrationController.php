@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Http\Request;
 
+
+// RedactMigratoinController
+
+
 class RunMigrationController extends Controller
 {
     function __constructor(array $data_for_table){
@@ -21,12 +25,12 @@ class RunMigrationController extends Controller
             $time_data = $data_for_table;
             unset($time_data["input_type"]);
             unset($time_data["page_name"]);
-            unset($time_data["name_table"]);
+            unset($time_data["table_name"]);
             unset($time_data["teg_table"]);
             unset($time_data["but"]);
             $id = DB::table($data_for_table["page_name"]."_tables")->orderBy("id","desc")->first();
             $pos = DB::table($data_for_table["page_name"])->orderBy("id","desc")->get();
-
+            
             if($id == NULL){ 
                 $id = 1;
             }
@@ -42,6 +46,8 @@ class RunMigrationController extends Controller
             }
             unset($time_data["but"]);
             // dd($data_for_table);
+            $time_data = $time_data;
+            
             DB::table($data_for_table["page_name"])->insert(["type_supplement"=>3, "supplement"=>$id, "position"=>$pos]);
             DB::table($data_for_table["page_name"]."_tables")->insert(["name"=>$table_name."s", "teg"=>$data_for_table["teg_table"] ]);
             DB::table($table_name."s")->insert([$time_data]);

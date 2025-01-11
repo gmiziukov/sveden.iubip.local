@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Redactor\Redactor\Table;
 
+use App\Http\Controllers\Redactor\Redactor\Table\Migration\SearchMigrationController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,8 @@ class DeleteTableController extends Controller
         
     }
     static public function index($request){
-        dd($request->input());
+        // dd($request->input());
+        SearchMigrationController::index($request->input(),2);
+
     }
 }

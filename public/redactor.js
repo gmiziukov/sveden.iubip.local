@@ -183,7 +183,7 @@ function create_element(){
         forma_table_space.appendChild(document.createTextNode("input table name :"));
         
         let table_name = forma_table_space.appendChild(document.createElement("input"));
-        table_name.name = "name_table";
+        table_name.name = "table_name";
         table_name.className = "border-2";
 
         let table_teg = forma_table_space.appendChild(document.createElement("input"));

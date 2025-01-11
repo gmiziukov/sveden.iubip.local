@@ -49,9 +49,10 @@ class SortDataController extends Controller
         }
         elseif($data_for_table["input_type"] == "2"){
             return 0;
-
+            
         }
         elseif($data_for_table["input_type"] == "3"){
+            // dd("dd");
             return CreateMigrationController::index([$data_for_table][0]);
 
         }
@@ -78,7 +79,7 @@ class SortDataController extends Controller
     function sort_delete(Request $request){
 
         $data_for_table = $request->input();
-
+        // dd($data_for_table);
 
         if($data_for_table["input_type"] == "1"){
             return DeleteTextController::index($request);
@@ -89,6 +90,7 @@ class SortDataController extends Controller
 
         }
         elseif($data_for_table["input_type"] == "3"){
+            // dd("dd");
             return DeleteTableController::index($request);
         }
     }
