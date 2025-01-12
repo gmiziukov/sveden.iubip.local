@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('education_texts', function (Blueprint $table) {
+        Schema::create('prosto_tebs', function (Blueprint $table) {
            $table->id();
-           $table->string('dfd');
-           $table->string('dasd');
+           $table->string('qwes');
+           $table->string('sadxzc');
+           $table->string('xcz');
            $table->timestamps();
         });
 }

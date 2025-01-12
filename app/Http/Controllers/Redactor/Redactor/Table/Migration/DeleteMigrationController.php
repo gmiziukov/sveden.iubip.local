@@ -21,7 +21,9 @@ class DeleteMigrationController extends Controller
         DB::table($data["page_name"].'_tables')->where('name',$data["table_name"])->delete();
         DB::table($data["page_name"])->where('supplement',$id[0]->id)->where('type_supplement',3)->delete();
         Schema::drop($data["table_name"]);
+        DB::table($data["page_name"])->where("id",">",$main_id[0]->id)->orderBy('position', 'asc')->decrement('position',1);
         DB::table($data["page_name"])->where("id",">",$main_id[0]->id)->orderBy('id', 'asc')->decrement('id',1);
+        DB::table($data["page_name"])->where("supplement",">",$id[0]->id)->where('type_supplement',3)->orderBy('supplement', 'asc')->decrement('supplement',1);
         DB::table($data["page_name"].'_tables')->where("id",">",$id[0]->id)->orderBy('id', 'asc')->decrement('id',1);
         unlink($path);
 

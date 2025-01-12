@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('education_texts', function (Blueprint $table) {
+        Schema::create('sovsem_new_tables', function (Blueprint $table) {
            $table->id();
-           $table->string('dfd');
-           $table->string('dasd');
+           $table->string('asdadf');
+           $table->string('xczxv');
+           $table->string('ZXVcxb');
+           $table->string('bvcxb');
            $table->timestamps();
         });
 }

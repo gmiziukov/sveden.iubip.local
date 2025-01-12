@@ -11,13 +11,27 @@ class AddDocOrHrefController extends Controller
         $time_data = $data_for_table;
         unset($time_data["input_type"]);
         unset($time_data["page_name"]);
-        $id = DB::table($data_for_table["page_name"]."_texts")->orderBy("id","desc")->get();
-        dd($id);
-        $id = $id[0]->id + 1;
+        unset($time_data["but"]);
+        $id = DB::table($data_for_table["page_name"]."_documents")->orderBy("id","desc")->get();
         $pos = DB::table($data_for_table["page_name"])->orderBy("id","desc")->get();
-        $pos = $pos[0]->id;
-        DB::table($data_for_table["page_name"])->insert(["type_supplement"=>3, "supplement"=>$id, "position"=>$pos]);
+
+        if(count($id)== 0){
+            $id = 1;
+        }
+        else{
+            $id = $id[0]->id + 1;
+        }
+
+        if(count($pos)== 0){
+            $pos = 0;
+        }
+        else{
+            $pos = $pos[0]->id;
+        }
+
+        DB::table($data_for_table["page_name"])->insert(["type_supplement"=>1, "supplement"=>$id, "position"=>$pos]);
         DB::table($data_for_table["page_name"]."_documents")->insert($time_data);
         unset($time_data);
+        return redirect()->route("redactor",['data'=>$data_for_table["page_name"]]);
     }
 }

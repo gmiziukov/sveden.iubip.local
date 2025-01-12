@@ -127,6 +127,7 @@ function create_element(){
         bytton_back.onclick = function(){back()};
         let forma = space.appendChild(document.createElement('form'));
         forma.action = "/sort";
+        forma.enctype="multipart/form-data";
         forma.appendChild(document.createTextNode("enter text or name:"));
         let input_page = forma.appendChild(document.createElement("input"));
         input_page.name = "page_name";
@@ -139,11 +140,11 @@ function create_element(){
         let input = forma.appendChild(document.createElement('input'));
         input.name = "name";
         forma.appendChild(document.createTextNode("href or fiel:"));
-        let input1 = forma.appendChild(document.createElement('input'));
-        input1.name = "href[]";
+        // let input1 = forma.appendChild(document.createElement('input'));
+        // input1.name = "href[]";
         let input2 = forma.appendChild(document.createElement('input'));
         input2.type = "file";
-        input2.name = "href[]";
+        input2.name = "href";
         let submit_button = forma.appendChild(document.createElement('button'));
         submit_button.textContent = "create";
         submit_button.type = "submit";

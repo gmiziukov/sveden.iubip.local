@@ -50,7 +50,7 @@ class RunMigrationController extends Controller
             $time_data = $time_data;
             
             DB::table($data_for_table["page_name"])->insert(["type_supplement"=>3, "supplement"=>$id, "position"=>$pos]);
-            DB::table($data_for_table["page_name"]."_tables")->insert(["name"=>$table_name."s", "teg"=>$data_for_table["teg_table"] ]);
+            DB::table($data_for_table["page_name"]."_tables")->insert(["name"=>Str::plural($table_name), "teg"=>$data_for_table["teg_table"] ]);
             DB::table(Str::plural($table_name))->insert([$time_data]);
             unset($time_data);
             return redirect()->route("redactor",['data'=>$data_for_table["page_name"]]);

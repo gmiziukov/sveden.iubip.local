@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Redactor\Redactor\Table\Migration;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Redactor\Redactor\Table\Migration\RunMigrationController;
 
@@ -31,7 +32,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('".$data_for_table["table_name"]."s"."', function (Blueprint \$table) {
+        Schema::create('".Str::plural( $data_for_table["table_name"])."', function (Blueprint \$table) {
         ";
         $table_name = $data_for_table["table_name"];
         $time_data = $data_for_table;
