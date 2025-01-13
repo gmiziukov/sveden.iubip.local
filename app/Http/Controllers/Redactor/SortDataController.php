@@ -35,7 +35,7 @@ class SortDataController extends Controller
             return $this->sort_delete($request);
         }
         elseif($request->input()["but"]==3){
-            dd($request->file($request->href));
+            // dd($request->file($request->href));
             return $this->sort_add($request);
         }
         else{

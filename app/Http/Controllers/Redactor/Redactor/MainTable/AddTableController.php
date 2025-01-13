@@ -15,15 +15,19 @@ class AddTableController extends Controller
         // $request->validate([
         //     'file_upload' => 'required|mimes:pdf,jpg,png|max:2048',
         // ]);
-        $request = $request->input();
-        $a = $request->file($request->href)->store("local");
-        dd($a);
-    
-        // dd(public_path());
+        // $request = $request->input();
+        // $a = $request->file($request->href)->store("local");
+        // dd($request);
+        $file = $request->file('href');
+        dd($file);
+        $file[0]->store("dos");
+        
+        $req = $request->input();
+        dd($request->file());
         // $file = $request->file($request["href"]);
         // $file = file($file);
         // $file->store("")
-        Storage::disk('public')->put('example.jpg', file($request->href));
+        Storage::disk('public')->put('example.jpg', $request->file());
         // $request->file($file)->store("doc");
         // Storage::putFile("doc",$request->file($request["href"]));
     }

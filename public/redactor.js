@@ -3,6 +3,7 @@
 let main_item = document.getElementById("main_item");
 var item = document.querySelectorAll("div");
 // console.log(item);
+var csrf = document.querySelector('meta[name="csrf-token"]').content;
 var arr = [];
 for(var i=0;i!=item.length;i++)
     if(item[i].id == "item")
@@ -85,15 +86,23 @@ function create_element(){
     if(t.value=="text"){
         clear_element()
         console.log(window.location.href);
+        
         var page=window.location.pathname;
         page = page.split("/");
         page = page[page.length-1];
+
         let bytton_back = space.appendChild(document.createElement('button'));
         bytton_back.textContent = "back";
         bytton_back.onclick = function(){back()};
+
         let forma = space.appendChild(document.createElement('form'));
         forma.action = '/sort';
         forma.appendChild(document.createTextNode("enter text:"));
+
+        let csrf_input = forma.appendChild(document.createElement("input"));
+        csrf_input.type = "hidden";
+        csrf_input.name = "_token";
+        csrf_input.value = csrf;
 
         let input_page = forma.appendChild(document.createElement("input"));
         input_page.name = "page_name";
@@ -104,11 +113,14 @@ function create_element(){
         input_type.name = "input_type";
         input_type.type = "hidden";
         input_type.value = 1;
+
         let input = forma.appendChild(document.createElement('input'));
         input.name = "text";
         forma.appendChild(document.createTextNode("enter teg:"));
+
         let input1 = forma.appendChild(document.createElement('input'));
         input1.name = "teg";
+
         let submit_button = forma.appendChild(document.createElement('button'));
         submit_button.textContent = "create";
         submit_button.type = "submit";
@@ -119,32 +131,47 @@ function create_element(){
     if(t.value=="DocOrHref"){
         clear_element();
         console.log(window.location.href);
+
         var page=window.location.pathname;
         page = page.split("/");
         page = page[page.length-1];
+
         let bytton_back = space.appendChild(document.createElement('button'));
         bytton_back.textContent = "back";
         bytton_back.onclick = function(){back()};
+
         let forma = space.appendChild(document.createElement('form'));
         forma.action = "/sort";
         forma.enctype="multipart/form-data";
+        forma.method = "post";
         forma.appendChild(document.createTextNode("enter text or name:"));
+
+        let csrf_input = forma.appendChild(document.createElement("input"));
+        csrf_input.type = "hidden";
+        csrf_input.name = "_token";
+        csrf_input.value = csrf;
+
         let input_page = forma.appendChild(document.createElement("input"));
         input_page.name = "page_name";
         input_page.type = "hidden";
         input_page.value = page;
+
         let input_type = forma.appendChild(document.createElement("input"));
         input_type.name = "input_type";
         input_type.type = "hidden";
         input_type.value = 2;
+
         let input = forma.appendChild(document.createElement('input'));
         input.name = "name";
+
         forma.appendChild(document.createTextNode("href or fiel:"));
-        // let input1 = forma.appendChild(document.createElement('input'));
-        // input1.name = "href[]";
+        let input1 = forma.appendChild(document.createElement('input'));
+        input1.name = "href[]";
+
         let input2 = forma.appendChild(document.createElement('input'));
         input2.type = "file";
-        input2.name = "href";
+        input2.name = "href[]";
+
         let submit_button = forma.appendChild(document.createElement('button'));
         submit_button.textContent = "create";
         submit_button.type = "submit";
@@ -170,6 +197,11 @@ function create_element(){
 
         let forma_table_space = table_space.appendChild(document.createElement("form"));
         forma_table_space.action = "/sort";
+
+        let csrf_input = forma_table_space.appendChild(document.createElement("input"));
+        csrf_input.type = "hidden";
+        csrf_input.name = "_token";
+        csrf_input.value = csrf;
 
         let input_page = forma_table_space.appendChild(document.createElement("input"));
         input_page.name = "page_name";
