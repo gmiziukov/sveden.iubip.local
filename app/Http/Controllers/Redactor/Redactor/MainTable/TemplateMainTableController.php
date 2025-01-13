@@ -7,5 +7,10 @@ use Illuminate\Http\Request;
 
 class TemplateMainTableController extends Controller
 {
-    
+    static public function index(){
+        $pempl1 = "
+
+        ";
+
+    }
 }

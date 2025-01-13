@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Redactor\Redactor\DocOrHref;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AddDocOrHrefController extends Controller
@@ -33,5 +34,8 @@ class AddDocOrHrefController extends Controller
         DB::table($data_for_table["page_name"]."_documents")->insert($time_data);
         unset($time_data);
         return redirect()->route("redactor",['data'=>$data_for_table["page_name"]]);
+    }
+    static public function index(){
+        
     }
 }
