@@ -2,14 +2,18 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Database\Migrations\MigrationCreator as mc;
+use Illuminate\Contracts\Console\PromptsForMissingInput;
+use Illuminate\Filesystem\Filesystem;
 
 use Illuminate\Console\Command;
-use Illuminate\Database\ConnectionResolverInterface as Resolver;
-use Illuminate\Database\Migrations\DatabaseMigrationRepository as dmr;
+// use Illuminate\Database\ConnectionResolverInterface as Resolver;
+// use Illuminate\Database\Migrations\DatabaseMigrationRepository as dmr;
 
 
 
-class remig extends Command 
+class remig extends Command implements PromptsForMissingInput
+
 {
     // protected $laravel;
     /**
@@ -17,7 +21,10 @@ class remig extends Command
      *
      * @var string
      */
-    protected $signature = 'app:remig {var}';
+    protected $signature = 'app:remig {name : The name of the migration}
+        {--table= : The table to migrate}
+        {--create= : The table to be created}
+        {--path= : The location where the migration file should be created}';
     
     /**
      * The console command description.
@@ -32,32 +39,51 @@ class remig extends Command
      */
     
     protected $table;
-    public function __construct(Resolver $resolver, dmr $dmr)
+    protected $path;
+    protected $name;
+
+    public function __construct(Filesystem $file)
     {
-        $this->dmr = $dmr;
-        $this->resolver = $resolver;
+        parent::__construct();
+        $this->mc = new mc($file , $customStubPath = "\Illuminate\Database\Migrations\stubs\\newstub\migration.stub" );
     }
-
-    public function createRepository()
+    
+    protected function getMigrationPath()
     {
-        $schema = $dmr->getConnection()->getSchemaBuilder();
-
-        $schema->create($this->table, function ($table) {
-            // The migrations table is responsible for keeping track of which of the
-            // migrations have actually run for the application. We'll create the
-            // table to hold the migration file's path as well as the batch ID.
-            $table->increments('id');
-            $table->string('migration');
-            $table->string('tables');
-            $table->string('name'); // ===================================================== add name
-            $table->integer('batch');
-        });
+        if (! is_null($targetPath = $this->input->getOption('path'))) {
+            return ! $this->usingRealPath()
+            ? $this->laravel->basePath().'/'.$targetPath
+            : $targetPath;
+        }
+        
+        return parent::getMigrationPath();
     }
-
+    protected function writeMigration($name, $table, $create)
+    {
+        $file = $this->creator->create(
+            $name, $this->getMigrationPath(), $table, $create
+        );
+        
+        $this->components->info(sprintf('Migration [%s] created successfully.', $file));
+    }
+    protected function promptForMissingArgumentsUsing(): array
+    {
+        return [
+            'user' => 'Which user ID should receive the mail?',
+        ];
+    }
     public function handle()
     {
-        $this->table = $this->argument('var');
-        $this->createRepository();
+        $name = $this->input->getArgument('name');
+        $this->table = $this->input->getOption('table', "def");
+        $create = $this->input->getOption('create') ?: false;
+        if (! $table && is_string($create)) {
+            $table = $create;
+
+            $create = true;
+        }
+        $this->writeMigration($name, $table, $create);
+        // $this->createRepository();
         return 0;
     }
 }
