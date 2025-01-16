@@ -17,6 +17,7 @@ class AddTextController extends Controller
         unset($time_data["input_type"]);
         unset($time_data["page_name"]);
         unset($time_data["but"]);
+        unset($time_data["_token"]);
         $id = DB::table($data_for_table["page_name"]."_texts")->orderBy("id","desc")->get();
         $pos = DB::table($data_for_table["page_name"])->orderBy("id","desc")->get();
 

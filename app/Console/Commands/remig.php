@@ -41,7 +41,6 @@ class remig extends Command implements PromptsForMissingInput
 
     public function handle()
     {
-         dump($this->stubPath);
         $this->name = $this->argument('name');
         $this->table = $this->argument('table');
         $this->type = $this->argument('type') ?? 'default';
@@ -52,7 +51,6 @@ class remig extends Command implements PromptsForMissingInput
 
     protected function writeMigration($name, $table, $type)
     {
-         dump("Stub file from command: " . $this->stubPath . '/' . $type);
          $this->mc->create(
             $name,
             $this->getMigrationPath(),

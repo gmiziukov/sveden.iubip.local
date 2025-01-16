@@ -15,6 +15,8 @@ use App\Http\Controllers\Redactor\Redactor\Text\DeleteTextController;
 use App\Http\Controllers\Redactor\Redactor\MainTable\AddTableController;
 
 // doc or href controllers
+use App\Http\Controllers\Redactor\Redactor\DocOrHref\AddDocOrHrefController;
+
 
 // table controllers
 use App\Http\Controllers\Redactor\Redactor\Table\Migration\CreateMigrationController;
@@ -58,7 +60,7 @@ class SortDataController extends Controller
                 return AddTableController::index($request);
             }
             else{
-                return dd($data_for_table);
+                return AddDocOrHrefController::index($data_for_table);
             }
             return 0;
         }

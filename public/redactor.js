@@ -97,6 +97,7 @@ function create_element(){
 
         let forma = space.appendChild(document.createElement('form'));
         forma.action = '/sort';
+        forma.method = "post";
         forma.appendChild(document.createTextNode("enter text:"));
 
         let csrf_input = forma.appendChild(document.createElement("input"));
@@ -166,11 +167,11 @@ function create_element(){
 
         forma.appendChild(document.createTextNode("href or fiel:"));
         let input1 = forma.appendChild(document.createElement('input'));
-        input1.name = "href[]";
+        input1.name = "path";
 
         let input2 = forma.appendChild(document.createElement('input'));
         input2.type = "file";
-        input2.name = "href[]";
+        input2.name = "path";
 
         let submit_button = forma.appendChild(document.createElement('button'));
         submit_button.textContent = "create";
@@ -197,6 +198,7 @@ function create_element(){
 
         let forma_table_space = table_space.appendChild(document.createElement("form"));
         forma_table_space.action = "/sort";
+        forma_table_space.method = "post";
 
         let csrf_input = forma_table_space.appendChild(document.createElement("input"));
         csrf_input.type = "hidden";

@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('education_texts', function (Blueprint $table) {
+        Schema::create('other_children', function (Blueprint $table) {
            $table->id();
-           $table->string('dfd');
-           $table->string('dasd');
+           $table->string('_token');
+           $table->string('fdsr');
+           $table->string('iyu');
+           $table->string('bvc');
            $table->timestamps();
         });
 }

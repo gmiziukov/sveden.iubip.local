@@ -3,7 +3,6 @@
 @vite(['public/redactor.js'])
 @stop --}}
 @section('content')
-{{-- {{dd($data)}} --}}
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors",true);
@@ -18,6 +17,7 @@ ini_set("display_errors",true);
         <button id = "button_create" onclick="create_element()";>select</button>
     </div>
     @if ($data)
+    {{-- {{dd($data)}} --}}
         {{-- <form action="update_pos ">  --}}
             <div id = "main_item" class =" flex flex-col">
                 @foreach($data as $item)
@@ -52,18 +52,20 @@ ini_set("display_errors",true);
                         <input type="hidden" value={{$page_name}} name="page_name">
         
                         {{-- <input type="hidden" value="1" name="input_type"> --}}
-
-                            {{$item->type_supplement}}
+                            {{-- <input type="text" name = "path"value ={{}}> --}}
+                            {{-- {{dd($item)}} --}}
                         </div>
                     @endif
                     @if($item->type_supplement == 3)
+                    {{-- {{dd($item)}} --}}
                     <form action="" method="post"></form>
                     <div id = "item" class = "border-2">
                         <input type="hidden" value={{$item->id}} name="id[]">
                         <input type="hidden" value={{$item->position}} name="pos[]">
 
-                    <form action="/sort" id = {{$item->id}}>
-                        <input type="hidden" name = "table_name" value={{$item->text}}>
+                    <form action="/sort" method = "post" id = {{$item->id}}>
+                        @scrf
+                        <input type="hidden" name = "table_name" value={{$item->name}}>
                         <input type="hidden" value="3" name="input_type">
                         <input type="hidden" value={{$page_name}} name="page_name">
 

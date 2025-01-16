@@ -12,7 +12,7 @@ class PageViewController extends Controller
     function index(Request $request,$page=Null){
         if ($page){
             $data = new GetDataForOtherPageController;
-            $data = $data->get_data($page);
+            $data = $data->index($request,$page);
             // dd($data);
             return view("page",['data'=>$data["data"],'data_table'=>$data["data_table"]]);
         }

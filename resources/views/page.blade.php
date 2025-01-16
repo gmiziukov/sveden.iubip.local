@@ -3,11 +3,11 @@
 @vite(['public/redactor.js'])
 @stop --}}
 @section('content')
-{{-- {{dd($data)}} --}}
 <?php
 ?>
 <div id = "main">
     @if ($data)
+    {{-- {{dd($data)}} --}}
         {{-- {{dd($data_table)}} --}}
         {{-- <form action="update_pos ">  --}}
             <div id = "main_item" class =" flex flex-col ">
@@ -21,9 +21,9 @@
                         </div>
                         @endif
                         @if($item->type_supplement == 2)
-                            <div id = "item" class = "border-2 flex place-content-center">
-                                {{$item->type_supplement}}
-                                {{-- {{dd($item)}} --}}
+                            {{-- {{dd($item)}} --}}
+                            <a href={{$item->path}}>{{$item->name}}</a>
+                            <div id = "item" class = "border-2 flex place-content-center">  
                             </div>
                         @endif
                         @if($item->type_supplement == 3)

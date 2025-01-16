@@ -12,11 +12,10 @@ class MyMigrationCreator
 
 
     protected $stubTypes = [
-        'default' => 'migration.stub',
-        'create' => 'migration.create.stub',
-        'update' => 'migration.update.stub',
-        'add_column' => 'migration.add_column.stub',
-        'add_index' => 'migration.add_index.stub',
+        'main' => 'migration.stub',
+        'docs' => 'migration.docs.stub',
+        'tables' => 'migration.tables.stub',
+        'texts' => 'migration.texts.stub',
 
     ];
 
