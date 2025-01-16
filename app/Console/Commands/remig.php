@@ -12,7 +12,7 @@ class remig extends Command implements PromptsForMissingInput
 {
     protected $signature = 'app:remig {name : The name of the migration}
                             {table? : The table to migrate}
-                            {create? : The table to be created}
+                            {type? : Тип миграции (create, update, add_column, etc.)}
                             {--path= : The location where the migration file should be created}';
 
     protected $description = 'Create a stub migration.';
@@ -25,8 +25,6 @@ class remig extends Command implements PromptsForMissingInput
     {
         parent::__construct();
         $this->stubPath = __DIR__ . '\stubs';
-        // $this->stubPath = "C:\OSPanel\home\sveden.iubip.local\vendor\laravel\framework\src\Illuminate\Database\Migrations\stubs\migration.create.stub";
-
           $this->mc = new MyMigrationCreator($file, $this->stubPath);
     }
 
@@ -43,33 +41,23 @@ class remig extends Command implements PromptsForMissingInput
 
     public function handle()
     {
-        dump($this->stubPath);
+         dump($this->stubPath);
         $this->name = $this->argument('name');
         $this->table = $this->argument('table');
-        $create = $this->argument('create');
+        $this->type = $this->argument('type') ?? 'default';
 
-
-         if ($create && is_string($create)) {
-            $this->table = $create;
-            $create = true;
-        }  elseif (!is_null($create)) {
-            $create = (bool) $create;
-        }
-
-
-        $this->writeMigration($this->name, $this->table, $create);
+        $this->writeMigration($this->name, $this->table, $this->type);
         return 0;
     }
 
-    protected function writeMigration($name, $table, $create)
+    protected function writeMigration($name, $table, $type)
     {
-       dump("Stub file from command: " . $this->stubPath . '/migration.stub');
-
-        $this->mc->create(
+         dump("Stub file from command: " . $this->stubPath . '/' . $type);
+         $this->mc->create(
             $name,
             $this->getMigrationPath(),
             $table,
-            null // используем null
+            $type
         );
          $this->info("Migration [$name] created successfully.");
     }
