@@ -16,7 +16,7 @@ class MyMigrationCreator
     {
         $this->files = $files;
         $this->stubPath = $stubPath;
-        $this->migrationCreator = new MigrationCreator($files, null, false);
+        $this->migrationCreator = new MigrationCreator($files, $this->stubPath);
     }
     /**
      * Get the stub file for the generator.
@@ -27,25 +27,22 @@ class MyMigrationCreator
      */
     protected function getStub($table, $create)
     {
-        dump($table, $create);
          if (is_null($table) && !$create) {
-           $stubFile =  realpath($this->stubPath . '/migration.stub');
-       } elseif (!is_null($table) && $create) {
+             $stubFile =  realpath($this->stubPath . '/migration.stub');
+        } elseif (!is_null($table) && $create) {
            $stubFile =  realpath($this->stubPath . '/migration.create.stub');
         } else {
-          $stubFile = realpath($this->stubPath . '/migration.update.stub');
+            $stubFile = realpath($this->stubPath . '/migration.update.stub');
         }
-        
         if (!file_exists($stubFile)) {
             throw new \Exception("Stub file not found: " . $stubFile);
         }
-         // Выводим путь до файла шаблона в консоль
-        dump("Stub file path: " . $stubFile);
+
         return file_get_contents($stubFile);
     }
     public function create($name, $path, $table = null, $create = false)
     {
-         $stub = $this->getStub($table, $create);
+        $stub = $this->getStub($table, $create);
         $this->migrationCreator->create($name, $path, $table, $stub);
     }
 }

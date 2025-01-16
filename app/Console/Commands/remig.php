@@ -24,7 +24,8 @@ class remig extends Command implements PromptsForMissingInput
     public function __construct(Filesystem $file)
     {
         parent::__construct();
-        $this->stubPath = realpath(__DIR__ . '/../../Database/Migrations/stubs/newstub');
+        $this->stubPath = __DIR__ . '\stubs';
+        // $this->stubPath = "C:\OSPanel\home\sveden.iubip.local\vendor\laravel\framework\src\Illuminate\Database\Migrations\stubs\migration.create.stub";
 
           $this->mc = new MyMigrationCreator($file, $this->stubPath);
     }
