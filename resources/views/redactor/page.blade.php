@@ -33,7 +33,10 @@ ini_set("display_errors",true);
                     <div id = "item">
                         <input type="hidden" value={{$item->id}} name="id[]">
                         <input type="hidden" value={{$item->position}} name="pos[]">
-                        <form action="/sort">
+                        <form action="/sort" method="post">
+                            @csrf
+                            @method('post')
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" value={{$page_name}} name="page_name">
                             <input type="hidden" value={{$item->id}} name="id">
                             <input type="hidden" value="1" name="input_type">
@@ -59,12 +62,15 @@ ini_set("display_errors",true);
                     @if($item->type_supplement == 3)
                     {{-- {{dd($item)}} --}}
                     <form action="" method="post"></form>
+                    @csrf
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div id = "item" class = "border-2">
                         <input type="hidden" value={{$item->id}} name="id[]">
                         <input type="hidden" value={{$item->position}} name="pos[]">
 
                     <form action="/sort" method = "post" id = {{$item->id}}>
-                        @scrf
+                        @csrf
+                        @method('post')
                         <input type="hidden" name = "table_name" value={{$item->name}}>
                         <input type="hidden" value="3" name="input_type">
                         <input type="hidden" value={{$page_name}} name="page_name">

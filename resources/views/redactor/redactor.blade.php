@@ -18,7 +18,7 @@
         *поиск делать колонку или обозначение по всей таблице с булевым параметром
         и потом искать то то орпеделённое и менять
         @if ($data)
-            <form action="">
+            <form action="" method = "post">
                 <div id = "main_item" class ="p-2 flex flex-col">
                     <div class="border bg-slate-200 font-medium w-[35.6%] flex flex-row px-2">
                         <p class="w-[13.2rem] border-gray-300 border-r-2">Название страницы</p>
