@@ -12,6 +12,7 @@ class GetDataMainPageController extends Controller
 
         $data = DB::table("svedens")->orderBy("position","asc")->get();
         $name_page = $request->path();
+        // dd($data);
         return view("redactor/redactor",['data'=>$data,'name_page'=>$name_page]);
     }
 }

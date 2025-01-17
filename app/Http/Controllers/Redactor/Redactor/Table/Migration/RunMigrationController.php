@@ -29,6 +29,7 @@ class RunMigrationController extends Controller
             unset($time_data["table_name"]);
             unset($time_data["teg_table"]);
             unset($time_data["but"]);
+            unset($time_data["_token"]);
             $id = DB::table($data_for_table["page_name"]."_tables")->orderBy("id","desc")->first();
             $pos = DB::table($data_for_table["page_name"])->orderBy("id","desc")->get();
             

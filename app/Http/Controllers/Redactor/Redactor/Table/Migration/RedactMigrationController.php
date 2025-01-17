@@ -41,6 +41,7 @@ return new class extends Migration
         unset($time_data["table_name"]);
         unset($time_data["teg_table"]);
         unset($time_data["but"]);
+        unset($time_data["_token"]);
         unset($data_for_table["name_table"]);
         $part2 = "";
         $part2 = $part2."   \$table->id();\n";

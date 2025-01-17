@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('other_children', function (Blueprint $table) {
+        Schema::create('new_tables', function (Blueprint $table) {
            $table->id();
-           $table->string('_token');
-           $table->string('fdsr');
-           $table->string('iyu');
+           $table->string('qwe');
+           $table->string('sad');
            $table->string('bvc');
            $table->timestamps();
         });

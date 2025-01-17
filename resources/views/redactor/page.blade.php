@@ -35,7 +35,6 @@ ini_set("display_errors",true);
                         <input type="hidden" value={{$item->position}} name="pos[]">
                         <form action="/sort" method="post">
                             @csrf
-                            @method('post')
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" value={{$page_name}} name="page_name">
                             <input type="hidden" value={{$item->id}} name="id">
@@ -70,10 +69,15 @@ ini_set("display_errors",true);
 
                     <form action="/sort" method = "post" id = {{$item->id}}>
                         @csrf
-                        @method('post')
+                        @if($item->hidden == 1)
+                            <input type="checkbox" name="hidden" checked value = 1> 
+                        @else
+                            <input type="checkbox" name="hidden" value = 1> 
+                        @endif
                         <input type="hidden" name = "table_name" value={{$item->name}}>
                         <input type="hidden" value="3" name="input_type">
                         <input type="hidden" value={{$page_name}} name="page_name">
+                        <input type="hidden" name = "main_id" value={{$item->id}}>
 
                         <table>
                             @foreach ($data_table[$item->supplement] as $table)
@@ -102,6 +106,7 @@ ini_set("display_errors",true);
                         <button type="submit" value="2" name="but">delete</button>
                         <button type="submit" value="1" name="but">save</button>
                     </form>
+                    <button onclick="add_row({{$item->id}});" type="button">добавить строку</button>
                     <button onclick="position_up({{$item->id}});" type="button">выше</button>
                     <button onclick="position_down({{$item->id}});" type="button">ниже</button>
                     </div>

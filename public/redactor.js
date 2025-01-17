@@ -50,6 +50,22 @@ function position_down(pos){
     }
 }
 
+
+function add_row(pos){
+    if (document.querySelectorAll("form") && document.getElementById(pos)){
+        var elem = document.getElementById(pos);
+        let table = (elem.querySelector("table"));
+        table = (table.querySelector("tbody"));
+        // let tr = ;
+        let tr_clone = table.querySelector("tr").cloneNode(true);
+        table.append(tr_clone);
+        console.log(table);
+        // console.log(tr);
+    }
+    console.log(elem);
+
+}
+
 function create_element(){
     let space = document.getElementById("create_element");
     let t = document.getElementById("type_create_element");
