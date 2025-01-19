@@ -3,6 +3,7 @@
 @section('content')
 @if ($data)
 @foreach ($data as $data1)
+{{dd($data)}}
     <div>
         <a href="{{ route('sveden', ['data' => $data1->href]) }}"> {{$data1->name}}</a>
     </div>

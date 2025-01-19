@@ -50,12 +50,14 @@ ini_set("display_errors",true);
                     @endif
                     @if($item->type_supplement == 2)
                         <div id = "item">
-                        <input type="hidden" value="1" name="input_type">
-                        <input type="hidden" value={{$page_name}} name="page_name">
-        
-                        {{-- <input type="hidden" value="1" name="input_type"> --}}
-                            {{-- <input type="text" name = "path"value ={{}}> --}}
-                            {{-- {{dd($item)}} --}}
+                            <input type="hidden" value={{$item->id}} name="id[]">
+                            <input type="hidden" value={{$item->position}} name="pos[]">
+                            <input type="hidden" value="1" name="input_type">
+                            <input type="hidden" value={{$page_name}} name="page_name">
+            
+                            {{-- <input type="hidden" value="1" name="input_type"> --}}
+                                {{-- <input type="text" name = "path"value ={{}}> --}}
+                                {{-- {{dd($item)}} --}}
                         </div>
                     @endif
                     @if($item->type_supplement == 3)
@@ -79,12 +81,14 @@ ini_set("display_errors",true);
                         <input type="hidden" value={{$page_name}} name="page_name">
                         <input type="hidden" name = "main_id" value={{$item->id}}>
 
+
                         <table>
                             @foreach ($data_table[$item->supplement] as $table)
-                            {{-- {{dd($table)}} --}}
-                                <tr itemprop={{$item->teg}} >
+                            {{-- {{dd($data_table)}} --}}
+                                <tr itemprop={{$item->teg}}>
                                     @foreach ($table as $i) 
                                         @if ($loop->first)
+                                        <input type="hidden" name = "id[]" value = {{$table->id}}>
                                         <td>
                                         </td>
                                         @else
@@ -92,13 +96,17 @@ ini_set("display_errors",true);
                                             @if(key($table) == "created_at" or key($table) == "updated_at")
                                             @else
                                                 <td itemprop={{key($table)}}>
-                                                    <input type="text" name ="{{key($table)}}[]"  value={{$i}}>
+                                                    <input type="text" name ="{{key($table)}}[]"  value="{{$i}}">
 
                                                     {{-- {{$i}} --}}
                                                 </td>
                                             @endif
                                         @endif
                                     @endforeach
+                                    <td>
+                                        <button type="submit" value={{$table->id}} name="id">delete_table</button>
+                                    </td>
+                                    {{-- <button type="submit" value={{$table->id}} name="id"></button> --}}
                                 </tr>
                                 
                             @endforeach

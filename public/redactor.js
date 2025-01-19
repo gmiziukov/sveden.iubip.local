@@ -57,7 +57,24 @@ function add_row(pos){
         let table = (elem.querySelector("table"));
         table = (table.querySelector("tbody"));
         // let tr = ;
-        let tr_clone = table.querySelector("tr").cloneNode(true);
+        var tr_clone = table.querySelector("tr").cloneNode(true);
+        console.log(tr_clone.children);
+        let tr_children = tr_clone.childNodes;
+        for(let inp of tr_clone.children){
+            if(inp.localName == "input"){
+                inp.value = table.children.length+1;
+                break;
+            }
+        }
+        // console.log(tr_clone.cells);
+        for(let a of tr_clone.cells){
+            if (a.querySelector("input") == null){
+                
+            }
+            else{
+                a.querySelector("input").value = "";
+            }
+        }
         table.append(tr_clone);
         console.log(table);
         // console.log(tr);
@@ -146,6 +163,7 @@ function create_element(){
     }
 
     if(t.value=="DocOrHref"){
+        
         clear_element();
         console.log(window.location.href);
 
@@ -197,11 +215,14 @@ function create_element(){
     }
 
     if(t.value=="table"){
+
         clear_element();
         console.log(window.location.href);
+
         var page=window.location.pathname;
         page = page.split("/");
         page = page[page.length-1];
+
         let bytton_back = space.appendChild(document.createElement('button'));
         bytton_back.textContent = "back";
         bytton_back.onclick = function(){back()};
@@ -252,10 +273,13 @@ function create_element(){
         submit_button.value = 3;
 
         async function create_table() {
+
             let teg = teg_space.appendChild(document.createElement("input"))
             teg.className = "border-2";
+
             let column = forma_table_space.appendChild(document.createElement("input"))
             column.className = "border-2";
+
             teg.addEventListener("input",function(){column.name = teg.value});
         }
     }

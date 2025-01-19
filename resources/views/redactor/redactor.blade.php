@@ -30,8 +30,8 @@
                             <input type="hidden" value={{ $data1->id }}>
                             <input type="hidden" id = "pos" value={{ $data1->position }}>
                             <input type="text" value={{ $data1->name }}>
-                            <input class="px-2 border-x-2" type="text" value={{ $data1->href }}>
-                            <a href="{{ route('redactor', ['', 'data' => $data1->href]) }}">Переход на страницу</a>
+                            <input class="px-2 border-x-2" type="text" value={{ $data1->path }}>
+                            <a href="{{ route('redactor', ['', 'data' => $data1->path]) }}">Переход на страницу</a>
                             <button class="px-2 border-x-2" onclick="position_up({{ $data1->id }});"
                                 type="button">Выше</button>
                             <button class="px-2" onclick="position_down({{ $data1->id }});"

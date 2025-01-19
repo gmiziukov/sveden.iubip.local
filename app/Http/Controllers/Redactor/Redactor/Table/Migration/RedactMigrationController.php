@@ -17,6 +17,7 @@ class RedactMigrationController extends Controller
 
     }
     static public function index($data_for_table,$file_name){
+        // dd( $data_for_table);
         $part1 = "
 <?php
 
@@ -46,7 +47,7 @@ return new class extends Migration
         $part2 = "";
         $part2 = $part2."   \$table->id();\n";
         for($i = 0;$i<count($time_data); $i++){
-            $part2 = $part2."           \$table->string('".key($time_data)."');\n";
+            $part2 = $part2."           \$table->string('".key($time_data)."')->nullable(\$value = true);\n";
             next($time_data);
         }
         $part2 = $part2."           \$table->timestamps();";
@@ -67,6 +68,7 @@ public function down(): void
     Schema::dropIfExists('budget_valumes');
     }
 };";
+        // dd($file_name);
         file_put_contents($file_name, [$part1,$part2,$part3]);
         RunMigrationController::index($data_for_table,$table_name);
 

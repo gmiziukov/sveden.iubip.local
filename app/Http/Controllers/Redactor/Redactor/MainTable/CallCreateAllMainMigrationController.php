@@ -13,6 +13,7 @@ class CallCreateAllMainMigrationController extends Controller
         Artisan::call("app:remig ".$name."_tables ".$name." tables");
         Artisan::call("app:remig ".$name."_texts ".$name." texts");
         Artisan::call("app:remig ".$name."_documents ".$name." docs");
+        Artisan::call("migrate --force");
         return 0;
     }
 }

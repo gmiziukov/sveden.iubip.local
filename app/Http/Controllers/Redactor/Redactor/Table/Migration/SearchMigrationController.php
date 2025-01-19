@@ -21,10 +21,10 @@ class SearchMigrationController extends Controller
         // dd($status);
         chdir('../database/migrations/');
         $instr = $data_for_table["table_name"];
-        $instr = explode("_",$instr);
         // dd(Str::plural('child'));
         // Str::plural('child')
-        $instr[count($instr)-1] = Str::plural($instr[count($instr)-1].".php");
+        $instr = Str::plural($instr).".php";
+        $instr = explode("_",$instr);
         // dd($instr);
         for($i = 3;$i<count(scandir(".")); $i++){
 
@@ -37,12 +37,12 @@ class SearchMigrationController extends Controller
 
                 if($i_str[$j] == $instr[0]){
 
-                    for($u = 0; $u!=count($instr); $u++){
+                    for($u = 1; $u!=count($instr); $u++){
 
                         // echo scandir(".")[$i]."========".$i_str[$j+$u]."-------------".$instr[$u]."<br>";
                         if($i_str[$j+$u] == $instr[$u]){
                             if($status == 1){
-                                // dd("dd");
+                                // dd($instr[$u]."===========".$i_str[$j+$u]);
                                 RedactMigrationController::index($data_for_table,scandir(".")[$i]);
                                 break;
 

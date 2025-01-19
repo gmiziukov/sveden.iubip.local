@@ -56,7 +56,9 @@ class UpdateTableController extends Controller
         unset($req["but"]);
         unset($req["_token"]);
         unset($req["main_id"]);
+
         $req = aa($req);
+        // dd($req);
 
         for ($i = 1; $i<count($req)+1;$i++){
             DB::table($table_name)->where("id",$i)->updateOrInsert($req[$i-1]);

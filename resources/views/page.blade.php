@@ -58,7 +58,7 @@
                     @else
                         {{-- {{dd($item)}} --}}
                         <div class="border w-[35.6%] px-2" id = "item">
-                            <a href="{{ route('sveden', ['data' => $item->href]) }}">{{$item->name}}</a>
+                            <a href="{{ route('sveden', ['data' => $item->path]) }}">{{$item->name}}</a>
                         </div>
                     @endif
                     {{-- {{dd($item)}} --}}

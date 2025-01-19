@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Redactor\Redactor\MainTable;
 
 
 use App\Http\Controllers\Redactor\Redactor\MainTable\CallCreateAllMainMigrationController;
+use App\Http\Controllers\Redactor\DB\AddToTableController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -16,9 +17,11 @@ class AddTableController extends Controller
     }
     static public function index($request){
         $request  = $request->input();
-        DB:table("");
+        $request["page_name"] = "svedens";
+        AddToTableController::index($request);
+        // DB:table("svedens")->insert(["name"=>$request["name"], "href"=>$request["path"]]);
         // dd($request);
-        // CallCreateAllMainMigrationController::index($request['href'][0]);
+        CallCreateAllMainMigrationController::index($request['path']);
 
 
 
