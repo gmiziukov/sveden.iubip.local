@@ -47,8 +47,14 @@ return new class extends Migration
         $part2 = "";
         $part2 = $part2."   \$table->id();\n";
         for($i = 0;$i<count($time_data); $i++){
-            $part2 = $part2."           \$table->string('".key($time_data)."')->nullable(\$value = true);\n";
-            next($time_data);
+            if(key($time_data) == "hidden"){
+                $part2 = $part2."           \$table->string('".key($time_data)."')->default(0);\n";
+                next($time_data);
+            }
+            else{
+                $part2 = $part2."           \$table->string('".key($time_data)."')->nullable(\$value = true);\n";
+                next($time_data);
+            }
         }
         $part2 = $part2."           \$table->timestamps();";
 

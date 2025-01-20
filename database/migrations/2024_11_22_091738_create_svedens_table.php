@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('svedens', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("href");
+            $table->string("path");
             $table->integer("position");
-            $table->boolean("hidden");
+            $table->boolean("hidden")->default(0);
             $table->timestamps();
         });
     }
