@@ -13,6 +13,24 @@ console.log(arr);
 // insertBefore()
 // if(document.querySelectorAll('input').id == "pos");
 //     console.log(document.querySelectorAll('input'))
+
+
+
+
+function proba(){
+    window.axios.post('/api/axios_page',{name:"kolyan"}).then(respond=>{
+        console.log(respond.data);
+    })
+}
+
+
+
+
+
+
+
+
+
 function position_up(pos){
     // console.log(pos);
     // console.log(main_item.children[1].length);

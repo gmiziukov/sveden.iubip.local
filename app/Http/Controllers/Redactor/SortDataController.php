@@ -28,6 +28,9 @@ use App\Http\Controllers\Redactor\Redactor\Table\DeleteTableController;
 
 class SortDataController extends Controller
 {
+    function prov(Request $request){
+        return $request->name;
+    }
     function sort(Request $request){
 
         if ($request->input()["but"]==1){
