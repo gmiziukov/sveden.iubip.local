@@ -41,9 +41,9 @@
                                                 @if(key($table) == "created_at" or key($table) == "updated_at")
                                                 @else
                                                     <td itemprop={{key($table)}}>
-                                                        <div>
-                                                            {{$i}}
-                                                        </div>
+
+                                                        {{$i}}
+
                                                         {{-- {{$i}} --}}
                                                     </td>
                                                 @endif

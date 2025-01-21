@@ -44,6 +44,7 @@ class GetDataOtherPageController extends Controller
         $colect = $colect->merge($data->get());
         $colect = $colect->merge($data1->get());
         $colect = $colect->merge($data2->get());
+        $colect = $colect->sortBy("position");
         // dd($colect->sortBy("position"));
 
         // dd($data->get());

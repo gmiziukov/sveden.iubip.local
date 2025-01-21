@@ -43,7 +43,7 @@ class GetDataForOtherPageController extends Controller
         $colect = $colect->merge($data->get());
         $colect = $colect->merge($data1->get());
         $colect = $colect->merge($data2->get());
-        // dd($colect->sortBy("position"));
+        $colect = $colect->sortBy("position");
 
         // dd($data->get());
         return view("redactor/page",['data'=>$colect,'data_table'=>$table->get_table($this->page1),'page_name'=>$page1]);
