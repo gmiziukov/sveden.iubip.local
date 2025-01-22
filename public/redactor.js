@@ -2,6 +2,7 @@
 // console.log(document.getElement("pos"));
 let main_item = document.getElementById("main_item");
 var item = document.querySelectorAll("div");
+
 // console.log(item);
 var csrf = document.querySelector('meta[name="csrf-token"]').content;
 var arr = [];
@@ -14,8 +15,9 @@ console.log(arr);
 // if(document.querySelectorAll('input').id == "pos");
 //     console.log(document.querySelectorAll('input'))
 
-
-
+var per = { "name":"John", "age":31, "city":"New York" };
+per["car"] = "audi";
+console.log(per);
 
 function proba(){
     window.axios.post('/api/axios_page',{name:"kolyan"}).then(respond=>{
@@ -24,8 +26,8 @@ function proba(){
 }
 
 
-
-
+var look = document.getElementById("item").querySelectorAll("td");
+console.log(look);
 
 
 
