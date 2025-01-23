@@ -96,6 +96,11 @@ ini_set("display_errors",true);
                                             @if(key($table) == "created_at" or key($table) == "updated_at")
                                             @else
                                                 <td itemprop={{key($table)}}>
+                                                    <select name="type_data" id="type_data">
+                                                        <option value="1">text</option>
+                                                        <option value="2">image</option>
+                                                        <option value="3">DocOrHref</option>
+                                                    </select>
                                                     <input type="text" name ="{{key($table)}}[]"  value="{{$i}}">
 
                                                     {{-- {{$i}} --}}

@@ -28,6 +28,14 @@ function proba(){
 
 var look = document.getElementById("item").querySelectorAll("td");
 console.log(look);
+console.log(look.length);
+for(let i; i < look.length; i++){
+    console.log(look.children[i]);
+    // look[i].getElementById("type_data").addEventListener("change",function(){
+    //     console.log("d");
+    // });
+
+}
 
 
 
