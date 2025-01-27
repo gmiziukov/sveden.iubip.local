@@ -2,11 +2,12 @@
 // console.log(document.getElement("pos"));
 let main_item = document.getElementById("main_item");
 var item = document.querySelectorAll("div");
+console.log(table_lenght);
 
 // console.log(item);
 var csrf = document.querySelector('meta[name="csrf-token"]').content;
 var arr = [];
-for(var i=0;i!=item.length;i++)
+for(let i=0;i!=item.length;i++)
     if(item[i].id == "item")
         arr.push(item[i]);
         // console.log(item[i].id);
@@ -15,27 +16,48 @@ console.log(arr);
 // if(document.querySelectorAll('input').id == "pos");
 //     console.log(document.querySelectorAll('input'))
 
-var per = { "name":"John", "age":31, "city":"New York" };
-per["car"] = "audi";
-console.log(per);
 
 function proba(){
     window.axios.post('/api/axios_page',{name:"kolyan"}).then(respond=>{
         console.log(respond.data);
     })
 }
+// for (let i=0;i<item.length;i++){
+//     console.log(item[i].querySelectorAll("td");
 
-
-var look = document.getElementById("item").querySelectorAll("td");
+// }
+var data ={};
+var look = document.getElementsByTagName('select');
+for(let i =1; i!=table_lenght;i++){
+    data[i] =null;
+}
+console.log(data);
 console.log(look);
 console.log(look.length);
-for(let i; i < look.length; i++){
-    console.log(look.children[i]);
-    // look[i].getElementById("type_data").addEventListener("change",function(){
-    //     console.log("d");
-    // });
 
+for(let j=0; j < look.length; j++){
+    look[j].addEventListener('change', function(){ 
+        for(let i=1; i != table_lenght;i++){
+            let table = "table"+i;
+            if(look[j].name==table){
+                if(data[i] ==  null){
+                    data[i]=[look[j].parentNode.parentNode.children[0].value];
+                }
+                else{
+                    data[i][look[j].parentNode.parentNode.children[0].value] += [look[j].parentNode.querySelector("input").name.slice(0,-2)] ;
+                    console.log(look[j].value);
+    
+                    // data[i] += JSON.stringify(a);
+                    console.log(data);
+
+                }
+            }
+        }
+
+    })
 }
+    
+// data[i] += [[look[j].parentNode.querySelector("input").name.slice(0,-2) , look[j].parentNode.parentNode.children[0].value],look[j].value];
 
 
 

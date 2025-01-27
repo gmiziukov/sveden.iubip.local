@@ -7,6 +7,8 @@
 error_reporting(E_ALL);
 ini_set("display_errors",true);
 ?>
+
+
 <div id = "main">
     <div class = "border-2" id = create_element>
         <select id="type_create_element">
@@ -16,19 +18,22 @@ ini_set("display_errors",true);
         </select>
         <button id = "button_create" onclick="create_element()";>select</button>
     </div>
+    <script>
+        var table_lenght=1;
+    </script>
     @if ($data)
     {{-- {{dd($data)}} --}}
         {{-- <form action="update_pos ">  --}}
             <div id = "main_item" class =" flex flex-col">
                 @foreach($data as $item)
                 {{-- {{dd($item)}} --}}
-                    {{-- 
+                    {{--
                         ----output data----
                             1 = text
                             2 = document/href
                             3 = table 
                         ----output data----
-                    --}}  
+                    --}}
                     @if($item->type_supplement == 1)
                     <div id = "item">
                         <input type="hidden" value={{$item->id}} name="id[]">
@@ -65,7 +70,7 @@ ini_set("display_errors",true);
                     <form action="" method="post"></form>
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <div id = "item" class = "border-2">
+                    <div id = "item" class = "border-2" name="table">
                         <input type="hidden" value={{$item->id}} name="id[]">
                         <input type="hidden" value={{$item->position}} name="pos[]">
 
@@ -83,6 +88,13 @@ ini_set("display_errors",true);
 
 
                         <table>
+
+                            <script>
+                                table_lenght=table_lenght+1;
+                                // var table{{$item->supplement}} = {};
+                                // console.log(table_leght);
+                                // table{{$item->supplement}}["car"] = "audi";
+                            </script>
                             @foreach ($data_table[$item->supplement] as $table)
                             {{-- {{dd($data_table)}} --}}
                                 <tr itemprop={{$item->teg}}>
@@ -96,7 +108,7 @@ ini_set("display_errors",true);
                                             @if(key($table) == "created_at" or key($table) == "updated_at")
                                             @else
                                                 <td itemprop={{key($table)}}>
-                                                    <select name="type_data" id="type_data">
+                                                    <select name="table{{$item->supplement}}" id="type_data">
                                                         <option value="1">text</option>
                                                         <option value="2">image</option>
                                                         <option value="3">DocOrHref</option>
