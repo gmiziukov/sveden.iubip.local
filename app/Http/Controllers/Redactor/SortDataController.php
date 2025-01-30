@@ -31,7 +31,14 @@ class SortDataController extends Controller
     public $new_data;
     function prov(Request $request){
         $this->new_data = $request->data;
-        return $request->data;
+
+       
+        $this->new_data = $this->aa($this->new_data);
+        
+        return response()->json($this->new_data);
+    }
+    function aa($r){
+        return $this->new_data[] = 'test';
     }
     function sort(Request $request){
 

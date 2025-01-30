@@ -28,11 +28,19 @@ console.log(arr);
 //     console.log(document.querySelectorAll('input'))
 
 
-async function proba(){
-    window.axios.post('/api/axios_page',{data:JSON.stringify(data)}).then(respond=>{
+async  function proba(){
+    let data1 = data;
+    console.warn(typeof(data1));
+    await window.axios.post('/api/axios_page',{data:data1}).then(respond=>{
         console.log(respond.data);
     })
 }
+
+const test = (async () =>{
+    await window.axios.post('/api/axios_page',{data:data1}).then(respond=>{
+        console.log(respond.data);
+    })
+})
 // for (let i=0;i<item.length;i++){
 //     console.log(item[i].querySelectorAll("td");
 
