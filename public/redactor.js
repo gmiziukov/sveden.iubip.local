@@ -28,8 +28,8 @@ console.log(arr);
 //     console.log(document.querySelectorAll('input'))
 
 
-function proba(){
-    window.axios.post('/api/axios_page',{name:"kolyan"}).then(respond=>{
+async function proba(){
+    window.axios.post('/api/axios_page',{data:JSON.stringify(data)}).then(respond=>{
         console.log(respond.data);
     })
 }
@@ -52,27 +52,59 @@ for(let j=0; j < look.length; j++){
             let table = "table"+(i+1);
             if(look[j].name == table){
                 if(data[i] == null){
-                    data[i] = [[look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]],null];
+                    data[i] = [[look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]]];
                     console.error(data[i]);
                 }
                 else{
                     for (let o=0;o!= data[i].length;o++){
-                        console.log(data[i][o]);
+                        let iiset=null;
+                        console.warn(data[i][o]);
                         console.log(typeof(data[i][o]));
-                        if (data[i][o] == look[j].parentNode.parentNode.children[0].value && typeof(data[i][o])!= 'object'){
-                            console.log("=====================");
-                            data[i].push([look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]);
-                            console.log(data[i][o]);
-                            console.log("=====================");
-                        }
-                        else if(data[i][o] == look[j].parentNode.parentNode.children[0].value){
-                            console.error(data[i][o]);
-                        }
+
+                        if(data[i][o][0] == look[j].parentNode.parentNode.children[0].value ){
+                            data[i][o].push([look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]);
+                            for(let k=0;k!= data[i][o].length-1;k++){
+                                if (Array.isArray(data[i][o][k])){
+                                    for(let l =0; l !=data[i][o][k].length;l++){
+                                        if(data[i][o][k][l] == look[j].parentNode.querySelector("input").name.slice(0,-2)){
+                                            console.log("============"+data[i][o][k][l]);
+                                            data[i][o][k] = [look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value];
+                                            data[i][o].pop();
+
+                                            iiset = true;
+                                            break;
+                                        }
+                                        else{
+                                            console.log("eee")
+                                            iiset = false;
+                                            // break;
+                                        }
+                                        // if(data[i][o][k][l][1] == "1"){
+                                        //     console.log("ttttttttttttttttttttttttttttttt    ");
+                                        // }
+                                        console.log(data[i][o][k][l]);
+                                    }
+                                    if(iiset){
+                                        
+
+                                    }
+                                }
+                                else{
+                                    console.log("no array");
+                                }
+                                console.log(iiset);
+                            }
+                            if (iiset){
+                                
+                            }
+                            break;
+                        }   
                         else{
-                            // data[i].push([look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]]);
+                            data[i].push([look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]]);
                             break;
                         }
-                        // break;
+                        break;
+                        // data[i][o].push([[look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]]]);
                     }
                     
                 }

@@ -28,8 +28,10 @@ use App\Http\Controllers\Redactor\Redactor\Table\DeleteTableController;
 
 class SortDataController extends Controller
 {
+    public $new_data;
     function prov(Request $request){
-        return $request->name;
+        $this->new_data = $request->data;
+        return $request->data;
     }
     function sort(Request $request){
 
@@ -102,6 +104,7 @@ class SortDataController extends Controller
             
         }
         elseif($data_for_table["input_type"] == "2"){
+            dd($this->new_data);
             return 0;
 
         }

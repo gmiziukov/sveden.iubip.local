@@ -134,7 +134,7 @@ ini_set("display_errors",true);
                         <button type="submit" value="2" name="but">delete</button>
                         <button type="submit" value="1" name="but">save</button>
                     </form>
-                    <button onclick="proba();" type="button">добавить строку</button>
+                    <button onclick="proba();" type="button">save_dd</button>
                     <button onclick="add_row({{$item->id}});" type="button">добавить строку</button>
                     <button onclick="position_up({{$item->id}});" type="button">выше</button>
                     <button onclick="position_down({{$item->id}});" type="button">ниже</button>
