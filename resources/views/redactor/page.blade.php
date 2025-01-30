@@ -10,6 +10,7 @@ ini_set("display_errors",true);
 
 
 <div id = "main">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class = "border-2" id = create_element>
         <select id="type_create_element">
             <option value="text">text</option>
@@ -61,7 +62,9 @@ ini_set("display_errors",true);
                             <input type="hidden" value={{$page_name}} name="page_name">
             
                             {{-- <input type="hidden" value="1" name="input_type"> --}}
-                                {{-- <input type="text" name = "path"value ={{}}> --}}
+
+                            <input type="text" name = "path" value ={{$item->name}}>
+                            <input type="text" name = "path" value ={{$item->path}}>
                                 {{-- {{dd($item)}} --}}
                         </div>
                     @endif
@@ -143,10 +146,6 @@ ini_set("display_errors",true);
                 
     @else           
     @endif
-    <div id="axios_page">
-
-    </div>
-    <script type="module" src="{{asset("axios_page.js")}}"></script>
 
     <script src="{{asset("redactor.js")}}"></script>
 </div>

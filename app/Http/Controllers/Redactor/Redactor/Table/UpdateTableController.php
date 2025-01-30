@@ -56,7 +56,11 @@ class UpdateTableController extends Controller
         unset($req["but"]);
         unset($req["_token"]);
         unset($req["main_id"]);
-
+        unset($req["table*"]);
+        $result = array_filter($req, function($v, $k){
+            return strpos($k, "table") === 0;
+        }, ARRAY_FILTER_USE_BOTH);
+        unset($req[array_keys($result)[0]]);
         $req = aa($req);
         // dd($req);
 

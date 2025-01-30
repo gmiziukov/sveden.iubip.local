@@ -4,6 +4,8 @@
 @stop --}}
 @section('content')
     {{-- {{dd($data)}} --}}
+    {{ csrf_token() }}
+
     <div class="text-lg" id = "main">
         <div class = "border-b-2 p-2" id=create_element>
             <select class="px-2 h-[35px]" id="type_create_element">

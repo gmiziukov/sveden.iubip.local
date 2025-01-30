@@ -2,7 +2,18 @@
 // console.log(document.getElement("pos"));
 let main_item = document.getElementById("main_item");
 var item = document.querySelectorAll("div");
-console.log(table_lenght);
+// console.log(document.location.pathname);
+if (!table_lenght){
+    var table_lenght= 1; 
+    console.log("table lenth defult");
+    console.log(table_lenght);
+}
+else{
+    console.log(table_lenght);
+    console.log("table not defult");
+
+}
+
 
 // console.log(item);
 var csrf = document.querySelector('meta[name="csrf-token"]').content;
@@ -26,9 +37,9 @@ function proba(){
 //     console.log(item[i].querySelectorAll("td");
 
 // }
-var data ={};
+var data =[];
 var look = document.getElementsByTagName('select');
-for(let i =1; i!=table_lenght;i++){
+for(let i =0; i!=table_lenght-1;i++){
     data[i] =null;
 }
 console.log(data);
@@ -37,21 +48,39 @@ console.log(look.length);
 
 for(let j=0; j < look.length; j++){
     look[j].addEventListener('change', function(){ 
-        for(let i=1; i != table_lenght;i++){
-            let table = "table"+i;
-            if(look[j].name==table){
-                if(data[i] ==  null){
-                    data[i]=[look[j].parentNode.parentNode.children[0].value];
+        for(let i=0; i != table_lenght-1;i++){
+            let table = "table"+(i+1);
+            if(look[j].name == table){
+                if(data[i] == null){
+                    data[i] = [[look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]],null];
+                    console.error(data[i]);
                 }
                 else{
-                    data[i][look[j].parentNode.parentNode.children[0].value] += [look[j].parentNode.querySelector("input").name.slice(0,-2)] ;
-                    console.log(look[j].value);
-    
-                    // data[i] += JSON.stringify(a);
-                    console.log(data);
-
+                    for (let o=0;o!= data[i].length;o++){
+                        console.log(data[i][o]);
+                        console.log(typeof(data[i][o]));
+                        if (data[i][o] == look[j].parentNode.parentNode.children[0].value && typeof(data[i][o])!= 'object'){
+                            console.log("=====================");
+                            data[i].push([look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]);
+                            console.log(data[i][o]);
+                            console.log("=====================");
+                        }
+                        else if(data[i][o] == look[j].parentNode.parentNode.children[0].value){
+                            console.error(data[i][o]);
+                        }
+                        else{
+                            // data[i].push([look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]]);
+                            break;
+                        }
+                        // break;
+                    }
+                    
                 }
+            } 
+            else{
+
             }
+            console.log(data);
         }
 
     })
