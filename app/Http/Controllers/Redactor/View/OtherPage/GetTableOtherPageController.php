@@ -20,7 +20,7 @@ class GetTableOtherPageController extends Controller
             // dd($data);
             $tables[$i] = $data;
         }   
-
+        // dd($tables);
         return $tables;
     }
 }

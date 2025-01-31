@@ -29,18 +29,15 @@ console.log(arr);
 
 
 async  function proba(){
+    // console.log(window.location.pathname);
     let data1 = data;
     console.warn(typeof(data1));
-    await window.axios.post('/api/axios_page',{data:data1}).then(respond=>{
+    await window.axios.post('/api/axios_page',{data:data1, path:window.location.pathname}).then(respond=>{
         console.log(respond.data);
     })
 }
 
-const test = (async () =>{
-    await window.axios.post('/api/axios_page',{data:data1}).then(respond=>{
-        console.log(respond.data);
-    })
-})
+
 // for (let i=0;i<item.length;i++){
 //     console.log(item[i].querySelectorAll("td");
 

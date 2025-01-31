@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Redactor;
 
 // other
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 // text controllers
 use App\Http\Controllers\Redactor\Redactor\Text\UpdateTextController;
 use App\Http\Controllers\Redactor\Redactor\Text\AddTextController;
 use App\Http\Controllers\Redactor\Redactor\Text\DeleteTextController;
-
 // main table controller
 use App\Http\Controllers\Redactor\Redactor\MainTable\AddTableController;
 
@@ -33,7 +33,12 @@ class SortDataController extends Controller
         $this->new_data = $request->data;
 
        
-        $this->new_data = $this->aa($this->new_data);
+        // $this->new_data = $this->aa($this->new_data);
+        var_dump($this->new_data);
+        $path = explode("/",$request->path);
+        $path = $path[count($path)-1];
+        var_dump($path);
+        DB::table("svedens")->where('path', $path)->update(['data_json'=>$this->new_data]);
         
         return response()->json($this->new_data);
     }

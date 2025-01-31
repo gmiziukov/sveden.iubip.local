@@ -18,8 +18,7 @@ class GetDataForOtherPageController extends Controller
     public function index(Request $request, $page1){  
         $table = new GetTableOtherPageController;
         $this->page1 = $page1;
-        // dd(Str::plural('child'));
-
+        // dd(Str::plural('child'));    
 
         $data123 = DB::table($page1);
         $data = DB::table($page1)

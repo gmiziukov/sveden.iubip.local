@@ -20,7 +20,10 @@ class GetDataOtherPageController extends Controller
         $table = new GetTableOtherPageController;
         $this->page1 = $page1;
         // dd(Str::plural('child'));
+        $data_json = DB::table('svedens')->where('path',$page1)->select('data_json')->get()[0];
+        $data_json = json_decode($data_json->data_json, true);
 
+        // dd(json_decode($data_json->data_json));
 
         $data123 = DB::table($page1);
         $data = DB::table($page1)
@@ -47,8 +50,22 @@ class GetDataOtherPageController extends Controller
         $colect = $colect->sortBy("position");
         // dd($colect->sortBy("position"));
 
+        
+        $table = $table->get_table($this->page1);
+        for($i=0;$i!=count($table);$i++){
+            for($j=0;$j!=count($data_json[$i]);$j++){
+                    unset( $data_json[$i][$j][0]);
+                // for($k=0;)
+                    // dd(gettype($table));
+                    $table[$i+1][$j]->js = $data_json[$i][$j];
+                    // dd($data_json[$i][$j],$table[$i+1][$j]);
+            }
+        }
+        dd($data_json , $table); 
+        
+
         // dd($data->get());
-        return view("redactor/page",['data'=>$colect,'data_table'=>$table->get_table($this->page1),'page_name'=>$page1]);
+        return view("redactor/page",['data'=>$colect,'data_table'=> $table,'page_name'=>$page1]);
         
     }
 }
