@@ -57,10 +57,12 @@ class GetDataOtherPageController extends Controller
                     unset( $data_json[$i][$j][0]);
                 // for($k=0;)
                     // dd(gettype($table));
+                    // при сборке масива делать запрос по значению сразу же подставлять ====== $table join  where $table.name = [page]_documents.id
                     $table[$i+1][$j]->js = $data_json[$i][$j];
                     // dd($data_json[$i][$j],$table[$i+1][$j]);
             }
         }
+        // $new_data_table = $table
         dd($data_json , $table); 
         
 

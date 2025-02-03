@@ -98,7 +98,20 @@ ini_set("display_errors",true);
                                 // console.log(table_leght);
                                 // table{{$item->supplement}}["car"] = "audi";
                             </script>
+                                {{-- {{dd(gettype($data_table[$item->supplement][0]))}} --}}
+                            {{-- {{dd(array_keys((array)$data_table[$item->supplement][0]))}} --}}
                             @foreach ($data_table[$item->supplement] as $table)
+                                @foreach ( array_keys((array)$table) as $json)
+                                    @if ($json=="js")
+                                        @foreach ((array)$table->$json as $js)
+                                            {{dd($js)}}
+                                        @endforeach
+                                        {{-- {{dd($table->js)}} --}}
+                                    @else
+                                        {{-- {{next($i)}} --}}
+                                    @endif
+                                @endforeach
+                            {{-- {{dd($data_table)}} --}}
                             {{-- {{dd($data_table)}} --}}
                                 <tr itemprop={{$item->teg}}>
                                     @foreach ($table as $i) 
@@ -109,6 +122,8 @@ ini_set("display_errors",true);
                                         @else
                                             @php next($table); @endphp
                                             @if(key($table) == "created_at" or key($table) == "updated_at")
+                                            {{-- @elseif(key($table) == "js")
+                                                {{dd($table)}} --}}
                                             @else
                                                 <td itemprop={{key($table)}}>
                                                     <select name="table{{$item->supplement}}" id="type_data">
