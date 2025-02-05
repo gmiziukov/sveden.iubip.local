@@ -62,26 +62,55 @@ for(let j=0; j < look.length; j++){
                 }
                 else{
                     for (let o=0;o!= data[i].length;o++){
-                        let iiset=null;
+
+                        console.error("=======================");
+                        console.error("iteration o");
+                        console.error("=======================");
+
                         console.warn(data[i][o]);
+                        console.warn(o);
+                        console.warn(data[i].length);
                         console.log(typeof(data[i][o]));
 
                         if(data[i][o][0] == look[j].parentNode.parentNode.children[0].value ){
-                            data[i][o].push([look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]);
-                            for(let k=0;k!= data[i][o].length-1;k++){
-                                if (Array.isArray(data[i][o][k])){
-                                    for(let l =0; l !=data[i][o][k].length;l++){
-                                        if(data[i][o][k][l] == look[j].parentNode.querySelector("input").name.slice(0,-2)){
-                                            console.log("============"+data[i][o][k][l]);
-                                            data[i][o][k] = [look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value];
-                                            data[i][o].pop();
 
-                                            iiset = true;
+                            data[i][o].push([look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]);
+
+                            console.error("=======================");
+                            console.error("DATA I O 0");
+                            console.error(data[i][o][0]);
+                            console.error("=======================");
+
+                            console.error("=======================");
+                            console.error("DATA I O");
+                            console.error(data[i][o]);
+                            console.error("=======================");
+
+                            for(let k=0;k!= data[i][o].length;k++){
+
+                                console.error("=======================");
+                                console.error("DATA I O k");
+                                console.error(data[i][o][k]);
+                                console.error("=======================");
+
+
+                                if (Array.isArray(data[i][o][k])){
+
+                                    for(let l =0; l !=data[i][o][k].length;l++){
+
+                                        if(data[i][o][k][l] == look[j].parentNode.querySelector("input").name.slice(0,-2)){
+                                            console.error("=======================");
+                                            console.error("DATA I O k L");
+                                            console.error(data[i][o][k][l]);
+                                            console.error("=======================");
+                                            console.log("============"+data[i][o][k][l]);
+                                            // data[i][o][k] = [look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value];
+                                            data[i].splice(o, 1, [look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]);
+                                            // data[i][o][k].pop();
                                             break;
                                         }
                                         else{
                                             console.log("eee")
-                                            iiset = false;
                                             // break;
                                         }
                                         // if(data[i][o][k][l][1] == "1"){
@@ -89,34 +118,35 @@ for(let j=0; j < look.length; j++){
                                         // }
                                         console.log(data[i][o][k][l]);
                                     }
-                                    if(iiset){
-                                        
 
-                                    }
                                 }
                                 else{
+                                    console.warn(data[i][o][k]);
+                                    console.warn(data[i][o].length);
+                                    console.warn(k);
+
                                     console.log("no array");
                                 }
-                                console.log(iiset);
-                            }
-                            if (iiset){
-                                
                             }
                             break;
                         }   
-                        else{
+                        else if(o == data[i].length){
+                            console.log(o,data[i].length);
+                            console.log("ppppppppppppppppppppp");
                             data[i].push([look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]]);
-                            break;
                         }
-                        break;
+                        else{
+                        }
+                        // break;
                         // data[i][o].push([[look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]]]);
                     }
                     
                 }
             } 
             else{
-
+                
             }
+            // proba(); 
             console.log(data);
         }
 

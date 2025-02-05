@@ -101,6 +101,7 @@ ini_set("display_errors",true);
                                 {{-- {{dd(gettype($data_table[$item->supplement][0]))}} --}}
                             {{-- {{dd(array_keys((array)$data_table[$item->supplement][0]))}} --}}
                             @foreach ($data_table[$item->supplement] as $table)
+
                                 @foreach ( array_keys((array)$table) as $json)
                                     @if ($json=="js")
                                         @foreach ((array)$table->$json as $js)
