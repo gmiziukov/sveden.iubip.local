@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string("path");
             $table->integer("position");
             $table->boolean("hidden")->default(0);
+            $table->json("data_json")->nullable();
+
             $table->timestamps();
         });
     }
