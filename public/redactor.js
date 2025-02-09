@@ -74,7 +74,7 @@ for(let j=0; j < look.length; j++){
 
                         if(data[i][o][0] == look[j].parentNode.parentNode.children[0].value ){
 
-
+                            console.log(look[j].parentNode.parentNode.children[0].value);
                             console.error("=======================");
                             console.error("DATA I O 0");
                             console.error(data[i][o][0]);
@@ -92,28 +92,31 @@ for(let j=0; j < look.length; j++){
                                 console.error(data[i][o][k]);
                                 console.error("=======================");
                                 
-                                console.log("endloop")
-                                console.log(data[i][o].length)
-                                console.log(k)
-                                console.log("endloop")
+                                console.log("endloop");
+                                console.log(data[i][o].length);
+                                console.log(k);
+                                console.log("endloop");
                                 
                                 if (Array.isArray(data[i][o][k])){
                                     // data[i].push([look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]]);
                                     if (data[i][o][k][0] == look[j].parentNode.querySelector("input").name.slice(0,-2)){
                                         console.log("new value ");
                                         data[i][o][k] = [look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]
+                                        break;
                                     }
+                                    else if (data[i][o].length -1   == k){
+                                        data[i][o].push([look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]);
+                                        console.log("end loop loop");
+                                        break;
+                                    }
+                                    console.log(data[i][o].length);
+                                    console.log(k);
                                     console.log("data[i][o][k][0]");
                                     console.log(look[j].parentNode.querySelector("input").name.slice(0,-2));
                                     console.log(data[i][o][k][0]);
                                     console.log("data[i][o][k][0]");
-                                    
-                                    
-                                    break;
                                 }
-                                else if (data[i][o].length == k){
-                                    console.log("end loop");
-                                }
+
                                 else{
                                     console.warn(data[i][o][k]);
                                     console.warn(data[i][o].length);
@@ -126,8 +129,9 @@ for(let j=0; j < look.length; j++){
                             }
                             break;
                         }   
-                        else if(o == data[i].length){
-                            console.log(o,data[i].length);
+                        else if(o == data[i].length -1 ){
+                            data[i].push([look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]])
+;                            console.log(o,data[i].length);
                             console.log("ppppppppppppppppppppp");
                         }
                         else{
@@ -141,7 +145,7 @@ for(let j=0; j < look.length; j++){
             else{
                 
             }
-            // proba(); 
+            proba(); 
             console.log(data);
         }
 
