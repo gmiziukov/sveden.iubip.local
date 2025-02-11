@@ -10,6 +10,9 @@ ini_set("display_errors",true);
 
 
 <div id = "main">
+    @if (isset($json_data))
+        <input type="hidden" value={{$json_data}} id = "json_data">
+    @endif
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class = "border-2" id = create_element>
         <select id="type_create_element">
@@ -90,44 +93,46 @@ ini_set("display_errors",true);
                         <input type="hidden" name = "main_id" value={{$item->id}}>
 
 
+                        
+                        
+                                <script>
+                                    table_lenght=table_lenght+1;
+                                    // var table{{$item->supplement}} = {};
+                                    // console.log(table_leght);
+                                    // table{{$item->supplement}}["car"] = "audi";
+                                </script>
+                        @foreach ($data_table[$item->supplement] as $table)
+                            {{-- @dd($data_table) --}}
                         <table>
+                        {{-- @dd($table) --}}
 
-                            <script>
-                                table_lenght=table_lenght+1;
-                                // var table{{$item->supplement}} = {};
-                                // console.log(table_leght);
-                                // table{{$item->supplement}}["car"] = "audi";
-                            </script>
-                                {{-- {{dd(gettype($data_table[$item->supplement][0]))}} --}}
-                            {{-- {{dd(array_keys((array)$data_table[$item->supplement][0]))}} --}}
+                            <tr>
+                                <input type="hidden" name = "id[]" value = {{$table->id}}>
 
-
-                            @foreach ($data_table as $table)
-                                {{-- {{dd($table)}} --}}
                                 @foreach($table as $row)
+                                    
+                                {{-- @dd($row) --}}
                                     @if ($loop->first)
-                                        @foreach($row as $i)           
-                                            @if(key($row) == "id"  or key($row) == 'js' or key($row) == 'created_at' or key($row) == 'updated_at' or is_array($i))
+                                        {{-- @foreach($row as $i)            --}}
+                                            @if(key($table) == "id"  or key($table) == 'js' or key($table) == 'created_at' or key($table) == 'updated_at' or is_array($row))
                                             {{-- {{$i}} --}}
                                             @else
                                                 <td>
-                                                    {{$i}}
+                                                    {{$row}}
                                                     {{-- {{var_dump($i , key($row))}} --}}
                                                 </td>
                                             @endif
                                             @php
-                                                next($row)    
+                                                next($table)    
                                             @endphp
-                                        @endforeach
+                                        {{-- @endforeach --}}
                                     @else
-                                        <tr>
-                                            <input type="hidden" name = "id[]" value = {{$row->id}}>
                                             {{-- {{dd($row)}} --}}
-                                            @if (isset($row->js))
-                                                @foreach ($row->js as $js)
-                                                    @foreach($row as $i)
-                                                        {{-- {{dd($row)}} --}}
-                                                        @if (key($row) == $js[0] )
+                                            @if (isset($table->js))
+                                                @foreach ($table->js as $js)
+                                                    {{-- @foreach($row as $i) --}}
+                                                        {{-- {{dd($table)}} --}}
+                                                        @if (key($table) == $js[0] )
                                                         {{-- {{dd($row)}} --}}
                                                             @if($js[1] == 1)
                                                                 <td>
@@ -136,35 +141,35 @@ ini_set("display_errors",true);
                                                                         <option value="2">image</option>
                                                                         <option value="3">DocOrHref</option>
                                                                     </select>
-                                                                    <input type="file" value={{$i}} name = "{{key($row)}}[]">
-
+                                                                    <input type="file" value={{$row}} name = "{{key($table)}}[]">
+    
                                                                 </td>
                                                             @endif
                                                             @if($js[1] == 2)
-                                                            @dd($row->js)
-                                                            {{-- {{var_dump($js, key($row))}} --}}
-                                                            <td>
-                                                                <select name="table{{$item->supplement}}" id="type_data">
-                                                                    <option value="1">text</option>
-                                                                    <option value="2">image</option>
-                                                                    <option value="3">DocOrHref</option>
-                                                                </select>
-                                                                <input type="file" value={{$i}} name = "{{key($row)}}[]">
-                                                            </td>
-                                                            @endif
-                                                            @if($js[1] == 3)
                                                             {{-- @dd($row->js) --}}
-
+                                                            {{-- {{var_dump($js, key($row))}} --}}
                                                                 <td>
                                                                     <select name="table{{$item->supplement}}" id="type_data">
                                                                         <option value="1">text</option>
                                                                         <option value="2">image</option>
                                                                         <option value="3">DocOrHref</option>
                                                                     </select>
-                                                                    <input type="text" value={{$i}} name = "{{key($row)}}[]">
+                                                                    <input type="file" value={{$row}} name = "{{key($table)}}[]">
                                                                 </td>
                                                             @endif
-                                                        @elseif(key($row) == "id"  or key($row) == 'js' or key($row) == 'created_at' or key($row) == 'updated_at' or is_array($i))
+                                                            @if($js[1] == 3)
+                                                            {{-- @dd($row->js) --}}
+    
+                                                                <td>
+                                                                    <select name="table{{$item->supplement}}" id="type_data">
+                                                                        <option value="1">text</option>
+                                                                        <option value="2">image</option>
+                                                                        <option value="3">DocOrHref</option>
+                                                                    </select>
+                                                                    <input type="file" value={{$row}} name = "{{key($table)}}[]">
+                                                                </td>
+                                                            @endif
+                                                        @elseif(key($table) == "id"  or key($table) == 'js' or key($table) == 'created_at' or key($table) == 'updated_at' or is_array($row))
                                                         @else
                                                             <td>
                                                                 <select name="table{{$item->supplement}}" id="type_data">
@@ -172,47 +177,51 @@ ini_set("display_errors",true);
                                                                     <option value="2">image</option>
                                                                     <option value="3">DocOrHref</option>
                                                                 </select>
-                                                                <input type="text" value={{$i}} name = "{{key($row)}}[]">
+                                                                <input type="text" value={{$row}} name = "{{key($table)}}[]">
                                                                 {{-- {{var_dump($i , key($row))}} --}}
                                                             </td>
                                                         @endif
-
-
+    
+    
                                                         {{-- {{dd(key($row))}} --}}
                                                         @php
-                                                            next($row)    
+                                                            next($table)    
                                                         @endphp
-                                                    @endforeach
+                                                    {{-- @endforeach --}}
                                                     {{-- {{dd($js[0])}} --}}
                                                 @endforeach
                                             @else
-                                                @foreach($row as $i)           
-                                                    @if(key($row) == "id"  or key($row) == 'js' or key($row) == 'created_at' or key($row) == 'updated_at' or is_array($i))
+                                                {{-- @foreach($row as $i)            --}}
+                                                    @if(key($table) == "id"  or key($table) == 'js' or key($table) == 'created_at' or key($table) == 'updated_at' or is_array($row))
                                                     {{-- {{$i}} --}}
                                                     @else
-                                                        <td itemprop="{{key($row)}}">
+                                                        <td itemprop="{{key($table)}}">
                                                             <select name="table{{$item->supplement}}" id="type_data">
                                                                 <option value="1">text</option>
                                                                 <option value="2">image</option>
                                                                 <option value="3">DocOrHref</option>
                                                             </select>
-                                                            <input type="text" value={{$i}} name = "{{key($row)}}[]">
+                                                            <input type="text" value={{$row}} name = "{{key($table)}}[]">
                                                             {{-- {{var_dump($i , key($row))}} --}}
                                                         </td>
                                                     @endif
                                                     @php
-                                                        next($row)    
+                                                        next($table)    
                                                     @endphp
-                                                @endforeach
+                                                {{-- @endforeach --}}
                                             @endif
-
+    
                                         
-                                        </tr>
                                     @endif
                                     
                                     @endforeach
-
+    
+                                </table>
                             @endforeach
+                            </tr>
+                                    {{-- {{dd(gettype($data_table[$item->supplement][0]))}} --}}
+                                {{-- {{dd(array_keys((array)$data_table[$item->supplement][0]))}} --}}
+                                {{-- {{dd($table)}} --}}
 
 
                             {{-- @foreach ($data_table as $table)
@@ -238,7 +247,6 @@ ini_set("display_errors",true);
 
 
 
-                        </table>
                         <button type="submit" value="2" name="but">delete</button>
                         <button type="submit" value="1" name="but">save</button>
                     </form>

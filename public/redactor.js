@@ -42,11 +42,17 @@ async  function proba(){
 //     console.log(item[i].querySelectorAll("td");
 
 // }
-var data =[];
-var look = document.getElementsByTagName('select');
-for(let i =0; i!=table_lenght-1;i++){
-    data[i] =null;
+if (document.getElementById("json_data").value == null){
+    
+    var data = JSON.parse(document.getElementById("json_data").value);
 }
+else{
+    var data =[];
+    for(let i =0; i!=table_lenght-1;i++){
+        data[i] =null;
+    }
+}
+var look = document.getElementsByTagName('select');
 console.log(data);
 console.log(look);
 console.log(look.length);

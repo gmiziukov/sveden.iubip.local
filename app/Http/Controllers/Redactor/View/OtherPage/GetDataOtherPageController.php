@@ -52,25 +52,29 @@ class GetDataOtherPageController extends Controller
 
         
         $table = $table->get_table($this->page1);
+        // dd($data_json , $table);
+
         if(isset($data_json) and $data_json[0] != null){
             // dd("dd");
             for($i=0;$i!=count($table);$i++){
                 for($j=0;$j!=count($data_json[$i]);$j++){
-                        unset( $data_json[$i][$j][0]);
+                    unset( $data_json[$i][$j][0]);
                     // for($k=0;)
-                        // dd(gettype($table));
-                        // при сборке масива делать запрос по значению сразу же подставлять ====== $table join  where $table.name = [page]_documents.id
-                        $table[$i+1][$j+1]->js = $data_json[$i][$j];
-                        // dd($data_json[$i][$j],$table[$i+1][$j]);
+                    // dd(gettype($table));
+                    // при сборке масива делать запрос по значению сразу же подставлять ====== $table join  where $table.name = [page]_documents.id
+                    // dd($table);
+                    dd($data_json[$i]);
+                    $table[$i+1][$j+1]->js = $data_json[$i][$j];
+                    // dd($data_json[$i][$j],$table[$i+1][$j]);
                 }
             }
             // $new_data_table = $table
-            // dd($data_json , $table);
         }
+        // dd($data_json , $table);
         
 
         // dd($data->get());
-        return view("redactor/page",['data'=>$colect,'data_table'=> $table,'page_name'=>$page1]);
+        return view("redactor/page",['data'=>$colect,'data_table'=> $table,'page_name'=>$page1,'json_data'=>json_encode($data_json)]);
         
     }
 }
