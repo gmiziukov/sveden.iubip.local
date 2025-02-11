@@ -53,7 +53,7 @@ class GetDataOtherPageController extends Controller
         
         $table = $table->get_table($this->page1);
         // dd($data_json , $table);
-        // dd(count($data_json));
+        dd($data_json[1][0][0]);
 
         if(isset($data_json) and $data_json[0] != null){
             // dd("dd");

@@ -10,8 +10,9 @@ ini_set("display_errors",true);
 
 
 <div id = "main">
-    @if ($json_data != null)
-        <input type="hidden" value={{$json_data}} id = "json_data">
+    @if ($json_data != "null")
+        {{-- @dd($json_data) --}}
+        <input type="hidden" value='{{$json_data}}' id = "json_data">
     @endif
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class = "border-2" id = create_element>
