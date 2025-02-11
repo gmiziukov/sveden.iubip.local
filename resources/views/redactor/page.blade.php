@@ -10,7 +10,7 @@ ini_set("display_errors",true);
 
 
 <div id = "main">
-    @if (isset($json_data))
+    @if ($json_data != null)
         <input type="hidden" value={{$json_data}} id = "json_data">
     @endif
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -177,7 +177,7 @@ ini_set("display_errors",true);
                                                                     <option value="2">image</option>
                                                                     <option value="3">DocOrHref</option>
                                                                 </select>
-                                                                <input type="text" value={{$row}} name = "{{key($table)}}[]">
+                                                                <input type="text" value="{{$row}}" name = "{{key($table)}}[]">
                                                                 {{-- {{var_dump($i , key($row))}} --}}
                                                             </td>
                                                         @endif
@@ -201,7 +201,7 @@ ini_set("display_errors",true);
                                                                 <option value="2">image</option>
                                                                 <option value="3">DocOrHref</option>
                                                             </select>
-                                                            <input type="text" value={{$row}} name = "{{key($table)}}[]">
+                                                            <input type="text" value="{{$row}}" name = "{{key($table)}}[]">
                                                             {{-- {{var_dump($i , key($row))}} --}}
                                                         </td>
                                                     @endif

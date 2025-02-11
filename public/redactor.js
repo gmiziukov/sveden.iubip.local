@@ -42,8 +42,8 @@ async  function proba(){
 //     console.log(item[i].querySelectorAll("td");
 
 // }
-if (document.getElementById("json_data").value == null){
-    
+if (document.getElementById("json_data")){
+    console.error(document.getElementById("json_data").value);
     var data = JSON.parse(document.getElementById("json_data").value);
 }
 else{
@@ -136,8 +136,7 @@ for(let j=0; j < look.length; j++){
                             break;
                         }   
                         else if(o == data[i].length -1 ){
-                            data[i].push([look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]])
-;                            console.log(o,data[i].length);
+                            data[i].push([look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]]);                            console.log(o,data[i].length);
                             console.log("ppppppppppppppppppppp");
                         }
                         else{
