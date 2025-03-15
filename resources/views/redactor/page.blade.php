@@ -108,7 +108,7 @@ ini_set("display_errors",true);
                                 @foreach($table as $row)
                                     <tr>
                                         @if(isset($row->js))
-                                            @foreach($row as $key => $item)
+                                            @foreach($row as $key => $item_row)
                                                 {{-- @dd($key) --}}
                                                 @foreach($row->js as $js)
                                                     @if(!is_array($js))
@@ -122,7 +122,7 @@ ini_set("display_errors",true);
                                                                     echo "1";
                                                                     break;
                                                                 case '2':
-                                                                    echo "<td itemprop=".$key."><input type='hidden' name='save_in_dosc' value=".$item."> </input><input> </input></td>";
+                                                                    echo "<td itemprop=".$key."><input type='hidden' name='save_in_dosc' value=".$item_row."> </input><input> </input></td>";
                                                                     break;
                                                                 case '3':
                                                                     echo "3";
@@ -133,9 +133,10 @@ ini_set("display_errors",true);
                                                         @endphp
                                                         @break
                                                     @else
-                                                        @if(!is_array($item) and $key != "id" and $key != "created_at" and $key != "updated_at")
+                                                        @if(!is_array($item_row) and $key != "id" and $key != "created_at" and $key != "updated_at")
+    
                                                             <td itemprop="{{$key}}">
-                                                                {{$item}}
+                                                                {{$item_row}}
                                                             </td>
                                                             @break
                                                         @endif
@@ -144,16 +145,17 @@ ini_set("display_errors",true);
                                                 @endforeach
                                             @endforeach
                                         @else
-                                            @foreach($row as $key => $item)
-                                            @if (!is_array($item) and $key != "id" and $key != "created_at" and $key != "updated_at")
+                                            @foreach($row as $key => $item_row)
+                                            @if (!is_array($item_row) and $key != "id" and $key != "created_at" and $key != "updated_at")
                                                 <td>
-                                                    {{$item}}
+                                                    {{$item_row}}
                                                 </td>
                                                 
                                             @endif
                                             @endforeach
                                         @endif
                                     </tr>
+                                    
                                 @endforeach
                             </table>
                         @endforeach
