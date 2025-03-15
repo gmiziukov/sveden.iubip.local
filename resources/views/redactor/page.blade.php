@@ -102,64 +102,63 @@ ini_set("display_errors",true);
                                     // console.log(table_leght);
                                     // table{{$item->supplement}}["car"] = "audi";
                                 </script>
-                        @foreach ($data_table as $table)
-                            <table>
-                                {{-- @dd($table) --}}
-                                @foreach($table as $row)
-                                    <tr>
-                                        @if(isset($row->js))
-                                            @foreach($row as $key => $item_row)
-                                                {{-- @dd($key) --}}
-                                                @foreach($row->js as $js)
-                                                    @if(!is_array($js))
-                                                        @continue
-                                                    @endif
-                                                    @if (is_array($js) and $key == $js[0])
-                                                        {{-- @dd($key) --}}
-                                                        @php
-                                                            switch ($js[1]) {
-                                                                case '1':
-                                                                    echo "1";
-                                                                    break;
-                                                                case '2':
-                                                                    echo "<td itemprop=".$key."><input type='hidden' name='save_in_dosc' value=".$item_row."> </input><input> </input></td>";
-                                                                    break;
-                                                                case '3':
-                                                                    echo "3";
-                                                                    break;                               
-                                                                default:
-                                                                    break;
-                                                            }
-                                                        @endphp
-                                                        @break
-                                                    @else
-                                                        @if(!is_array($item_row) and $key != "id" and $key != "created_at" and $key != "updated_at")
-    
-                                                            <td itemprop="{{$key}}">
-                                                                {{$item_row}}
-                                                            </td>
-                                                            @break
-                                                        @endif
-                                                    @endif
-                                                    @break
-                                                @endforeach
-                                            @endforeach
-                                        @else
-                                            @foreach($row as $key => $item_row)
-                                            @if (!is_array($item_row) and $key != "id" and $key != "created_at" and $key != "updated_at")
-                                                <td>
-                                                    {{$item_row}}
-                                                </td>
-                                                
+                        <table>
+                        @foreach ($data_table[$item->supplement] as $table)
+                        {{-- @dd($data_table[$item->supplement]) --}}
+                            <tr>
+                                @if(isset($table->js))
+                                    @foreach($table as $key => $item_row)
+
+                                        @foreach($table->js as $js)
+                                            @if(!is_array($js))
+                                                @continue
                                             @endif
-                                            @endforeach
-                                        @endif
-                                    </tr>
-                                    
-                                @endforeach
-                            </table>
-                        @endforeach
+                                            @if (is_array($js) and $key == $js[0])
+
+                                                @php
+                                                    switch ($js[1]) {
+                                                        case '1':
+                                                            echo "1";
+                                                            break;
+                                                        case '2':
+                                                            echo "<td itemprop=".$key."><input type='hidden' name='save_in_dosc' value=".$item_row."> </input><input> </input></td>";
+                                                            break;
+                                                        case '3':
+                                                            echo "3";
+                                                            break;                               
+                                                        default:
+                                                            break;
+                                                    }
+                                                @endphp
+                                                @break
+                                            @else
+                                                @if(!is_array($item_row) and $key != "id" and $key != "created_at" and $key != "updated_at")
+
+                                                    <td itemprop="{{$key}}">
+                                                        {{$item_row}}
+                                                    </td>
+                                                    @break
+                                                @endif
+                                            @endif
+                                            @break
+                                        @endforeach
+                                    @endforeach
+                                @else
+                                    @foreach($table as $key => $item_row)
+                                    @if (!is_array($item_row) and $key != "id" and $key != "created_at" and $key != "updated_at")
+                                        <td>
+                                            {{$item_row}}
+                                        </td>
+                                        
+                                    @endif
+                                    @endforeach
+                                @endif
                             </tr>
+
+   
+                        @endforeach
+                        </table>
+                            {{-- </tr> --}}
                                     {{-- {{dd(gettype($data_table[$item->supplement][0]))}} --}}
                                 {{-- {{dd(array_keys((array)$data_table[$item->supplement][0]))}} --}}
                                 {{-- {{dd($table)}} --}}
@@ -193,9 +192,9 @@ ini_set("display_errors",true);
                     </form>
 
                     <button onclick="proba();" type="button">save_dd</button>
-                    {{-- <button onclick="add_row({{$item->id}});" type="button">добавить строку</button>
+                    <button onclick="add_row({{$item->id}});" type="button">добавить строку</button>
                     <button onclick="position_up({{$item->id}});" type="button">выше</button>
-                    <button onclick="position_down({{$item->id}});" type="button">ниже</button> --}}
+                    <button onclick="position_down({{$item->id}});" type="button">ниже</button>
                     </div>
                     @endif
                 @endforeach
