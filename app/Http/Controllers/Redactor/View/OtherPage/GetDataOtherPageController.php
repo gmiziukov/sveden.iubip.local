@@ -64,14 +64,15 @@ class GetDataOtherPageController extends Controller
                 }
                 else{
                     for($j=0;$j != count($data_json[$i]);$j++){
-                        // dd($data_json[$i][$j]);
+                        for($o=1; $o != count($data_json[$i][$j]);$o++)
+                        // dd($data_json[$i][$j][$o]);
                         // $a = $data_json[$i][$j][0];
                         // unset( $data_json[$i][$j][0]);
                         // for($k=0;)
                         // dd(gettype($table));
                         // при сборке масива делать запрос по значению сразу же подставлять ====== $table join  where $table.name = [page]_documents.id
-                        // dd($data_json[$i][$j]);
-                        $table[$i+1][$data_json[$i][$j][0]-1]->js = $data_json[$i][$j];
+
+                        $table[$i+1][$data_json[$i][$j][0]]->js = $data_json[$i][$j];
                         // $table[$i+1]
                         // $table[$i+1][$j+1]->js = $data_json[$i][$j];
                         // dd($data_json[$i][$j],$table[$i+1][$j]);
