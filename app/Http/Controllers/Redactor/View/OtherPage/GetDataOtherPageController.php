@@ -57,7 +57,7 @@ class GetDataOtherPageController extends Controller
         
 
         if(isset($data_json) and $data_json[0] != null){
-            // dd($data_json);
+            // dd($table, $data_json );
             for($i=0;$i!=count($table);$i++){
                 if ($data_json[$i] == null){
                     
@@ -65,6 +65,13 @@ class GetDataOtherPageController extends Controller
                 else{
                     for($j=0;$j != count($data_json[$i]);$j++){
                         for($o=1; $o != count($data_json[$i][$j]);$o++)
+                        if ($data_json[$i][$j][$o] == null){
+                    
+                        }
+                        else{
+                            $table[$i+1][$j]->js = $data_json[$i][$j];
+
+                        }
                         // dd($data_json[$i][$j][$o]);
                         // $a = $data_json[$i][$j][0];
                         // unset( $data_json[$i][$j][0]);
@@ -72,7 +79,6 @@ class GetDataOtherPageController extends Controller
                         // dd(gettype($table));
                         // при сборке масива делать запрос по значению сразу же подставлять ====== $table join  where $table.name = [page]_documents.id
 
-                        $table[$i+1][$data_json[$i][$j][0]]->js = $data_json[$i][$j];
                         // $table[$i+1]
                         // $table[$i+1][$j+1]->js = $data_json[$i][$j];
                         // dd($data_json[$i][$j],$table[$i+1][$j]);

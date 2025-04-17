@@ -104,24 +104,28 @@ ini_set("display_errors",true);
                                 </script>
                         <table>
                         @foreach ($data_table[$item->supplement] as $table)
+                    {{-- @dd($data,$item, $table) --}}
+
                         {{-- @dd($data_table[$item->supplement]) --}}
                             <tr>
                                 @if(isset($table->js))
+                                    {{-- @dd($table) --}}
                                     @foreach($table as $key => $item_row)
+
 
                                         @foreach($table->js as $js)
                                             @if(!is_array($js))
                                                 @continue
                                             @endif
-                                            @if (is_array($js) and $key == $js[0])
-
+                                            @if (is_array($js) and $key == $js[0] )
+                                                {{-- @dd(key($table)) --}}
                                                 @php
                                                     switch ($js[1]) {
                                                         case '1':
                                                             echo "1";
                                                             break;
                                                         case '2':
-                                                            echo "<td itemprop='{{key($table)}}'><select name='table{{$item->supplement}}' id='type_data'><option value='1'>text</option><option value='2'>image</option><option value='3'>DocOrHref</option></select><input type='text' value='{{$item_row}}' name = '{{key($table)}}[]'></td>"."<td itemprop=".$key."><input type='hidden' name='save_in_dosc' value=".$item_row."> </input><input> </input></td>";
+                                                            echo "<td itemprop={$key}><select name='table{$item->supplement}' id='type_data'><option value='1'>text</option><option value='2'>image</option><option value='3'>DocOrHref</option></select><input type='text' value='{$item_row}' name = '{$key}[]'></td>"."<td itemprop=".$key."><input type='hidden' name='save_in_dosc' value=".$item_row."> </input><input> </input></td>";
                                                             break;
                                                         case '3':
                                                             echo "3";
@@ -132,23 +136,16 @@ ini_set("display_errors",true);
                                                 @endphp
                                                 @break
 
-                                                
-
-
-
-
-
-
 
                                             @else
                                                 @if(!is_array($item_row) and $key != "id" and $key != "created_at" and $key != "updated_at")
-                                                <td itemprop="{{key($table)}}">
+                                                <td itemprop="{{$key}}">
                                                     <select name="table{{$item->supplement}}" id="type_data">
                                                         <option value="1">text</option>
                                                         <option value="2">image</option>
                                                         <option value="3">DocOrHref</option>
                                                     </select>
-                                                    <input type="text" value="{{$item_row}}" name = "{{key($table)}}[]">
+                                                    <input type="text" value="{{$item_row}}" name = "{{$key}}[]">
                                                     {{-- {{var_dump($i , key($row))}} --}}
                                                 </td>
                                                     <td itemprop="{{$key}}">
@@ -158,9 +155,12 @@ ini_set("display_errors",true);
                                                 @endif
                                             @endif
                                             @break
+
                                         @endforeach
+
                                     @endforeach
                                 @else
+                                {{-- @dd("dd") --}}
                                     @foreach($table as $key => $item_row)
                                     @if (!is_array($item_row) and $key != "id" and $key != "created_at" and $key != "updated_at")
                                     <td itemprop="{{key($table)}}">
@@ -169,18 +169,20 @@ ini_set("display_errors",true);
                                             <option value="2">image</option>
                                             <option value="3">DocOrHref</option>
                                         </select>
-                                        <input type="text" value="{{$item_row}}" name = "{{key($table)}}[]">
+                                        <input type="text" value="{{$item_row}}" name = "{{$key}}[]">
                                         {{-- {{var_dump($i , key($row))}} --}}
                                     </td>
-                                        <td>
+
+                                        {{-- <td>
                                             {{$item_row}}
-                                        </td>
+                                        </td> --}}
                                         
                                     @endif
                                     @endforeach
                                 @endif
                             </tr>
 
+                            {{-- @dd(key($table)) --}}
    
                         @endforeach
                         </table>
