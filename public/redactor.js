@@ -30,7 +30,9 @@ console.log(arr);
 
 async  function proba(){
     // console.log(window.location.pathname);
-    let data1 = data;
+    let data1 = class_data;
+    let  JSON_form = JSON.stringify(data1);
+    console.warn(JSON_form);
     console.warn(typeof(data1));
     await window.axios.post('/api/axios_page',{data:data1, path:window.location.pathname}).then(respond=>{
         console.log(respond.data);
@@ -47,116 +49,104 @@ if (document.getElementById("json_data")){
     var data = JSON.parse(document.getElementById("json_data").value);
 }
 else{
-    var data =[];
-    for(let i =0; i!=table_lenght-1;i++){
-        data[i] =null;
-    }
+    var data = new Map();
+    // for(let i =0; i!=table_lenght-1;i++){
+    //     data[i] =null;
+    // }
 }
 var look = document.getElementsByTagName('select');
 console.log(data);
 console.log(look);
 console.log(look.length);
 
-for(let j=0; j < look.length; j++){
-    look[j].addEventListener('change', function(){ 
-        for(let i=0; i != table_lenght-1;i++){
-            let table = "table"+(i+1);
-            if(look[j].name == table){
-                if(data[i] == null){
-                    data[i] = [[look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]]];
-                    console.error(data[i]);
-                }
-                else{
-                    for (let o=0;o!= data[i].length;o++){
+// let data1 = {
+//     table:[
+//         {"age":"dsd"}
+//     ]
 
-                        console.error("=======================");
-                        console.error("iteration o");
-                        console.error("=======================");
+// }
 
-                        console.warn(data[i][o]);
-                        console.warn(o);
-                        console.warn(data[i].length);
-                        console.log(typeof(data[i][o]));
 
-                        if(data[i][o][0] == look[j].parentNode.parentNode.children[0].value ){
 
-                            console.log(look[j].parentNode.parentNode.children[0].value);
-                            console.error("=======================");
-                            console.error("DATA I O 0");
-                            console.error(data[i][o][0]);
-                            console.error("=======================");
 
-                            console.error("=======================");
-                            console.error("DATA I O");
-                            console.error(data[i][o]);
-                            console.error("=======================");
 
-                            for(let k=0; k < data[i][o].length;k++){
 
-                                console.error("=======================");
-                                console.error("DATA I O k");
-                                console.error(data[i][o][k]);
-                                console.error("=======================");
-                                
-                                console.log("endloop");
-                                console.log(data[i][o].length);
-                                console.log(k);
-                                console.log("endloop");
-                                
-                                if (Array.isArray(data[i][o][k])){
-                                    // data[i].push([look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]]);
-                                    if (data[i][o][k][0] == look[j].parentNode.querySelector("input").name.slice(0,-2)){
-                                        console.log("new value ");
-                                        data[i][o][k] = [look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]
-                                        break;
-                                    }
-                                    else if (data[i][o].length -1   == k){
-                                        data[i][o].push([look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]);
-                                        console.log("end loop loop");
-                                        break;
-                                    }
-                                    console.log(data[i][o].length);
-                                    console.log(k);
-                                    console.log("data[i][o][k][0]");
-                                    console.log(look[j].parentNode.querySelector("input").name.slice(0,-2));
-                                    console.log(data[i][o][k][0]);
-                                    console.log("data[i][o][k][0]");
-                                }
 
-                                else{
-                                    console.warn(data[i][o][k]);
-                                    console.warn(data[i][o].length);
-                                    console.warn(k);
-                                    console.log("no array");
-                                }
-                                console.log(data[i][o][k]);
-                                console.error("iteration k:::::"+k);
 
-                            }
-                            break;
-                        }   
-                        else if(o == data[i].length -1 ){
-                            data[i].push([look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]]);                            console.log(o,data[i].length);
-                            console.log("ppppppppppppppppppppp");
-                        }
-                        else{
-                        }
-                        // break;
-                        // data[i][o].push([[look[j].parentNode.parentNode.children[0].value,[look[j].parentNode.querySelector("input").name.slice(0,-2) ,look[j].value]]]);
-                    }
-                    
-                }
-            } 
-            else{
-                
-            }
-            proba(); 
-            console.log(data);
+
+// [  для таблиц  ]
+
+// [[  таблицы  ]]
+
+// [[[  для строк  ]]]
+
+// [[[[ строки ]]]]
+
+// [[[[[  данные строки  ]]]]]
+
+
+
+    // data->[table->[all_row_in_table->[row->[],row->[],row->[]]],table->[all_row_in_table->[row->[]],all_row_in_table->[row->[]]]
+    
+
+
+
+
+
+
+var colect_table = []
+for(let i=1; i!= table_lenght;i++){
+    let tab = document.getElementById("table_"+i);
+    console.log(tab);
+    colect_table.push(tab);
+}
+var class_data = new Object()
+for (let i=1; i!=colect_table.length+1;i++){
+    class_data[i] = []; // tables
+
+}
+console.log(class_data);
+console.log(colect_table);
+for (let j = 0; j < look.length; j++) {
+    look[j].addEventListener('change', function() {
+
+        let table_count = look[j].name.split("_")[0];
+        let tr_count = look[j].name.split("_")[1];
+
+        console.log(look[j]);
+        console.log(table_count);
+        console.log(tr_count);
+
+        let name_table_full = look[j].parentNode.getElementsByTagName("input")[0].name;
+        let name_table = name_table_full.substr(0, name_table_full.length - 2);
+        let value_select = look[j].value;
+        let value_input = look[j].parentNode.getElementsByTagName("input")[0].value;
+        let tableIndex = parseInt(table_count.split("=")[1]);
+        let rowIndex = parseInt(tr_count.split("=")[1]);
+
+        if (!class_data[tableIndex]) {
+            class_data[tableIndex] = []; 
         }
 
-    })
+        let rowData = {};
+        rowData[name_table] = {
+            type: value_select,
+            value: value_input
+        };
+
+        if (class_data[tableIndex][rowIndex]) {
+            class_data[tableIndex][rowIndex] = { ...class_data[tableIndex][rowIndex], ...rowData };
+        } else {
+            class_data[tableIndex][rowIndex] = rowData;
+        }
+
+        class_data[tableIndex] = class_data[tableIndex].filter(item => item !== null);
+
+        console.log(class_data[tableIndex]);
+        console.log(class_data);
+        proba();
+    });
 }
-    
 // data[i] += [[look[j].parentNode.querySelector("input").name.slice(0,-2) , look[j].parentNode.parentNode.children[0].value],look[j].value];
 
 

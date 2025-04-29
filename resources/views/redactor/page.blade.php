@@ -14,6 +14,7 @@ ini_set("display_errors",true);
         {{-- @dd($json_data) --}}
         <input type="hidden" value='{{$json_data}}' id = "json_data">
     @endif
+    {{-- @dd($json_data) --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class = "border-2" id = create_element>
         <select id="type_create_element">
@@ -102,14 +103,17 @@ ini_set("display_errors",true);
                                     // console.log(table_leght);
                                     // table{{$item->supplement}}["car"] = "audi";
                                 </script>
-                        <table>
+                        <table id="table_{{$item->supplement}}">
                         @foreach ($data_table[$item->supplement] as $table)
                     {{-- @dd($data,$item, $table) --}}
 
                         {{-- @dd($data_table[$item->supplement]) --}}
-                            <tr>
+                            <tr id="tr_{{$loop->iteration}}">
+                                @php
+                                    $a = $loop->iteration;
+                                @endphp
                                 @if(isset($table->js))
-                                    {{-- @dd($table) --}}
+                                    @dd($table)
                                     @foreach($table as $key => $item_row)
 
 
@@ -164,7 +168,7 @@ ini_set("display_errors",true);
                                     @foreach($table as $key => $item_row)
                                     @if (!is_array($item_row) and $key != "id" and $key != "created_at" and $key != "updated_at")
                                     <td itemprop="{{key($table)}}">
-                                        <select name="table{{$item->supplement}}" id="type_data">
+                                        <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
                                             <option value="1">text</option>
                                             <option value="2">image</option>
                                             <option value="3">DocOrHref</option>

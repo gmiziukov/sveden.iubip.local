@@ -32,13 +32,13 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "public/redactor.js": {
-    "file": "assets/redactor-hWbdTict.js",
+    "file": "assets/redactor-B4yiiJFS.js",
     "name": "redactor",
     "src": "public/redactor.js",
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-oKaq3ycK.css",
+    "file": "assets/app-BIAEO_xQ.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
