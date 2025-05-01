@@ -103,93 +103,94 @@ ini_set("display_errors",true);
                                     // console.log(table_leght);
                                     // table{{$item->supplement}}["car"] = "audi";
                                 </script>
-                        <table id="table_{{$item->supplement}}">
-                        @foreach ($data_table[$item->supplement] as $table)
-                    {{-- @dd($data,$item, $table) --}}
+                            {{-- @dd($data) --}}
+                            <table>
+                            @foreach($data_table[$item->supplement] as $row)
 
-                        {{-- @dd($data_table[$item->supplement]) --}}
-                            <tr id="tr_{{$loop->iteration}}">
-                                @php
-                                    $a = $loop->iteration;
-                                @endphp
-                                @if(isset($table->js))
-                                    @dd($table)
-                                    @foreach($table as $key => $item_row)
+                                <tr>
+                                    
 
-
-                                        @foreach($table->js as $js)
-                                            @if(!is_array($js))
-                                                @continue
-                                            @endif
-                                            @if (is_array($js) and $key == $js[0] )
-                                                {{-- @dd(key($table)) --}}
-                                                @php
-                                                    switch ($js[1]) {
-                                                        case '1':
-                                                            echo "1";
-                                                            break;
-                                                        case '2':
-                                                            echo "<td itemprop={$key}><select name='table{$item->supplement}' id='type_data'><option value='1'>text</option><option value='2'>image</option><option value='3'>DocOrHref</option></select><input type='text' value='{$item_row}' name = '{$key}[]'></td>"."<td itemprop=".$key."><input type='hidden' name='save_in_dosc' value=".$item_row."> </input><input> </input></td>";
-                                                            break;
-                                                        case '3':
-                                                            echo "3";
-                                                            break;                               
-                                                        default:
-                                                            break;
-                                                    }
-                                                @endphp
-                                                @break
-
-
-                                            @else
-                                                @if(!is_array($item_row) and $key != "id" and $key != "created_at" and $key != "updated_at")
-                                                <td itemprop="{{$key}}">
-                                                    <select name="table{{$item->supplement}}" id="type_data">
-                                                        <option value="1">text</option>
-                                                        <option value="2">image</option>
-                                                        <option value="3">DocOrHref</option>
-                                                    </select>
-                                                    <input type="text" value="{{$item_row}}" name = "{{$key}}[]">
-                                                    {{-- {{var_dump($i , key($row))}} --}}
-                                                </td>
-                                                    <td itemprop="{{$key}}">
-                                                        {{$item_row}}
+                                        @if (isset($data_table[$item->supplement]["js"]) )
+                                            {{-- @dd($data_table[$item->supplement]) --}}
+    
+                                            @foreach ($row as $key => $items)
+                                                {{-- @dd($row) --}}
+                                                {{-- {{ var_dump($key) }}
+                                                {{ var_dump($row[$key]) }} --}}
+                                                @if ($key != "js" and  $key != "id" and !is_array($row))
+                                                    <td itemprop = {{$key}}>
+                                                        {{-- @dd($items) --}}
+                                                        {{$items}}
                                                     </td>
-                                                    @break
+                                                @else
+
+                                                @endif
+                                            @endforeach
+                                        @else 
+                                            @foreach ($row as $items)
+                                            {{-- @dd($items) --}}
+                                                <td>
+                                                    {{$items}}
+                                                </td>
+                                            @endforeach
+                                        @endif
+                                        
+                                </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+                                {{-- <table>
+                                    @foreach($table as $key => $row)
+ 
+                                        <tr>
+                                            @if ($key == "js")
+
+                                                @continue
+                                            @else
+
+                                                @if (isset($table->js))
+
+                                                    @foreach ($row as $items)
+                                                        <td>
+                                                            {{$items}} 
+                                                        </td>
+                                                    @endforeach
+                                                @else
+                                                    @foreach ($row as $items)
+                                                        @dd($items)
+                                                        <td>
+                                                            {{$items}} 
+                                                        </td>
+                                                    @endforeach             
                                                 @endif
                                             @endif
-                                            @break
-
-                                        @endforeach
-
+                                        </tr>
                                     @endforeach
-                                @else
-                                {{-- @dd("dd") --}}
-                                    @foreach($table as $key => $item_row)
-                                    @if (!is_array($item_row) and $key != "id" and $key != "created_at" and $key != "updated_at")
-                                    <td itemprop="{{key($table)}}">
-                                        <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
-                                            <option value="1">text</option>
-                                            <option value="2">image</option>
-                                            <option value="3">DocOrHref</option>
-                                        </select>
-                                        <input type="text" value="{{$item_row}}" name = "{{$key}}[]">
-                                        {{-- {{var_dump($i , key($row))}} --}}
-                                    </td>
+                                </table> --}}
 
-                                        {{-- <td>
-                                            {{$item_row}}
-                                        </td> --}}
-                                        
-                                    @endif
-                                    @endforeach
-                                @endif
-                            </tr>
 
-                            {{-- @dd(key($table)) --}}
-   
-                        @endforeach
-                        </table>
+
+
+
+
+
+
+
+
+
+
+
+                            @endforeach
+                            </table>
                             {{-- </tr> --}}
                                     {{-- {{dd(gettype($data_table[$item->supplement][0]))}} --}}
                                 {{-- {{dd(array_keys((array)$data_table[$item->supplement][0]))}} --}}
@@ -223,10 +224,10 @@ ini_set("display_errors",true);
                         <button type="submit" value="1" name="but">save</button>
                     </form>
 
-                    <button onclick="proba();" type="button">save_dd</button>
+                    {{-- <button onclick="proba();" type="button">save_dd</button>
                     <button onclick="add_row({{$item->id}});" type="button">добавить строку</button>
                     <button onclick="position_up({{$item->id}});" type="button">выше</button>
-                    <button onclick="position_down({{$item->id}});" type="button">ниже</button>
+                    <button onclick="position_down({{$item->id}});" type="button">ниже</button> --}}
                     </div>
                     @endif
                 @endforeach

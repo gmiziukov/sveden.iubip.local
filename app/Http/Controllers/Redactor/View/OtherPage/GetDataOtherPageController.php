@@ -54,9 +54,10 @@ class GetDataOtherPageController extends Controller
         $table = $table->get_table($this->page1);
         // dd();
         // dd($data_json[1][0][0]);
-        for  ($i =1; $i!= count($table)+1;$i++){
-            $table[$i]->js = $data_json[$i];
+        for ($i = 1; $i != count($table) + 1; $i++) {
+            $table[$i]['js'] = $data_json[$i];
         }
+        // $table = $table->toArray();
         // dd($data_json ,$table);
         // if (isset($data_json) && !empty($data_json)) {
         //     foreach ($table as $table_index => &$table_data) { // Итерируем по таблицам
