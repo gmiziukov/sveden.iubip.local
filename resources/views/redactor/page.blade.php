@@ -117,12 +117,20 @@ ini_set("display_errors",true);
                                                 {{-- @dd($row) --}}
                                                 {{-- {{ var_dump($key) }}
                                                 {{ var_dump($row[$key]) }} --}}
+                                                {{-- @dd($data_table[$item->supplement]["js"]) --}}
+                                                @if ($key != "js" and  $key != "id" and !is_array($row) and  isset($data_table[$item->supplement]["js"][$loop->parent->index]) and isset($data_table[$item->supplement]["js"][$loop->parent->index][$key]) )
+
+                                                    <td itemprop = {{$key}}>
+                                                        {{-- @dd($items) --}}
+                                                        {{$items}} 1
+                                                    </td>
+                                                @else
                                                 @if ($key != "js" and  $key != "id" and !is_array($row))
                                                     <td itemprop = {{$key}}>
                                                         {{-- @dd($items) --}}
-                                                        {{$items}}
+                                                        {{$items}} 
                                                     </td>
-                                                @else
+                                                @endif
 
                                                 @endif
                                             @endforeach
@@ -130,7 +138,7 @@ ini_set("display_errors",true);
                                             @foreach ($row as $items)
                                             {{-- @dd($items) --}}
                                                 <td>
-                                                    {{$items}}
+                                                    {{$items}} 2 
                                                 </td>
                                             @endforeach
                                         @endif
