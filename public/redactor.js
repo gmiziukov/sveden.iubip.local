@@ -28,7 +28,7 @@ console.log(arr);
 //     console.log(document.querySelectorAll('input'))
 
 
-async  function proba(){
+async  function send_to_server(){
     // console.log(window.location.pathname);
     let data1 = class_data;
     let  JSON_form = JSON.stringify(data1);
@@ -46,18 +46,22 @@ async  function proba(){
 // }
 if (document.getElementById("json_data")){
     console.error(document.getElementById("json_data").value);
-    var data = JSON.parse(document.getElementById("json_data").value);
+    let dat = JSON.parse(document.getElementById("json_data").value)
+    console.log(dat);
+    var class_data = new Object(dat)
+    console.error(class_data);
+
 }
 else{
-    var data = new Map();
+    // var data = new Map();
     // for(let i =0; i!=table_lenght-1;i++){
     //     data[i] =null;
     // }
 }
 var look = document.getElementsByTagName('select');
-console.log(data);
-console.log(look);
-console.log(look.length);
+// console.log(data);
+// console.log(look);
+// console.log(look.length);
 
 // let data1 = {
 //     table:[
@@ -70,39 +74,18 @@ console.log(look.length);
 
 
 
-
-
-
-
-// [  для таблиц  ]
-
-// [[  таблицы  ]]
-
-// [[[  для строк  ]]]
-
-// [[[[ строки ]]]]
-
-// [[[[[  данные строки  ]]]]]
-
-
-
-    // data->[table->[all_row_in_table->[row->[],row->[],row->[]]],table->[all_row_in_table->[row->[]],all_row_in_table->[row->[]]]
-    
-
-
-
-
-
-
 var colect_table = []
 for(let i=1; i!= table_lenght;i++){
     let tab = document.getElementById("table_"+i);
     console.log(tab);
     colect_table.push(tab);
 }
-var class_data = new Object()
+if (!class_data){
+    console.error("nnnew object")
+    var class_data = new Object()
+}
 for (let i=1; i!=colect_table.length+1;i++){
-    class_data[i] = []; // tables
+    class_data[i] = []
 
 }
 console.log(class_data);
@@ -112,13 +95,9 @@ for (let j = 0; j < look.length; j++) {
 
         let table_count = look[j].name.split("_")[0];
         let tr_count = look[j].name.split("_")[1];
-
-        console.log(look[j]);
-        console.log(table_count);
-        console.log(tr_count);
-
         let name_table_full = look[j].parentNode.getElementsByTagName("input")[0].name;
         let name_table = name_table_full.substr(0, name_table_full.length - 2);
+        let teg_table = look[j].parentNode.getAttribute("itemprop");
         let value_select = look[j].value;
         let value_input = look[j].parentNode.getElementsByTagName("input")[0].value;
         let tableIndex = parseInt(table_count.split("=")[1]);
@@ -131,7 +110,7 @@ for (let j = 0; j < look.length; j++) {
         let rowData = {};
         rowData[name_table] = {
             type: value_select,
-            value: value_input
+            value: teg_table
         };
 
         if (class_data[tableIndex][rowIndex]) {
@@ -144,11 +123,9 @@ for (let j = 0; j < look.length; j++) {
 
         console.log(class_data[tableIndex]);
         console.log(class_data);
-        proba();
+        send_to_server();
     });
 }
-// data[i] += [[look[j].parentNode.querySelector("input").name.slice(0,-2) , look[j].parentNode.parentNode.children[0].value],look[j].value];
-
 
 
 

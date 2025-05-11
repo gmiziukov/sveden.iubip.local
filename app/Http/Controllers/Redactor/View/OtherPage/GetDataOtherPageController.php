@@ -54,8 +54,10 @@ class GetDataOtherPageController extends Controller
         $table = $table->get_table($this->page1);
         // dd();
         // dd($data_json[1][0][0]);
-        for ($i = 1; $i != count($table) + 1; $i++) {
-            $table[$i]['js'] = $data_json[$i];
+        if($data_json){
+            for ($i = 1; $i != count($table) + 1; $i++) {
+                $table[$i]['js'] = $data_json[$i];
+            }
         }
         // $table = $table->toArray();
         // dd($data_json ,$table);
@@ -119,6 +121,7 @@ class GetDataOtherPageController extends Controller
         
 
         // dd($data->get());
+        // dd($data_json);
         return view("redactor/page",['data'=>$colect,'data_table'=> $table,'page_name'=>$page1,'json_data'=>json_encode($data_json)]);
         
     }
