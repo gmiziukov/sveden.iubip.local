@@ -55,6 +55,7 @@ class GetDataOtherPageController extends Controller
         // dd();
         // dd($data_json[1][0][0]);
         if($data_json){
+            // dd($table);
             for ($i = 1; $i != count($table) + 1; $i++) {
                 $table[$i]['js'] = $data_json[$i];
             }

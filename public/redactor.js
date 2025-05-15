@@ -48,7 +48,7 @@ if (document.getElementById("json_data")){
     console.error(document.getElementById("json_data").value);
     let dat = JSON.parse(document.getElementById("json_data").value)
     console.log(dat);
-    var class_data = new Object(dat)
+    var class_data = new Object(JSON.parse(document.getElementById("json_data").value))
     console.error(class_data);
 
 }
@@ -80,13 +80,14 @@ for(let i=1; i!= table_lenght;i++){
     console.log(tab);
     colect_table.push(tab);
 }
-if (!class_data){
+console.warn(class_data);
+if (Object.keys(class_data).length === 0){
     console.error("nnnew object")
     var class_data = new Object()
-}
-for (let i=1; i!=colect_table.length+1;i++){
-    class_data[i] = []
-
+    for (let i=1; i!=colect_table.length+1;i++){
+        class_data[i] = []
+    
+    }
 }
 console.log(class_data);
 console.log(colect_table);
@@ -106,20 +107,21 @@ for (let j = 0; j < look.length; j++) {
         if (!class_data[tableIndex]) {
             class_data[tableIndex] = []; 
         }
-
+        console.warn(class_data);
         let rowData = {};
         rowData[name_table] = {
             type: value_select,
             value: teg_table
         };
-
-        if (class_data[tableIndex][rowIndex]) {
-            class_data[tableIndex][rowIndex] = { ...class_data[tableIndex][rowIndex], ...rowData };
+        console.log("tableIndex:"+tableIndex);
+        console.log("rowIndex:"+rowIndex);
+        if (class_data[tableIndex][rowIndex-1]) {
+            class_data[tableIndex][rowIndex-1] = { ...class_data[tableIndex][rowIndex-1], ...rowData };
         } else {
-            class_data[tableIndex][rowIndex] = rowData;
+            class_data[tableIndex][rowIndex-1] = rowData;
         }
 
-        class_data[tableIndex] = class_data[tableIndex].filter(item => item !== null);
+        // class_data[tableIndex] = class_data[tableIndex].filter(item => item !== null);
 
         console.log(class_data[tableIndex]);
         console.log(class_data);

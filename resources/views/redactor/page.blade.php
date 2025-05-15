@@ -104,7 +104,8 @@ ini_set("display_errors",true);
                                     // table{{$item->supplement}}["car"] = "audi";
                                 </script>
                             {{-- @dd($data) --}}
-                            <table>
+                            
+                            <table id = "table_{{$item->supplement}}">
                             @foreach($data_table[$item->supplement] as $row)
                             {{-- @dd($data_table[$item->supplement]) --}}
 
@@ -121,18 +122,60 @@ ini_set("display_errors",true);
                                                 {{ var_dump($row[$key]) }} --}}
                                                 {{-- @dd($data_table[$item->supplement]["js"][$loop->parent->index]) --}}
                                                 @if ($key != "js" and $key !="created_at" and $key != "updated_at" and  $key != "id" and !is_array($row) and  isset($data_table[$item->supplement]["js"][$loop->parent->index]) and isset($data_table[$item->supplement]["js"][$loop->parent->index][$key]) )
-
+                                                    {{-- 
+                                                        в этом условии обработка  json данных
+                                                        JSON преобразован в масив и объединён с основным масивом
+                                                        меет структуру
+                                                        name{
+                                                            name
+                                                            value
+                                                        }
+                                                        вызывается: $data_table[$item->supplement]["js"][$loop->parent->index][$key]
+                                                        возможные структуры:
+                                                        [
+                                                            next
+                                                            image
+                                                            document/href
+                                                        ]
+                                                    
+                                                    
+                                                    
+                                                    --}}
                                                     <td itemprop = {{$key}}>
-                                                        @dd($data_table[$item->supplement]["js"])
-                                                        <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
-                                                            <option value="1">text</option>
-                                                            <option value="2">image</option>
-                                                            <option value="3">DocOrHref</option>
-                                                        </select>
-                                                           <input type="text" value="{{$items}}"name = "{{$key}}[]"> 
+                                                        {{-- @dd($data_table[$item->supplement]["js"][$loop->parent->index][$key]) --}}
+                                                        @if ($data_table[$item->supplement]["js"][$loop->parent->index][$key]['type']==1)
+                                                            <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
+                                                                <option value="1">text</option>
+                                                                <option value="2">image</option>
+                                                                <option value="3">DocOrHref</option>
+                                                            </select>
+                                                           <input type="text" value="{{$items}} 1" name = "{{$key}}[]"> 
+                                                        @endif
+                                                        @if ($data_table[$item->supplement]["js"][$loop->parent->index][$key]['type']==2)
+                                                            <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
+                                                                <option value="1">text</option>
+                                                                <option value="2">image</option>
+                                                                <option value="3">DocOrHref</option>
+                                                            </select>
+                                                            <input type="file" id="myFile" name="{{$key}}[]"accept="image/png, image/jpeg" >
+                                                           {{-- <input type="text" value="{{$items}} 2 " name = "{{$key}}[]">  --}}
+                                                        @endif
+                                                        @if ($data_table[$item->supplement]["js"][$loop->parent->index][$key]['type']==3)
+                                                            <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
+                                                                <option value="1">text</option>
+                                                                <option value="2">image</option>
+                                                                <option value="3">DocOrHref</option>
+                                                            </select>
+                                                            <input type="file" id="myFile" name="{{$key}}[]" >
+                                                           {{-- <input type="text" value="{{$items}} 3 " name = "{{$key}}[]">  --}}
+                                                        @endif
+
                                                     </td>
                                                 @else
                                                 @if ($key != "js" and $key !="created_at" and $key != "updated_at" and  $key != "id" and !is_array($row))
+                                                    {{-- 
+                                                        обработка не изменённых позиций
+                                                    --}}
                                                     <td itemprop = {{$key}}>
                                                         {{-- @dd($items) --}}
                                                         <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
@@ -140,7 +183,7 @@ ini_set("display_errors",true);
                                                             <option value="2">image</option>
                                                             <option value="3">DocOrHref</option>
                                                         </select>
-                                                        <input type="text" value="{{$items}}"name = "{{$key}}[]"> 
+                                                        <input type="text" value="{{$items}} ааа"name = "{{$key}}[]"> 
 
                                                     </td>
                                                 @endif

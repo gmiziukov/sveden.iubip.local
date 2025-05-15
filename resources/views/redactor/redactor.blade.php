@@ -4,7 +4,7 @@
 @stop --}}
 @section('content')
     {{-- {{dd($data)}} --}}
-    {{ csrf_token() }}
+    {{-- {{ csrf_token() }} --}}
 
     <div class="text-lg" id = "main">
         <div class = "border-b-2 p-2" id=create_element>
@@ -16,9 +16,6 @@
             <button class="text-lg h-[35px] border rounded-md px-2 bg-slate-200" id = "button_create"
                 onclick="create_element()";>Создать</button>
         </div>
-        уточнить как поступить с ссылками и документам в таблице
-        *поиск делать колонку или обозначение по всей таблице с булевым параметром
-        и потом искать то то орпеделённое и менять
         @if ($data)
             <form action="" method = "post">
                 <div id = "main_item" class ="p-2 flex flex-col">
