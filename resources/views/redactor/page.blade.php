@@ -113,15 +113,22 @@ ini_set("display_errors",true);
                                     $a = $loop->iteration;
                                 @endphp
                                 <tr>
+
                                         @if (isset($data_table[$item->supplement]["js"]) )
                                             {{-- @dd($data_table[$item->supplement]) --}}
     
                                             @foreach ($row as $key => $items)
+                                                @if ($key == "id")
+                                                    <td>
+
+                                                        <input type="hidden" name = "id[]" value = {{$items}}>
+                                                    </td>
+                                                @endif
                                                 {{-- @dd($row) --}}
                                                 {{-- {{ var_dump($key) }}
                                                 {{ var_dump($row[$key]) }} --}}
                                                 {{-- @dd($data_table[$item->supplement]["js"][$loop->parent->index]) --}}
-                                                @if ($key != "js" and $key !="created_at" and $key != "updated_at" and  $key != "id" and !is_array($row) and  isset($data_table[$item->supplement]["js"][$loop->parent->index]) and isset($data_table[$item->supplement]["js"][$loop->parent->index][$key]) )
+                                                @if ($key != "js" and $key !="created_at" and $key != "updated_at" and !is_array($row) and  isset($data_table[$item->supplement]["js"][$loop->parent->index]) and isset($data_table[$item->supplement]["js"][$loop->parent->index][$key]) )
                                                     {{-- 
                                                         в этом условии обработка  json данных
                                                         JSON преобразован в масив и объединён с основным масивом
@@ -141,15 +148,17 @@ ini_set("display_errors",true);
                                                     
                                                     
                                                     --}}
+
                                                     <td itemprop = {{$key}}>
                                                         {{-- @dd($data_table[$item->supplement]["js"][$loop->parent->index][$key]) --}}
+
                                                         @if ($data_table[$item->supplement]["js"][$loop->parent->index][$key]['type']==1)
                                                             <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
                                                                 <option value="1">text</option>
                                                                 <option value="2">image</option>
                                                                 <option value="3">DocOrHref</option>
                                                             </select>
-                                                           <input type="text" value="{{$items}} 1" name = "{{$key}}[]"> 
+                                                           <input type="text" value="{{$items}}" name = "{{$key}}[]"> 
                                                         @endif
                                                         @if ($data_table[$item->supplement]["js"][$loop->parent->index][$key]['type']==2)
                                                             <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
@@ -183,7 +192,7 @@ ini_set("display_errors",true);
                                                             <option value="2">image</option>
                                                             <option value="3">DocOrHref</option>
                                                         </select>
-                                                        <input type="text" value="{{$items}} ааа"name = "{{$key}}[]"> 
+                                                        <input type="text" value="{{$items}}"name = "{{$key}}[]"> 
 
                                                     </td>
                                                 @endif
