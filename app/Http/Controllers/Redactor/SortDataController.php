@@ -63,8 +63,8 @@ class SortDataController extends Controller
     }
 
     function sort_add(Request $request){
-        
         $data_for_table = $request->input();
+        // dd($request->file('path'));
 
         if($data_for_table["input_type"] == "1"){
             return AddTextController::index($data_for_table);
@@ -72,12 +72,11 @@ class SortDataController extends Controller
         }
         elseif($data_for_table["input_type"] == "2"){
             if($data_for_table["page_name"]=="redactor"){
-                // dd($request->file());
 
                 return AddTableController::index($request);
             }
             else{
-                return AddDocOrHrefController::index($data_for_table);
+                return AddDocOrHrefController::index($data_for_table = $data_for_table, $file = $request->file('path'));
             }
             return 0;
         }

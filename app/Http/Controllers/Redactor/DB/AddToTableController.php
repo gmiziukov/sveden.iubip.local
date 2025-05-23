@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class AddToTableController extends Controller
 {
-    static function index($data_for_table, $type = Null){
-        // dd($data_for_table);
+    static function index($data_for_table, $type = Null, $file = Null, $file_name = Null){
+        // dd($file);
         if($type == 1){
             $time_data = $data_for_table;
             unset($time_data["input_type"]);
@@ -45,13 +45,15 @@ class AddToTableController extends Controller
             unset($time_data["but"]);
             unset($time_data["_token"]);
             $id = DB::table($data_for_table["page_name"]."_documents")->orderBy("id","desc")->get();
+            // dd($id);
             $pos = DB::table($data_for_table["page_name"])->orderBy("id","desc")->get();
     
-            if(count($id)== 0){
+            if(count($id) == 0){
                 $id = 1;
             }
             else{
                 $id = $id[0]->id + 1;
+                dd($id);
             }
     
             if(count($pos)== 0){
@@ -60,9 +62,16 @@ class AddToTableController extends Controller
             else{
                 $pos = $pos[0]->id;
             }
+            if($time_data['path'] == null){
+                $time_data['path'] = $file_name;
+                // dd($file->getClientMimeType());
+                $time_data["type_doc"] =$file->getClientMimeType();
+            }
     
-            DB::table($data_for_table["page_name"])->insert(["type_supplement"=>2, "supplement"=>$id, "position"=>$pos]);
-            DB::table($data_for_table["page_name"]."_documents")->insert($time_data);
+            // DB::table($data_for_table["page_name"]."_documents")->insert($time_data);
+            
+            dd(DB::table($data_for_table["page_name"]."_documents")->latest()->select("id")->get());
+            // DB::table($data_for_table["page_name"])->insert(["type_supplement"=>2, "supplement"=>$id, "position"=>$pos]);
             unset($time_data);
             return 0;
         }

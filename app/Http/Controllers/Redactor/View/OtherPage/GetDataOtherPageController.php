@@ -36,18 +36,20 @@ class GetDataOtherPageController extends Controller
         ->Join($this->page1.'_documents', function (JoinClause $join) {
             $join->on($this->page1.'.supplement', '=', $this->page1.'_documents.id')
                 ->where($this->page1.'.type_supplement', '=', 2);        
-        })->select($page1.'.*', $page1.'_documents.name',$page1.'_documents.teg', $page1.'_documents.path');
+        })->select($page1.'.*', $page1.'_documents.name',$page1.'_documents.teg', $page1.'_documents.path', $page1.'_documents.type_doc');
 
         $data2 = DB::table($page1)
             ->Join($page1.'_texts', function (JoinClause $join) {
                 $join->on($this->page1.'.supplement', '=', $this->page1.'_texts.id')
                     ->where($this->page1.'.type_supplement', '=', 1);
         })->select($page1.'.*', $page1.'_texts.text',$page1.'_texts.teg')->orderBy("position","asc");
+        // dd($data1);
         $colect = new Collection();
         $colect = $colect->merge($data->get());
         $colect = $colect->merge($data1->get());
         $colect = $colect->merge($data2->get());
         $colect = $colect->sortBy("position");
+
         // dd($colect->sortBy("position"));
 
         

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("teg");
             $table->string("name");
             $table->string("path");
+            $table->string("type_doc");
             $table->timestamps();
         });
     }
