@@ -173,7 +173,6 @@ ini_set("display_errors",true);
 
                                                         <td itemprop = {{$key}}>
                                                             {{-- @dd($data_table[$item->supplement]["js"][$loop->parent->index][$key]) --}}
-
                                                             @if ($data_table[$item->supplement]["js"][$loop->parent->index][$key]['type']==1)
                                                                 <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
                                                                     <option value="1" selected>text</option>
@@ -195,25 +194,33 @@ ini_set("display_errors",true);
                                                             {{-- <input type="text" value="{{$items}} 2 " name = "{{$key}}[]">  --}}
                                                             @endif
                                                             @if ($data_table[$item->supplement]["js"][$loop->parent->index][$key]['type']==3)
-                                                                <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
-                                                                    <option value="1">text</option>
-                                                                    <option value="2">image</option>
-                                                                    <option value="3" selected>DocOrHref</option>
-                                                                </select>
-                                                                <input type="text"  name="{{$key}}[]" >
-                                                                <input type="file" id="myFile" name="{{$key."_".$row->id}}[]" >
+                                                                @if (is_array($items))
+                                                                    @foreach ($items[0] as $item1)
+                                                                        {{-- @dd($item1) --}}
+                                                                        <a href="/storage/{{ $item1->path }}">{{$item1->name}}</a>
+                                                                    @endforeach
+                                                                    
+                                                                @else
+                                                                    <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
+                                                                        <option value="1">text</option>
+                                                                        <option value="2">image</option>
+                                                                        <option value="3" selected>DocOrHref</option>
+                                                                    </select>
+                                                                    <input type="text"  name="{{$key}}[]" >
+                                                                    <input type="file" id="myFile" name="{{$key."_".$row->id}}[]" >
+                                                                @endif
 
                                                             {{-- <input type="text" value="{{$items}} 3 " name = "{{$key}}[]">  --}}
                                                             @endif
 
                                                         </td>
                                                     @else
-                                                    @if ($loop->even and $key != "js" and $key !="created_at" and $key != "updated_at" and  $key != "id" and !is_array($row))
+                                                    @if ($loop->even and $key != "js" and $key !="created_at" and $key != "updated_at" and  $key != "id" and !is_array($row) and !is_array($items))
                                                         {{-- 
                                                             обработка не изменённых позиций
                                                         --}}
                                                         <td itemprop = {{$key}}>
-                                                            {{-- @dd($items) --}}
+                                                            {{-- {{var_dump($items)}} --}}
                                                             <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
                                                                 <option value="1">text</option>
                                                                 <option value="2">image</option>

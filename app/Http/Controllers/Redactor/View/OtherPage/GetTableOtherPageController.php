@@ -21,6 +21,37 @@ class GetTableOtherPageController extends Controller
             // dd($data);
             $tables[$i] = $data;
         }   
+
+
+        foreach ($tables as &$table){
+            for($i=0; $i<count($table)-1;$i++){
+                // dd($table);
+                $iterator = 0;
+                foreach ($table[$i] as $key => $value) {
+                    $iterator++;
+                    if($iterator % 2 == 0){
+                        $a = $key."_doc_id";
+                        // dd($a);
+                        if(isset($table[$i]->$a) and $table[$i]->$a != null){
+                            // dd($table[$i]->$key);
+                            $table[$i]->$key = [DB::table($this->page1."_documents")->where("id",$table[$i]->$a)->select("name","path","type_doc","teg")->get()];
+
+                            // dd(DB::table(DB::table($this->page1."_tables")->where("id",$i)->get()[0]->name)->where("id",$table[$i]->id)->get()[0]->id);//ПОЛУЧЕНИЕ ЗАПИСИ КОНЕЧНОЙ ТАБЛИЦЫ
+
+                            // dd(DB::table($this->page1."_documents")->where("id",$table[$i]->$a)->select("name","path","type_doc","teg")->get());
+                            // dd($table[$i]->$a);
+                        }
+                        else{
+                            continue;
+                        }
+                        // dd($key,$value);
+                    }
+                    else{
+                        continue;
+                    }
+                }
+            }
+        }
         // dd($tables);
         return $tables;
     }
