@@ -53,6 +53,7 @@ return new class extends Migration
             }
             else{
                 $part2 = $part2."           \$table->string('".key($time_data)."')->nullable(\$value = true);\n";
+                $part2 = $part2."           \$table->integer('".key($time_data)."_doc_id')->nullable(\$value = true);\n";
                 next($time_data);
             }
         }

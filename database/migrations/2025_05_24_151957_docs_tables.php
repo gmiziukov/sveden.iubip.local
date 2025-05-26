@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('education_table2s', function (Blueprint $table) {
+        Schema::create('docs_tables', function (Blueprint $table) {
            $table->id();
-           $table->string('name')->nullable($value = true);
-           $table->string('age')->nullable($value = true);
-           $table->string('post')->nullable($value = true);
+           $table->string('col1')->nullable($value = true);
+           $table->integer('col1_doc_id')->nullable($value = true);
+           $table->string('col2')->nullable($value = true);
+           $table->integer('col2_doc_id')->nullable($value = true);
+           $table->string('col3')->nullable($value = true);
+           $table->integer('col3_doc_id')->nullable($value = true);
            $table->timestamps();
         });
 }

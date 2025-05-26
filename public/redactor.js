@@ -188,11 +188,12 @@ function add_row(pos){
         // console.log(tr_clone.cells);
         for(let a of tr_clone.cells){
             if (a.querySelector("input") == null){
-                
             }
             else{
                 a.querySelector("input").value = "";
+
             }
+            
         }
         table.append(tr_clone);
         console.log(table);

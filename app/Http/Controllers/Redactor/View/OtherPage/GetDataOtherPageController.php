@@ -15,11 +15,19 @@ use Illuminate\Support\Collection;
 class GetDataOtherPageController extends Controller
 {
     public $page1;
-    
+
+    // index() объединение родительскиз таблиц 
+    // text document tables
+    // 
+    // ...
+    // 
+    // 
     public function index(Request $request, $page1){  
         $table = new GetTableOtherPageController;
         $this->page1 = $page1;
         // dd(Str::plural('child'));
+
+        // json хранится в корневой таблице
         $data_json = DB::table('svedens')->where('path',$page1)->select('data_json')->get()[0];
         $data_json = json_decode($data_json->data_json, true);
 
@@ -52,14 +60,28 @@ class GetDataOtherPageController extends Controller
 
         // dd($colect->sortBy("position"));
 
-        
+        // get_table() для получения данных конечных таблиц
+        // принимает:
+        // $page @string - название страницы
+        // 
         $table = $table->get_table($this->page1);
+
         // dd();
         // dd($data_json[1][0][0]);
+
+        // json format 
+        // 
+        // 
+        // 
         if($data_json){
             // dd($table);
             for ($i = 1; $i != count($table) + 1; $i++) {
-                $table[$i]['js'] = $data_json[$i];
+                if(isset($data_json[$i])){
+                    $table[$i]['js'] = $data_json[$i];
+                }
+                else{
+
+                }
             }
         }
         // $table = $table->toArray();

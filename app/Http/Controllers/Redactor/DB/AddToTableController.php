@@ -53,7 +53,7 @@ class AddToTableController extends Controller
             }
             else{
                 $id = $id[0]->id + 1;
-                dd($id);
+                // dd($id);
             }
     
             if(count($pos)== 0){
@@ -68,15 +68,16 @@ class AddToTableController extends Controller
                 $time_data["type_doc"] =$file->getClientMimeType();
             }
     
-            // DB::table($data_for_table["page_name"]."_documents")->insert($time_data);
+            DB::table($data_for_table["page_name"]."_documents")->insert($time_data);
             
-            dd(DB::table($data_for_table["page_name"]."_documents")->latest()->select("id")->get());
-            // DB::table($data_for_table["page_name"])->insert(["type_supplement"=>2, "supplement"=>$id, "position"=>$pos]);
+            // dd(DB::table($data_for_table["page_name"]."_documents")->latest()->select("id")->get());
+            DB::table($data_for_table["page_name"])->insert(["type_supplement"=>2, "supplement"=>$id, "position"=>$pos]);
             unset($time_data);
             return 0;
         }
         elseif($type == Null){
             $time_data = $data_for_table;
+            $page_name = $time_data["page_name"];
             unset($time_data["input_type"]);
             unset($time_data["page_name"]);
             unset($time_data["but"]);

@@ -8,7 +8,8 @@ error_reporting(E_ALL);
 ini_set("display_errors",true);
 ?>
 
-
+{{-- @dd($data,$data_table,$page_name) --}}
+{{-- 'data'=>$colect,'data_table'=> $table,'page_name'=>$page1,'json_data' --}}
 <div id = "main">
     @if ($json_data)
         {{-- @dd($json_data) --}}
@@ -65,12 +66,14 @@ ini_set("display_errors",true);
                             <input type="hidden" value={{$item->position}} name="pos[]">
                             <input type="hidden" value="1" name="input_type">
                             <input type="hidden" value={{$page_name}} name="page_name">
-            
+             
                             {{-- <input type="hidden" value="1" name="input_type"> --}}
-                            @if($item->type_doc == "image/jpeg"){
+                            @if($item->type_doc == "image/jpeg")
                                 <img src="/storage/{{ $item->path }}" alt="">
-
-                            }
+                            @else
+                                @if($item->type_doc == "href")
+                                @endif
+                                <a href="/storage/{{ $item->path }}">{{$item->name}}</a>
                             @endif
                             {{-- 
                             +"path": "images/1747959856jMVUmLn4dR.jpg"
@@ -82,7 +85,7 @@ ini_set("display_errors",true);
                         </div>
                     @endif
                     @if($item->type_supplement == 3)
-                    {{-- {{dd($item)}} --}}
+                        {{-- {{dd($data,$item)}} --}}
                     <form action="" method="post"></form>
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -90,7 +93,7 @@ ini_set("display_errors",true);
                         <input type="hidden" value={{$item->id}} name="id[]">
                         <input type="hidden" value={{$item->position}} name="pos[]">
 
-                    <form action="/sort" method = "post" id = {{$item->id}}>
+                    <form action="/sort" enctype="multipart/form-data" method = "post" id = {{$item->id}}>
                         @csrf
                         @if($item->hidden == 1)
                             <input type="checkbox" name="hidden" checked value = 1> 
@@ -109,7 +112,6 @@ ini_set("display_errors",true);
                                     table_lenght=table_lenght+1;
                                     // var table{{$item->supplement}} = {};
                                     // console.log(table_leght);
-                                    // table{{$item->supplement}}["car"] = "audi";
                                 </script>
                             {{-- @dd($data) --}}
                             
@@ -120,7 +122,7 @@ ini_set("display_errors",true);
                                 @php
                                     $a = $loop->iteration;
                                 @endphp
-                                @if ($loop->first)
+                                {{-- @if ($loop->first)
                                     <tr>
                                         @foreach ($row as $key => $items)
                                             <td>
@@ -130,7 +132,7 @@ ini_set("display_errors",true);
 
                                     </tr>
                                     
-                                @else
+                                @else --}}
                                     
                                     <tr>
 
@@ -148,7 +150,7 @@ ini_set("display_errors",true);
                                                     {{-- {{ var_dump($key) }}
                                                     {{ var_dump($row[$key]) }} --}}
                                                     {{-- @dd($data_table[$item->supplement]["js"][$loop->parent->index]) --}}
-                                                    @if ($key != "js" and $key !="created_at" and $key != "updated_at" and !is_array($row) and  isset($data_table[$item->supplement]["js"][$loop->parent->index]) and isset($data_table[$item->supplement]["js"][$loop->parent->index][$key]) )
+                                                    @if ($loop->even and $key != "js" and $key !="created_at" and $key != "updated_at" and !is_array($row) and  isset($data_table[$item->supplement]["js"][$loop->parent->index]) and isset($data_table[$item->supplement]["js"][$loop->parent->index][$key]) )
                                                         {{-- 
                                                             в этом условии обработка  json данных
                                                             JSON преобразован в масив и объединён с основным масивом
@@ -174,7 +176,7 @@ ini_set("display_errors",true);
 
                                                             @if ($data_table[$item->supplement]["js"][$loop->parent->index][$key]['type']==1)
                                                                 <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
-                                                                    <option value="1">text</option>
+                                                                    <option value="1" selected>text</option>
                                                                     <option value="2">image</option>
                                                                     <option value="3">DocOrHref</option>
                                                                 </select>
@@ -183,10 +185,12 @@ ini_set("display_errors",true);
                                                             @if ($data_table[$item->supplement]["js"][$loop->parent->index][$key]['type']==2)
                                                                 <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
                                                                     <option value="1">text</option>
-                                                                    <option value="2">image</option>
+                                                                    <option value="2" selected>image</option>
                                                                     <option value="3">DocOrHref</option>
                                                                 </select>
+                                                                <input type="text"  name="{{$key}}[]" >
                                                                 <input type="file" id="myFile" name="{{$key}}[]"accept="image/png, image/jpeg" >
+
                                                                 {{-- <img src="{{$items}}" alt=""> --}}
                                                             {{-- <input type="text" value="{{$items}} 2 " name = "{{$key}}[]">  --}}
                                                             @endif
@@ -194,15 +198,17 @@ ini_set("display_errors",true);
                                                                 <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
                                                                     <option value="1">text</option>
                                                                     <option value="2">image</option>
-                                                                    <option value="3">DocOrHref</option>
+                                                                    <option value="3" selected>DocOrHref</option>
                                                                 </select>
-                                                                <input type="file" id="myFile" name="{{$key}}[]" >
+                                                                <input type="text"  name="{{$key}}[]" >
+                                                                <input type="file" id="myFile" name="{{$key."_".$row->id}}[]" >
+
                                                             {{-- <input type="text" value="{{$items}} 3 " name = "{{$key}}[]">  --}}
                                                             @endif
 
                                                         </td>
                                                     @else
-                                                    @if ($key != "js" and $key !="created_at" and $key != "updated_at" and  $key != "id" and !is_array($row))
+                                                    @if ($loop->even and $key != "js" and $key !="created_at" and $key != "updated_at" and  $key != "id" and !is_array($row))
                                                         {{-- 
                                                             обработка не изменённых позиций
                                                         --}}
@@ -223,6 +229,12 @@ ini_set("display_errors",true);
                                             @else 
                                                 @foreach ($row as $key => $items)
                                                 {{-- @dd($items) --}}
+                                                @if ($key == "id")
+                                                <td>
+
+                                                    <input type="hidden" name = "id[]" value = {{$items}}>
+                                                </td>
+                                            @endif
                                                 @if ($key !="created_at" and $key != "updated_at" and  $key != "id")
                                                     <td name = {{$key}}>
                                                         <select name="table={{$item->supplement}}_tr={{$a}}" id="type_data">
@@ -239,7 +251,7 @@ ini_set("display_errors",true);
                                             @endif
                                     </tr>
 
-                                @endif
+                                {{-- @endif --}}
 
 
 
@@ -326,11 +338,9 @@ ini_set("display_errors",true);
                         <button type="submit" value="2" name="but">delete</button>
                         <button type="submit" value="1" name="but">save</button>
                     </form>
-
-                    {{-- <button onclick="proba();" type="button">save_dd</button>
                     <button onclick="add_row({{$item->id}});" type="button">добавить строку</button>
-                    <button onclick="position_up({{$item->id}});" type="button">выше</button>
-                    <button onclick="position_down({{$item->id}});" type="button">ниже</button> --}}
+                    {{-- <button onclick="position_up({{$item->id}});" type="button">выше</button> --}}
+                    {{-- <button onclick="position_down({{$item->id}});" type="button">ниже</button> --}}
                     </div>
                     @endif
                 @endforeach
